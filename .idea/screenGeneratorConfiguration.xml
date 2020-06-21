@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScreenGeneratorConfiguration">
+    <option name="settings">
+      <Settings>
+        <option name="activityBaseClass" value="BaseActivity" />
+        <option name="screenElements">
+          <list>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%component%" />
+              <option name="name" value="ViewImpl" />
+              <option name="template" value="package %packageName%&#10;&#10;import %packageName%.R&#10;import %componentClassFull%&#10;import %packageName%.ui.views.activities.base.Base%component%&#10;import %packageName%.ui.views.activities.views.%screenName%View&#10;import javax.inject.Inject&#10;&#10;class %screenName%%component% : %componentClass%(), %screenName%View {&#10;&#10;    override val layoutViewId: Int = R.layout.%componentLowerCase%_%screenNameSnakeCase%&#10;&#10;    @Inject&#10;    lateinit var %screenNameSnakeCase%Presenter: %screenName%Presenter&#10;&#10;    override fun onCreate(savedInstanceState: Bundle?) {&#10;        super.onCreate(savedInstanceState)&#10;&#10;        getApplicationComponent()?.inject(this)&#10;&#10;        %screenNameSnakeCase%Presenter.onBindView(this)&#10;    }&#10;}" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="View" />
+              <option name="template" value="package %packageName%&#10;&#10;import %packageName%.ui.views.base.IView&#10;&#10;interface %screenName%%screenElement%: IView" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Presenter" />
+              <option name="template" value="package %packageName%&#10;&#10;import %packageName%.presenter.base.IPresenter&#10;import %packageName%.ui.views.activities.views.%screenName%View&#10;&#10;class %screenName%%screenElement%: IPresenter&lt;%screenName%View&gt;" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="PresenterImpl" />
+              <option name="template" value="package %packageName%&#10;&#10;import %packageName%.interactor.contract.%screenName%Interactor&#10;import %packageName%.presenter.base.BasePresenter&#10;import %packageName%.presenter.contract.%screenName%Presenter&#10;import %packageName%.ui.views.%screenName%View&#10;import javax.inject.Inject&#10;&#10;class %screenName%%screenElement% &#10;@Inject constructor{&#10;    interactor: %screenName%Interactor&#10;} : BasePresenter&lt;%screenName%View, %screenName%Interactor&gt;(interactor), %screenName%Presenter " />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Interactor" />
+              <option name="template" value="package %packageName%&#10;&#10;import %packageName%.interactor.base.IInteractor&#10;&#10;interface %screenName%Interactor: IInteractor &#10;" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="InteractorImpl" />
+              <option name="template" value="package %packageName%&#10;&#10;import %packageName%.interactor.configs.BaseInteractor&#10;import %packageName%.interactor.contract.%screenName%Interactor&#10;&#10;class %screenName%InteractorImpl: BaseInteractor(), %screenName%Interactor " />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%componentLowerCase%_%screenNameSnakeCase%" />
+              <option name="fileType" value="Layout XML" />
+              <option name="name" value="layout" />
+              <option name="template" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#10;&lt;androidx.constraintlayout.widget.ConstraintLayout&#10;        xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&#10;        xmlns:tools=&quot;http://schemas.android.com/tools&quot;&#10;        android:layout_width=&quot;match_parent&quot;&#10;        android:layout_height=&quot;match_parent&quot;&#10;        tools:context=&quot;.ui.activities.HomeActivity&quot;&gt;&#10;&#10;&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;" />
+            </ScreenElement>
+          </list>
+        </option>
+      </Settings>
+    </option>
+  </component>
+</project>

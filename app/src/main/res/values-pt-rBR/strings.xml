@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Leitor Roteiros</string>
+    <string name="unknown_error">Houve um erro inesperado, tente novamente.</string>
+</resources>
