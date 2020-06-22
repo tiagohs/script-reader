@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.tiagohs.script_reader.dagger.AppComponent
+import com.tiagohs.script_reader.helpers.enums.MessageType
 import com.tiagohs.script_reader.ui.activities.base.BaseActivity
+import com.tiagohs.script_reader.ui.views.base.IView
 
-abstract class BaseFragment: Fragment() {
+abstract class BaseFragment: Fragment(), IView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(getViewID(), container, false)
@@ -31,20 +33,33 @@ abstract class BaseFragment: Fragment() {
     }
 
     protected fun getApplicationComponent(): AppComponent? {
-        val activity = activity ?: return null
-        return (activity as BaseActivity).getApplicationComponent()
+        return (activity as? BaseActivity)?.getApplicationComponent() ?: return null
     }
 
     fun openUrl(url: String?) {
-        val activity = activity ?: return
-
-        return (activity as BaseActivity).openUrl(url)
+        (activity as? BaseActivity)?.openUrl(url)
     }
 
-    fun isInternetConnected(): Boolean {
-        val activity = activity ?: return false
+    override fun isInternetConnected(): Boolean {
+        return (activity as? BaseActivity)?.isInternetConnected() ?: false
+    }
 
-        return (activity as BaseActivity).isInternetConnected()
+    override fun showMessage(
+        ex: Throwable?,
+        messageType: MessageType,
+        message: Int,
+        onTryAgainClicked: (() -> Unit)?
+    ) {
+        (activity as? BaseActivity)?.showMessage(ex, messageType, message, onTryAgainClicked)
+    }
+
+    override fun showMessage(
+        ex: Throwable?,
+        messageType: MessageType,
+        message: String,
+        onTryAgainClicked: (() -> Unit)?
+    ) {
+        (activity as? BaseActivity)?.showMessage(ex, messageType, message, onTryAgainClicked)
     }
 
     abstract fun getViewID(): Int

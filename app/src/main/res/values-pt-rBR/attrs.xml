@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PlaceholderView">
+        <attr name="placeholder_type">
+            <enum name="home" value="0" />
+        </attr>
+        <attr name="animation_duration" format="integer" />
+        <attr name="custom_layout" format="reference" />
+    </declare-styleable>
+
+</resources>

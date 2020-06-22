@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:orientation="vertical">
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/placeholder_home_large_content_height"
+            android:layout_marginStart="@dimen/activity_vertical_margin_2x"
+            android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
+            android:layout_marginBottom="@dimen/activity_vertical_margin_2x"
+            android:background="@color/primaryDarkColor" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/placeholder_home_small_content_height"
+            android:layout_marginStart="@dimen/activity_vertical_margin_2x"
+            android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
+            android:layout_marginBottom="@dimen/activity_vertical_margin_2x"
+            android:background="@color/primaryDarkColor" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/placeholder_home_medium_content_height"
+            android:layout_marginStart="@dimen/activity_vertical_margin_2x"
+            android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
+            android:layout_marginBottom="@dimen/activity_vertical_margin_2x"
+            android:background="@color/primaryDarkColor" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/placeholder_home_medium_content_height"
+            android:layout_marginStart="@dimen/activity_vertical_margin_2x"
+            android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
+            android:layout_marginBottom="@dimen/activity_vertical_margin_2x"
+            android:background="@color/primaryDarkColor" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/placeholder_home_medium_content_height"
+            android:layout_marginStart="@dimen/activity_vertical_margin_2x"
+            android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
+            android:layout_marginBottom="@dimen/activity_vertical_margin_2x"
+            android:background="@color/primaryDarkColor" />
+
+</LinearLayout>

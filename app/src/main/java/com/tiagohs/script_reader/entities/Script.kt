@@ -1,7 +1,10 @@
 package com.tiagohs.script_reader.entities
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import org.jsoup.nodes.Element
 
+@Parcelize
 data class Script(
     var poster: String? = null,
     var title: String? = null,
@@ -13,7 +16,7 @@ data class Script(
     var scriptURL: String? = null,
     var pageUrl: String? = null,
     var isTVShow: Boolean = false
-) {
+) : Parcelable {
 
     companion object {
         fun fromList(element: Element?): Script? {
@@ -23,11 +26,18 @@ data class Script(
 
             return Script().apply {
                 poster = element.select(".script__poster .script__poster__wrap img").first()?.attr("src")
-                title = element.select(".script__details .script__details__wrap .script__title")?.text()
-                year = element.select(".script__details .script__details__wrap .script__title .script__year")?.text()
+                title = element.select(".script__details .script__details__wrap .script__title")?.text()?.split(" (")?.firstOrNull()
+                year = element.select(".script__details .script__details__wrap .script__title .script__year")?.text()?.replace(Regex("[()\\s]"), "")
                 writers = element.select(".script__details .script__details__wrap .script__writers")?.text()?.split(", ")?.map { Category(title = it) }
                 genres = element.select(".script__details .script__details__wrap .script__categories")?.text()?.split(", ")?.map { Category(title = it) }
                 pageUrl = element.select("a")?.attr("href")
+
+                val episodeName = element.select(" .script__details .script__details__wrap .script__episode-title")?.text()
+                if (!episodeName.isNullOrEmpty()) {
+                    isTVShow = true
+                    episode = episodeName
+                }
+
             }
         }
 

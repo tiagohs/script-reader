@@ -2,4 +2,9 @@
     <string name="app_name">Script Reader</string>
 
     <string name="unknown_error">An error occurred, please try again.</string>
+    <string name="error_title">Ops!</string>
+    <string name="error_attention">Attention!</string>
+    <string name="error_success">Success!</string>
+    <string name="action_search">Search</string>
+    <string name="query_hint_message">Search a script</string>
 </resources>

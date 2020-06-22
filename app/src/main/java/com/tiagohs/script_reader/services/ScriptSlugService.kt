@@ -38,8 +38,8 @@ class ScriptSlugService(serviceBuild: Retrofit): BaseService(serviceBuild) {
             .map { it.body()?.byteStream() }
 
     private fun mapDocumentToHomeData(responseBody: Document): List<HomeCell> = listOf(
-        mapDocumentToLatestCell(responseBody),
-        mapDocumetToCategoriesCell(responseBody)
+        mapDocumetToCategoriesCell(responseBody),
+        mapDocumentToLatestCell(responseBody)
     )
 
     private fun mapDocumentToLatestCell(document: Document): LastestCell = LastestCell().apply {

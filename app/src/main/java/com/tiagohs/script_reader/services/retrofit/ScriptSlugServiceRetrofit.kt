@@ -16,7 +16,7 @@ interface ScriptSlugServiceRetrofit {
     @GET
     fun fetchMoviesByCategory(@Url url: String): Observable<Response<ResponseBody>>
 
-    @GET
+    @GET("/")
     fun searchMovie(@Query("q") query: String): Observable<Response<ResponseBody>>
 
     @GET

@@ -10,4 +10,8 @@ object Constants {
         const val FONT_EXTENSION                            = ".otf"
     }
 
+    object ARGUMENTS {
+        const val CATEGORY = "Category"
+        const val SCRIPT = "Script"
+    }
 }
