@@ -26,6 +26,7 @@
         <activity android:name=".ui.activities.CategoryActivity" />
         <activity android:name=".ui.activities.SearchActivity" />
         <activity android:name=".ui.activities.ReaderActivity" />
+        <activity android:name=".ui.activities.ScriptDetailsActivity" />
     </application>
 
 </manifest>

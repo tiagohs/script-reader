@@ -19,6 +19,7 @@ import com.tiagohs.script_reader.helpers.extensions.toast
 import com.tiagohs.script_reader.helpers.utils.ServerUtils
 import com.tiagohs.script_reader.ui.activities.CategoryActivity
 import com.tiagohs.script_reader.ui.activities.ReaderActivity
+import com.tiagohs.script_reader.ui.activities.ScriptDetailsActivity
 import com.tiagohs.script_reader.ui.activities.SearchActivity
 import com.tiagohs.script_reader.ui.custom.AlertSnackBar
 import com.tiagohs.script_reader.ui.views.base.IView
@@ -156,6 +157,10 @@ abstract class BaseActivity : AppCompatActivity(), IView {
 
     fun presentReaderScreen(script: Script) {
         startActivity(ReaderActivity.newIntent(this, script))
+    }
+
+    fun presentScriptDetailsScreen(script: Script) {
+        startActivity(ScriptDetailsActivity.newIntent(this, script))
     }
 
     fun presentSearchScreen() {

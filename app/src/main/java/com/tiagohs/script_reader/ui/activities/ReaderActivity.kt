@@ -3,6 +3,8 @@ package com.tiagohs.script_reader.ui.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.tiagohs.script_reader.Constants
 import com.tiagohs.script_reader.R
 import com.tiagohs.script_reader.entities.Script
@@ -12,6 +14,7 @@ import com.tiagohs.script_reader.presenter.contract.ReaderPresenter
 import com.tiagohs.script_reader.ui.activities.base.BaseActivity
 import com.tiagohs.script_reader.ui.views.ReaderView
 import kotlinx.android.synthetic.main.activity_reader.*
+import kotlinx.android.synthetic.main.activity_reader.toolbar
 import java.io.InputStream
 import javax.inject.Inject
 
@@ -38,10 +41,34 @@ class ReaderActivity :
         super.onDestroy()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_reader, menu)
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.action_open_with -> {
+            presenter.onOpenWithClicked()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
+    }
+
+    override fun openReaderWith(url: String) {
+        openUrl(url)
+    }
+
     override fun setupArguments() {
         val script = intent.extras?.getParcelable(Constants.ARGUMENTS.SCRIPT) as? Script ?: return
 
         presenter.setArgument(script)
+    }
+
+    override fun setTitle(title: String?) {
+        toolbar.post {
+            setScreenTitle(title)
+        }
     }
 
     override fun setupContentView() {

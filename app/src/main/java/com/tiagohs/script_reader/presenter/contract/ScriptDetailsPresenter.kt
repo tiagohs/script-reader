@@ -2,9 +2,10 @@ package com.tiagohs.script_reader.presenter.contract
 
 import com.tiagohs.script_reader.entities.Script
 import com.tiagohs.script_reader.presenter.base.IPresenter
-import com.tiagohs.script_reader.ui.views.ReaderView
+import com.tiagohs.script_reader.ui.views.ScriptDetailsView
 
-interface ReaderPresenter : IPresenter<ReaderView> {
+interface ScriptDetailsPresenter : IPresenter<ScriptDetailsView> {
     fun setArgument(script: Script)
-    fun onOpenWithClicked()
+
+    fun onSharedClicked()
 }

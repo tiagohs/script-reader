@@ -12,5 +12,6 @@ class CategoryInteractorImpl
     val scriptSlugService: ScriptSlugService
 ) : BaseInteractor(), CategoryInteractor {
 
-    override fun fetchScriptsByCategory(url: String): Observable<List<Script>> = scriptSlugService.fetchScriptsByCategory(url)
+    override fun fetchScriptsByCategory(url: String): Observable<List<Script>> =
+        scriptSlugService.fetchScriptsByCategory(url)
 }

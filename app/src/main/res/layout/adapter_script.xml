@@ -44,7 +44,7 @@
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/movieTitle"
+                    android:id="@+id/scriptTitle"
                     android:text="Batman v Superman"
                     android:textColor="@color/primaryDarkColor"
                     android:fontFamily="@font/roboto_bold"
@@ -72,7 +72,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintStart_toEndOf="@id/iconContainer"
-                    app:layout_constraintTop_toBottomOf="@id/movieTitle"
+                    app:layout_constraintTop_toBottomOf="@id/scriptTitle"
                 />
 
             <TextView
@@ -89,7 +89,7 @@
                     android:layout_marginEnd="8dp"
                     app:layout_constraintStart_toEndOf="@id/movieYear"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/movieTitle"
+                    app:layout_constraintTop_toBottomOf="@id/scriptTitle"
                 />
 
             <TextView

@@ -16,6 +16,8 @@
     <color name="msg_error_background">#5A443D</color>
     <color name="msg_success_background">#295128</color>
 
+    <color name="placeholder_color">@color/primaryLightColor</color>
+
     <!-- Google's Material Design Colours from http://www.google.com/design/spec/style/color.html#color-ui-color-palette -->
 
     <!--reds-->

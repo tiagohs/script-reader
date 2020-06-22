@@ -37,17 +37,18 @@
 
                 <TextView
                         android:id="@+id/scriptTitle"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="142dp"
                         android:layout_marginBottom="@dimen/activity_vertical_margin_2x"
                         android:layout_marginEnd="@dimen/activity_vertical_margin_1.5x"
                         android:ellipsize="end"
                         android:maxLines="3"
-                        android:textColor="@color/md_white_1000"
+                        android:text="Teste de Texto"
+                        android:textColor="@color/transparent"
                         android:textSize="18sp"
                         android:fontFamily="@font/roboto_bold"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:background="@color/placeholder_color"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toTopOf="@id/authors"/>
 
@@ -57,7 +58,8 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:textColor="@color/md_white_1000"
+                        android:textColor="@color/transparent"
+                        android:background="@color/placeholder_color"
                         android:textSize="14sp"
                         android:fontFamily="@font/roboto_light"
                         android:layout_marginStart="142dp"
@@ -72,11 +74,8 @@
             <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:id="@+id/readScriptButtonContainer"
-                    android:backgroundTint="@color/secondaryLightColor"
+                    android:backgroundTint="@color/placeholder_color"
                     android:layout_marginEnd="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
                     app:cardCornerRadius="10dp"
                     android:layout_gravity="end"
                     android:layout_marginTop="185dp">
@@ -86,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/viewCategoryName"
                         android:fontFamily="@font/roboto_bold"
-                        android:textColor="@color/md_white_1000"
+                        android:textColor="@color/transparent"
                         android:textSize="14sp"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
@@ -103,7 +102,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageContainer"
                     android:layout_gravity="bottom"
                     android:layout_marginTop="?attr/actionBarSize"
                     android:fitsSystemWindows="true"
@@ -111,13 +109,12 @@
                     android:layout_marginStart="@dimen/activity_vertical_margin_2.5x"
                     android:layout_marginBottom="@dimen/activity_vertical_margin_2x">
 
-                <ImageView
-                        android:id="@+id/imageView"
+                <View
+                        android:id="@+id/moviePoster"
                         android:layout_width="110dp"
                         android:layout_height="160dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin_2x"
-                        android:background="@color/secondaryColor"
-                        android:src="@drawable/ic_movie"
+                        android:background="@color/placeholder_color"
                         android:padding="20dp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -126,92 +123,72 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:fitsSystemWindows="false"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"  />
-
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-            android:id="@+id/pageContentListContainer"
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <TextView
+                android:id="@+id/placeholder_sinopseLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin_1.2x"
+                android:layout_marginStart="@dimen/activity_vertical_margin_2x"
+                android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textColor="@color/transparent"
+                android:textSize="18sp"
+                android:fontFamily="@font/opensans_bold"
+                android:background="@color/placeholder_color"
+                android:text="Sinopse"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
-                    android:id="@+id/placeholder_sinopseLabel"
-                    android:layout_width="0dp"
+        <TextView
+                android:id="@+id/placeholder_sinopse"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin_0.5x"
+                android:layout_marginStart="@dimen/activity_vertical_margin_2x"
+                android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
+                android:ellipsize="end"
+                android:lines="4"
+                android:textColor="@color/transparent"
+                android:background="@color/placeholder_color"
+                android:textSize="18sp"
+                android:fontFamily="@font/opensans_regular"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/placeholder_sinopseLabel"/>
+
+
+        <HorizontalScrollView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/categoriesScrollView"
+                android:requiresFadingEdge="horizontal"
+                android:fadingEdgeLength="16dp"
+                android:scrollbars="none"
+                android:layout_marginTop="@dimen/activity_vertical_margin_2x"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sinopse">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin_1.2x"
-                    android:layout_marginStart="@dimen/activity_vertical_margin_2x"
-                    android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
-                    android:textColor="@color/md_black_1000"
-                    android:textSize="18sp"
-                    android:text="@string/synopses"
-                    android:fontFamily="@font/opensans_bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:id="@+id/categoriesContainer"
+                    android:orientation="horizontal" />
 
-            <TextView
-                    android:id="@+id/sinopse"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin_0.5x"
-                    android:layout_marginStart="@dimen/activity_vertical_margin_2x"
-                    android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
-                    android:textColor="@color/md_black_1000"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/opensans_regular"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/placeholder_sinopseLabel"/>
+        </HorizontalScrollView>
 
-
-            <HorizontalScrollView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/categoriesScrollView"
-                    android:requiresFadingEdge="horizontal"
-                    android:fadingEdgeLength="16dp"
-                    android:scrollbars="none"
-                    android:layout_marginTop="@dimen/activity_vertical_margin_2x"
-                    android:layout_marginBottom="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/sinopse">
-
-                <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/categoriesContainer"
-                        android:orientation="horizontal" />
-
-            </HorizontalScrollView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-    <com.tiagohs.script_reader.ui.custom.PlaceholderView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/loadView"
-            app:placeholder_type="script_details"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -24,6 +24,7 @@ class ReaderPresenterImpl
 
         this.view?.let {
             it.setupArguments()
+            it.setTitle(script?.title)
             it.setupContentView()
         }
 
@@ -32,6 +33,12 @@ class ReaderPresenterImpl
 
     override fun setArgument(script: Script) {
         this.script = script
+    }
+
+    override fun onOpenWithClicked() {
+        val url = script?.scriptURL ?: return
+
+        this.view?.openReaderWith(url)
     }
 
     private fun fetchScriptPDF() {

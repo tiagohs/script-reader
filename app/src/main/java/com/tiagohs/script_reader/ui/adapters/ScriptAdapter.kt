@@ -29,7 +29,7 @@ class ScriptAdapter(
         override fun bind(item: Script, position: Int) {
             super.bind(item, position)
 
-            itemView.movieTitle.setResourceText(item.title)
+            itemView.scriptTitle.setResourceText(item.title)
             itemView.movieYear.setResourceText(item.year)
             itemView.author.setResourceText(item.writers?.mapNotNull { it.title }?.joinToString())
 

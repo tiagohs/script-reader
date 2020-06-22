@@ -12,7 +12,7 @@
             android:layout_marginStart="@dimen/activity_vertical_margin_2x"
             android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
             android:layout_marginBottom="@dimen/activity_vertical_margin_2x"
-            android:background="@color/primaryDarkColor" />
+            android:background="@color/placeholder_color" />
 
     <View
             android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_marginStart="@dimen/activity_vertical_margin_2x"
             android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
             android:layout_marginBottom="@dimen/activity_vertical_margin_2x"
-            android:background="@color/primaryDarkColor" />
+            android:background="@color/placeholder_color" />
 
     <View
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             android:layout_marginStart="@dimen/activity_vertical_margin_2x"
             android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
             android:layout_marginBottom="@dimen/activity_vertical_margin_2x"
-            android:background="@color/primaryDarkColor" />
+            android:background="@color/placeholder_color" />
 
     <View
             android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             android:layout_marginStart="@dimen/activity_vertical_margin_2x"
             android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
             android:layout_marginBottom="@dimen/activity_vertical_margin_2x"
-            android:background="@color/primaryDarkColor" />
+            android:background="@color/placeholder_color" />
 
     <View
             android:layout_width="match_parent"
@@ -44,6 +44,6 @@
             android:layout_marginStart="@dimen/activity_vertical_margin_2x"
             android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
             android:layout_marginBottom="@dimen/activity_vertical_margin_2x"
-            android:background="@color/primaryDarkColor" />
+            android:background="@color/placeholder_color" />
 
 </LinearLayout>

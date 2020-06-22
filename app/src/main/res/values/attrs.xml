@@ -3,6 +3,8 @@
     <declare-styleable name="PlaceholderView">
         <attr name="placeholder_type">
             <enum name="home" value="0" />
+            <enum name="script_details" value="1" />
+
         </attr>
         <attr name="animation_duration" format="integer" />
         <attr name="custom_layout" format="reference" />

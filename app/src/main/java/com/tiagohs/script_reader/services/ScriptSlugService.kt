@@ -50,9 +50,11 @@ class ScriptSlugService(serviceBuild: Retrofit): BaseService(serviceBuild) {
                     document.select(".site-main .scripts-list.js-scripts-list .scripts.js-scripts .script.js-script")
                             ?.mapNotNull { Script.fromList(it) } ?: emptyList()
 
+
     private fun mapDocumetToCategoriesCell(document: Document): CategoryCell = CategoryCell().apply {
         list = document.select(".scripts-browse .scripts-browse__wrap .script-categories-list .script-categories-list__wrap a")
-                    ?.mapNotNull { Category.from(it) } ?: emptyList()
+                    ?.mapNotNull { Category.from(it) }
+                    ?.sortedBy { it.title } ?: emptyList()
     }
 
 }
