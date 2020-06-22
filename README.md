@@ -1,7 +1,7 @@
 # Script Reader - Leitor de Roteiros
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tiagohs/script-reader/tree/master/icon/1x/recursos%20v1.jpg" width="600" height="294">
+  <img src="https://github.com/tiagohs/script-reader/raw/master/icon/1x/recursos%20v1.jpg" width="600" height="294">
 </p>
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/64dcc8f9e64948a9a950dce178aea678)](https://www.codacy.com/app/tiagohs/hqr-comics-reader?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tiagohs/hqr-comics-reader&amp;utm_campaign=Badge_Grade)
@@ -43,8 +43,8 @@ Get the app from our <a href="https://github.com/tiagohs/script-reader/releases"
 ## Screens
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tiagohs/script-reader/tree/master/prints/v1/device-2020-06-22-173651.png" width="280" height="540">   <img src="https://raw.githubusercontent.com/tiagohs/script-reader/tree/master/prints/v1/device-2020-06-22-173731.png" width="280" height="540">
-  <img src="https://raw.githubusercontent.com/tiagohs/script-reader/tree/master/prints/v1/device-2020-06-22-173756.png" width="280" height="540">
+  <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v1/device-2020-06-22-173651.png" width="280" height="540">   <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v1/device-2020-06-22-173731.png" width="280" height="540">
+  <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v1/device-2020-06-22-173756.png" width="280" height="540">
 </p>
 
 ### Desenvolvido por:
