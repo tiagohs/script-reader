@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Script Reader</string>
+    <string name="app_name" translatable="false">Script Reader</string>
 
     <string name="unknown_error">An error occurred, please try again.</string>
     <string name="error_title">Ops!</string>

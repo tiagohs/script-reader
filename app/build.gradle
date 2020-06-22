@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -14,6 +16,21 @@ android {
         versionName "0.0.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
+
+    signingConfigs {
+        release {
+            keyAlias 'script_reader'
+            keyPassword '14789632'
+            storeFile file('../keystore/keystore.keystore')
+            storePassword '14789632'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
@@ -24,13 +41,17 @@ android {
         }
 
         release {
+            debuggable false
             minifyEnabled false
+            shrinkResources false
 
             multiDexKeepProguard file('multidex-config.pro')
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             buildConfigField "String", "ADMOB_APP_ID", '""'
             buildConfigField "String", "ADMOB_APP_BANNER_ID", '"ca-app-pub-00000"'
+
+            signingConfig signingConfigs.release
         }
     }
 
@@ -63,8 +84,13 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.exifinterface:exifinterface:1.2.0'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
-
     implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
+
+    /**
+     * FIREBASE
+     */
+    implementation 'com.google.firebase:firebase-analytics:17.4.3'
+    implementation 'com.google.firebase:firebase-crashlytics:17.1.0'
 
     /**
      * PICASSO Dependencies
@@ -100,10 +126,14 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
-    // JSON
+    /**
+     * GSON
+     */
     implementation 'com.google.code.gson:gson:2.8.6'
 
-    // HTML Parser / Jspoon
+    /**
+     *  HTML Parser / Jspoon
+     */
     implementation 'pl.droidsonroids:jspoon:1.0.0'
     implementation 'pl.droidsonroids.retrofit2:converter-jspoon:1.0.0'
 
