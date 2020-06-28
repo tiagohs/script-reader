@@ -2,21 +2,18 @@
 <resources>
 
     <!-- Base Colors  -->
-    <color name="primaryColor">#1a237e</color>
-    <color name="primaryLightColor">#534bae</color>
-    <color name="primaryDarkColor">#000051</color>
-    <color name="secondaryColor">#f44336</color>
-    <color name="secondaryLightColor">#ff7961</color>
-    <color name="secondaryDarkColor">#ba000d</color>
+    <color name="primaryColor">#2D323D</color>
+    <color name="primaryDarkColor">#212329</color>
+    <color name="secondaryColor">#4C88FF</color>
     <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#e8eaf6</color>
+    <color name="secondaryTextColor">#ABADB1</color>
     <color name="transparent">#00000000</color>
 
     <color name="msg_attention_background">#473213</color>
     <color name="msg_error_background">#5A443D</color>
     <color name="msg_success_background">#295128</color>
 
-    <color name="placeholder_color">@color/primaryLightColor</color>
+    <color name="placeholder_color">@color/md_grey_500</color>
 
     <!-- Google's Material Design Colours from http://www.google.com/design/spec/style/color.html#color-ui-color-palette -->
 

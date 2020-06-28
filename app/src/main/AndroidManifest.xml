@@ -15,7 +15,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name="com.tiagohs.script_reader.ui.activities.HomeActivity">
+        <activity
+                android:name="com.tiagohs.script_reader.ui.activities.SplashActivity"
+                android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -23,6 +25,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.activities.HomeActivity" />
         <activity android:name=".ui.activities.CategoryActivity" />
         <activity android:name=".ui.activities.SearchActivity" />
         <activity android:name=".ui.activities.ReaderActivity" />

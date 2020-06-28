@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/categoryName"
                     android:textColor="@color/primaryDarkColor"
-                    android:fontFamily="@font/opensans_regular"
+                    android:fontFamily="@font/proxima_nova_bold"
                     android:ellipsize="end"
                     android:textSize="14sp"
                     android:text="Downloading Script, please wait..."

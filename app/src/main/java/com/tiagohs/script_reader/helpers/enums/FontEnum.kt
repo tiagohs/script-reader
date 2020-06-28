@@ -6,6 +6,10 @@ import android.graphics.Typeface
 enum class FontEnum(
         val fontName: String
 ) {
+    PROXIMA_NOVA_REGULAR("proxima_nova_regular.otf"),
+    PROXIMA_NOVA_BOLD("proxima_nova_bold.otf"),
+    PROXIMA_NOVA_BOLD_ITALIC("proxima_nova_bold_italic.otf"),
+    PROXIMA_NOVA_REGULAR_ITALIC("proxima_nova_regular_italic.otf"),
     OPEN_SANS_BOLD("opensans_bold.ttf"),
     OPEN_SANS_ITALIC("opensans_italic.ttf"),
     OPEN_SANS_LIGHT("opensans_light.ttf"),

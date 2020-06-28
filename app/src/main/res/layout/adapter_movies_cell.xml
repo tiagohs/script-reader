@@ -10,7 +10,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/title"
             android:textColor="@color/primaryDarkColor"
-            android:fontFamily="@font/roboto_light"
+            android:fontFamily="@font/proxima_nova_bold"
             android:ellipsize="end"
             android:textSize="18sp"
             android:text="Lastest Scripts"

@@ -1,5 +1,7 @@
 package com.tiagohs.script_reader.ui.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -56,7 +58,7 @@ class HomeActivity :
         setupToolbar(
             toolbar,
             displayHomeAsUpEnabled = false,
-            displayShowTitleEnabled = true,
+            displayShowTitleEnabled = false,
             displayShowHomeEnabled = false
         )
     }
@@ -75,6 +77,10 @@ class HomeActivity :
 
     override fun hideLoading() {
         loadView.hide()
+    }
+
+    companion object {
+        fun newIntent(context: Context): Intent = Intent(context, HomeActivity::class.java)
     }
 
 }
