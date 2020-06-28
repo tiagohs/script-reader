@@ -24,7 +24,7 @@ class CategoryAdapter(
         override fun bind(item: Category, position: Int) {
             super.bind(item, position)
 
-            itemView.categoryNameIcon.setResourceText(item.title?.firstOrNull().toString())
+            // itemView.categoryNameIcon.setResourceText(item.title?.firstOrNull().toString())
             itemView.categoryName.setResourceText(item.title)
 
             itemView.setOnClickListener { onCategoryClicked?.invoke(item) }

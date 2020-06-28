@@ -14,6 +14,13 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitUtil {
 
+    private val loggingInterceptor: HttpLoggingInterceptor
+        get() {
+            val logging = HttpLoggingInterceptor()
+            logging.level = HttpLoggingInterceptor.Level.BODY
+            return logging
+        }
+
     fun scriptSlugBuild(): Retrofit {
         return build("https://www.scriptslug.com")
     }
@@ -46,9 +53,7 @@ object RetrofitUtil {
 
         httpClient.addInterceptor { chain ->
             val original = chain.request()
-            val url = original.url.toString();
-//            val hasAccountTakeOver = FirebaseRemoteConfig.getInstance().getBoolean(Constant.REMOTE_CONFIG.ACCOUNT_TAKE_OVER.KEY)
-//            val version = if (url.contains("token") && hasAccountTakeOver) BuildConfig.VERSION_NAME else Constant.REMOTE_CONFIG.ACCOUNT_TAKE_OVER.VERSION_WITHOUT_ACCOUNT_TAKE_OVER
+            val url = original.url.toString()
 
             val request = original.newBuilder()
                 .header("Accept", "application/json")
@@ -56,6 +61,8 @@ object RetrofitUtil {
                 .build()
             chain.proceed(request)
         }
+
+        httpClient.addInterceptor(loggingInterceptor)
 
         return httpClient.build()
     }
@@ -67,12 +74,5 @@ object RetrofitUtil {
             .setFieldNamingStrategy(customPolicy)
             .create()
     }
-
-    private val loggingInterceptor: HttpLoggingInterceptor
-        get() {
-            val logging = HttpLoggingInterceptor()
-            logging.level = HttpLoggingInterceptor.Level.BODY
-            return logging
-        }
 
 }

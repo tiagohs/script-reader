@@ -20,10 +20,12 @@ class SplashActivity: BaseActivity() {
 
             override fun onAnimationEnd(p0: Animator?) {
                 startActivity(HomeActivity.newIntent(this@SplashActivity))
+                finish()
             }
 
             override fun onAnimationCancel(p0: Animator?) {
                 startActivity(HomeActivity.newIntent(this@SplashActivity))
+                finish()
             }
 
             override fun onAnimationStart(p0: Animator?) {
