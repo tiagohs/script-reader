@@ -24,7 +24,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="/private/var/folders/0t/bq6wysvs13s3lczz1r4v29vh0000gp/T/ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="C:\Users\tiago\AppData\Local\Temp\ic_android_black_24dp.xml" />
                                                 <entry key="opacityPercent" value="60" />
                                               </map>
                                             </option>
@@ -37,7 +37,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_logo_app.xml" />
+                                                <entry key="imagePath" value="D:\Desenvolvimento\script-reader\app\src\main\res\drawable\ic_logo_app.xml" />
                                                 <entry key="opacityPercent" value="60" />
                                                 <entry key="paddingPercent" value="10" />
                                               </map>
@@ -72,7 +72,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_logo_app.xml" />
+                                      <entry key="imageAsset" value="D:\Desenvolvimento\script-reader\app\src\main\res\drawable\ic_logo_app.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -88,7 +88,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="imagePath" value="/private/var/folders/0t/bq6wysvs13s3lczz1r4v29vh0000gp/T/ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="C:\Users\tiago\AppData\Local\Temp\ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -100,7 +100,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_logo_app.xml" />
+                                                <entry key="imagePath" value="D:\Desenvolvimento\script-reader\app\src\main\res\drawable\ic_logo_app.xml" />
                                                 <entry key="scalingPercent" value="77" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
@@ -151,7 +151,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="/private/var/folders/0t/bq6wysvs13s3lczz1r4v29vh0000gp/T/ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="C:\Users\tiago\AppData\Local\Temp\ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -163,7 +163,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_logo_app.xml" />
+                                                <entry key="imagePath" value="D:\Desenvolvimento\script-reader\app\src\main\res\drawable\ic_logo_app.xml" />
                                                 <entry key="paddingPercent" value="5" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
@@ -198,7 +198,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_logo_app.xml" />
+                                      <entry key="imageAsset" value="D:\Desenvolvimento\script-reader\app\src\main\res\drawable\ic_logo_app.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -215,7 +215,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="/private/var/folders/0t/bq6wysvs13s3lczz1r4v29vh0000gp/T/ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="C:\Users\tiago\AppData\Local\Temp\ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -227,7 +227,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_logo_app.xml" />
+                                                <entry key="imagePath" value="D:\Desenvolvimento\script-reader\app\src\main\res\drawable\ic_logo_app.xml" />
                                                 <entry key="paddingPercent" value="10" />
                                               </map>
                                             </option>
@@ -261,7 +261,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$PROJECT_DIR$/app/src/main/res/drawable/ic_logo_app.xml" />
+                                      <entry key="imageAsset" value="D:\Desenvolvimento\script-reader\app\src\main\res\drawable\ic_logo_app.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -272,12 +272,25 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="foregroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="imagePath" value="D:\Desenvolvimento\script-reader\app\src\main\res\drawable\ic_logo_app.xml" />
+                                                <entry key="scalingPercent" value="39" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="foregroundText">
                                         <value>
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="color" value="000000" />
+                                                <entry key="color" value="2d323d" />
+                                                <entry key="fontFamily" value="Roboto Light" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -298,7 +311,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="imagePath" value="/private/var/folders/0t/bq6wysvs13s3lczz1r4v29vh0000gp/T/ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="C:\Users\tiago\AppData\Local\Temp\ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -310,6 +323,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="D:\Desenvolvimento\script-reader\app\src\main\res\drawable\ic_logo_app.xml" />
+                                                <entry key="scalingPercent" value="43" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -339,6 +354,12 @@
                                       </entry>
                                     </map>
                                   </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="ffffff" />
+                                    </map>
+                                  </option>
                                 </PersistentState>
                               </value>
                             </entry>
@@ -346,7 +367,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="NOTIFICATION" />
+                            <entry key="outputIconType" value="TV_CHANNEL" />
                           </map>
                         </option>
                       </PersistentState>
