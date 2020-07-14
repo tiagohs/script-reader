@@ -390,8 +390,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_action" />
-                            <entry key="sourceFile" value="D:\Desenvolvimento\script-reader\design\icons\action.svg" />
+                            <entry key="outputName" value="ic_genre_action" />
+                            <entry key="sourceFile" value="D:\Desenvolvimento\script-reader\icon\genres\ic_genre_action.svg" />
                           </map>
                         </option>
                       </PersistentState>

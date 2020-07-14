@@ -21,7 +21,7 @@
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="80dp"
-            android:src="@drawable/ic_action"
+            android:src="@drawable/ic_genre_action"
             android:padding="5dp"
             android:scaleType="centerCrop"
             android:elevation="10dp"

@@ -14,7 +14,6 @@ class HomeInteractorImpl
 
     override fun fetchHomeContent(): Observable<List<HomeCell>> {
         return scriptSlugService.fetchHomeData()
-
     }
 
 }

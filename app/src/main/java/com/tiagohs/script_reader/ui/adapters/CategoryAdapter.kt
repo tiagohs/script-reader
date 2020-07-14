@@ -3,6 +3,7 @@ package com.tiagohs.script_reader.ui.adapters
 import android.view.View
 import com.tiagohs.script_reader.R
 import com.tiagohs.script_reader.entities.Category
+import com.tiagohs.script_reader.helpers.extensions.setResourceImageDrawable
 import com.tiagohs.script_reader.helpers.extensions.setResourceText
 import com.tiagohs.script_reader.ui.adapters.base.BaseAdapter
 import com.tiagohs.script_reader.ui.adapters.base.BaseViewHolder
@@ -28,6 +29,17 @@ class CategoryAdapter(
             itemView.categoryName.setResourceText(item.title)
 
             itemView.setOnClickListener { onCategoryClicked?.invoke(item) }
+
+//            val icon = item.icon ?: return
+
+            if (item.title == "Animation") {
+                itemView.categoryIcon.setResourceImageDrawable(R.drawable.ic_genre_animation)
+            }
+
+            if (item.title == "Comedy") {
+                itemView.categoryIcon.setResourceImageDrawable(R.drawable.ic_genre_comedy)
+            }
+
         }
     }
 
