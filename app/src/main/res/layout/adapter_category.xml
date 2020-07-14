@@ -10,7 +10,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/categoryNameIconContainer"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
+            app:cardElevation="10dp"
             android:layout_margin="@dimen/activity_vertical_margin_1.2x"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
