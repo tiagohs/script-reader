@@ -33,14 +33,15 @@ class ScriptAdapter(
             itemView.movieYear.setResourceText(item.year)
             itemView.author.setResourceText(item.writers?.mapNotNull { it.title }?.joinToString())
 
-            setupImage(item)
+            setupIconType(item)
+            setupPoster(item)
             setupCategories(item)
-            setupEpisodioName(item)
+            setupEpisodeName(item)
 
             itemView.setOnClickListener { onScriptClicked?.invoke(item) }
         }
 
-        private fun setupEpisodioName(item: Script) {
+        private fun setupEpisodeName(item: Script) {
             if (item.isTVShow) {
                 itemView.episodeName.setResourceText("\"${item.episode}\"")
                 itemView.episodeName.show()
@@ -50,17 +51,23 @@ class ScriptAdapter(
             itemView.episodeName.hide()
         }
 
-        private fun setupImage(item: Script) {
+        private fun setupIconType(item: Script) {
             val icon = if (item.isTVShow) R.drawable.ic_tv else R.drawable.ic_movie
 
-            itemView.icon.setResourceImageDrawable(icon)
+            itemView.typeIcon.setResourceImageDrawable(icon)
+        }
+
+        private fun setupPoster(item: Script) {
+            itemView.poster.loadImage(item.poster)
         }
 
         private fun setupCategories(item: Script) {
-            item.genres?.let {
+            val genres = item.genres?.filter { !it.title.isNullOrEmpty() } ?: emptyList()
+
+            if (genres.isNotEmpty()) {
                 itemView.categoriesScrollView.visibility = View.VISIBLE
 
-                it.forEach { genre ->
+                genres.take(2).forEach { genre ->
                     val view = LayoutInflater.from(itemView.context).inflate(R.layout.view_category, null, false)
                     val layoutParams = Constraints.LayoutParams(Constraints.LayoutParams.WRAP_CONTENT, Constraints.LayoutParams.WRAP_CONTENT)
 

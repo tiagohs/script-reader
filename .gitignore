@@ -12,3 +12,4 @@
 .externalNativeBuild
 ids.txt
 google-services.json
+app/google-services.json
