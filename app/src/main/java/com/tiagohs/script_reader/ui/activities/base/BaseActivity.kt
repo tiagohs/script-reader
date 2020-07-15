@@ -11,25 +11,25 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.tiagohs.script_reader.App
 import com.tiagohs.script_reader.R
 import com.tiagohs.script_reader.dagger.AppComponent
-import com.tiagohs.script_reader.entities.Category
-import com.tiagohs.script_reader.entities.Script
-import com.tiagohs.script_reader.helpers.enums.MessageType
-import com.tiagohs.script_reader.helpers.extensions.getResourceColor
-import com.tiagohs.script_reader.helpers.extensions.toast
-import com.tiagohs.script_reader.helpers.utils.ServerUtils
+import com.tiagohs.components.alert_snackbar.enums.MessageType
 import com.tiagohs.script_reader.ui.activities.CategoryActivity
 import com.tiagohs.script_reader.ui.activities.ReaderActivity
 import com.tiagohs.script_reader.ui.activities.ScriptDetailsActivity
 import com.tiagohs.script_reader.ui.activities.SearchActivity
-import com.tiagohs.script_reader.ui.custom.AlertSnackBar
-import com.tiagohs.script_reader.ui.views.base.IView
+import com.tiagohs.components.alert_snackbar.AlertSnackBar
+import com.tiagohs.domain.views.base.IView
+import com.tiagohs.entities.Category
+import com.tiagohs.entities.Script
+import com.tiagohs.helpers.extensions.getResourceColor
+import com.tiagohs.helpers.extensions.toast
+import com.tiagohs.helpers.utils.ServerUtils
 
 abstract class BaseActivity : AppCompatActivity(), IView {
 
     abstract val layoutViewId : Int
     open var menuLayoutId: Int = 0
 
-    var alertSnackBar: AlertSnackBar? = null
+    var alertSnackBar: com.tiagohs.components.alert_snackbar.AlertSnackBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -127,7 +127,7 @@ abstract class BaseActivity : AppCompatActivity(), IView {
         onError(ex, finalMessage)
     }
 
-    override fun showMessage(ex: Throwable?, messageType: MessageType, message: Int, onTryAgainClicked: (() -> Unit)?) {
+    override fun showMessage(ex: Throwable?, messageType: com.tiagohs.components.alert_snackbar.enums.MessageType, message: Int, onTryAgainClicked: (() -> Unit)?) {
         findViewById<CoordinatorLayout>(R.id.coordinator)?.let {
             var onTryAgain:  (() -> Unit)? = null
 
@@ -139,12 +139,12 @@ abstract class BaseActivity : AppCompatActivity(), IView {
                 }
             }
 
-            alertSnackBar = AlertSnackBar.make(it, messageType, message, onTryAgainClicked = onTryAgain)
+            alertSnackBar = com.tiagohs.components.alert_snackbar.AlertSnackBar.make(it, messageType, message, onTryAgainClicked = onTryAgain)
         }
 
     }
 
-    override fun showMessage(ex: Throwable?, messageType: MessageType, message: String, onTryAgainClicked: (() -> Unit)?) {
+    override fun showMessage(ex: Throwable?, messageType: com.tiagohs.components.alert_snackbar.enums.MessageType, message: String, onTryAgainClicked: (() -> Unit)?) {
 
     }
 

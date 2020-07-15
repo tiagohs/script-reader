@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="msg_attention_background">#473213</color>
+    <color name="msg_error_background">#5A443D</color>
+    <color name="msg_success_background">#295128</color>
+</resources>

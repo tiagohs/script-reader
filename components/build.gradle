@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["currentSDK"]
+
+    defaultConfig {
+        minSdkVersion globalConfiguration["minSDK"]
+        targetSdkVersion globalConfiguration["currentSDK"]
+        versionCode globalConfiguration["versionCode"]
+        versionName globalConfiguration["versionName"]
+
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    sourceSets {
+        test.java.srcDir 'javatests'
+        main {
+            globalConfiguration["componentsSrcDirs"].forEach {
+                res.srcDirs += 'src/main/java/' + it + '/res'
+            }
+            java.srcDir 'java'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    implementation project(path: ':helpers')
+
+    def dependencies = rootProject.ext.dependencies
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    /**
+     * ANDROID SUPPORT Dependencies
+     */
+    implementation dependencies.appcompat
+    implementation dependencies.constraintlayout
+    implementation dependencies.browser
+    implementation dependencies.material
+    implementation dependencies.media
+    implementation dependencies.legacy_support
+    implementation dependencies.exifinterface
+
+    implementation dependencies.shimmer
+}

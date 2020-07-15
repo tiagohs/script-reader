@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="unknown_error">Houve um erro inesperado, tente novamente.</string>
-    <string name="error_title">Ops!</string>
-    <string name="error_attention">Atenção!</string>
-    <string name="error_success">Sucesso!</string>
     <string name="action_search">Procurar</string>
     <string name="query_hint_message">Procure um script</string>
     <string name="action_share">Compartilhar</string>

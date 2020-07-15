@@ -204,7 +204,7 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.tiagohs.script_reader.ui.custom.PlaceholderView
+    <com.tiagohs.components.placeholder.PlaceholderView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/loadView"

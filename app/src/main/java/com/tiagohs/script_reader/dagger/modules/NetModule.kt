@@ -1,7 +1,7 @@
 package com.tiagohs.script_reader.dagger.modules
 
 import android.app.Application
-import com.tiagohs.script_reader.helpers.tools.CallInterceptor
+import com.tiagohs.helpers.tools.CallInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache

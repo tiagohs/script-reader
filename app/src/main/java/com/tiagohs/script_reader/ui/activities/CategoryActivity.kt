@@ -4,16 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tiagohs.script_reader.Constants
+import com.tiagohs.domain.presenter.contract.CategoryPresenter
+import com.tiagohs.helpers.Constants
 import com.tiagohs.script_reader.R
-import com.tiagohs.script_reader.entities.Category
-import com.tiagohs.script_reader.entities.Script
-import com.tiagohs.script_reader.helpers.extensions.convertIntToDp
-import com.tiagohs.script_reader.presenter.contract.CategoryPresenter
 import com.tiagohs.script_reader.ui.activities.base.BaseActivity
 import com.tiagohs.script_reader.ui.adapters.ScriptAdapter
-import com.tiagohs.script_reader.ui.custom.SpaceOffsetDecoration
-import com.tiagohs.script_reader.ui.views.CategoryView
+import com.tiagohs.helpers.tools.SpaceOffsetDecoration
+import com.tiagohs.domain.views.CategoryView
+import com.tiagohs.entities.Category
+import com.tiagohs.entities.Script
+import com.tiagohs.helpers.extensions.convertIntToDp
 import kotlinx.android.synthetic.main.activity_category.*
 import javax.inject.Inject
 
@@ -42,7 +42,8 @@ class CategoryActivity :
     }
 
     override fun setupAlguments() {
-        val category = intent.extras?.getParcelable(Constants.ARGUMENTS.CATEGORY) as? Category ?: return
+        val category = intent.extras?.getParcelable(Constants.ARGUMENTS.CATEGORY) as? com.tiagohs.entities.Category
+            ?: return
 
         categoryPresenter.setArguments(category)
     }
@@ -62,7 +63,13 @@ class CategoryActivity :
             layoutManager = LinearLayoutManager(this@CategoryActivity, LinearLayoutManager.VERTICAL, false)
             recyclerView.adapter = ScriptAdapter(list)
 
-            addItemDecoration(SpaceOffsetDecoration(16.convertIntToDp(context), SpaceOffsetDecoration.TOP))
+            addItemDecoration(
+                SpaceOffsetDecoration(
+                    16.convertIntToDp(
+                        context
+                    ), SpaceOffsetDecoration.TOP
+                )
+            )
         }
     }
 

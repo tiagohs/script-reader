@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.tiagohs.script_reader.dagger.AppComponent
-import com.tiagohs.script_reader.helpers.enums.MessageType
+import com.tiagohs.components.alert_snackbar.enums.MessageType
 import com.tiagohs.script_reader.ui.activities.base.BaseActivity
-import com.tiagohs.script_reader.ui.views.base.IView
+import com.tiagohs.domain.views.base.IView
 
 abstract class BaseFragment: Fragment(), IView {
 
@@ -46,7 +46,7 @@ abstract class BaseFragment: Fragment(), IView {
 
     override fun showMessage(
         ex: Throwable?,
-        messageType: MessageType,
+        messageType: com.tiagohs.components.alert_snackbar.enums.MessageType,
         message: Int,
         onTryAgainClicked: (() -> Unit)?
     ) {
@@ -55,7 +55,7 @@ abstract class BaseFragment: Fragment(), IView {
 
     override fun showMessage(
         ex: Throwable?,
-        messageType: MessageType,
+        messageType: com.tiagohs.components.alert_snackbar.enums.MessageType,
         message: String,
         onTryAgainClicked: (() -> Unit)?
     ) {

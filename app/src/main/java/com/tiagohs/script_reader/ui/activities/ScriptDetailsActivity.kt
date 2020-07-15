@@ -6,19 +6,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.constraintlayout.widget.Constraints
-import com.tiagohs.script_reader.Constants
+import com.tiagohs.domain.presenter.contract.ScriptDetailsPresenter
+import com.tiagohs.helpers.Constants
 import com.tiagohs.script_reader.R
-import com.tiagohs.script_reader.entities.Script
-import com.tiagohs.script_reader.helpers.extensions.*
-import com.tiagohs.script_reader.presenter.contract.ScriptDetailsPresenter
 import com.tiagohs.script_reader.ui.activities.base.BaseActivity
-import com.tiagohs.script_reader.ui.views.ScriptDetailsView
+import com.tiagohs.domain.views.ScriptDetailsView
+import com.tiagohs.entities.Script
+import com.tiagohs.helpers.extensions.*
 import kotlinx.android.synthetic.main.activity_script_details.*
 import kotlinx.android.synthetic.main.activity_script_details.loadView
 import kotlinx.android.synthetic.main.activity_script_details.toolbar
-import kotlinx.android.synthetic.main.adapter_script.view.*
 import kotlinx.android.synthetic.main.view_category.view.*
 import javax.inject.Inject
 
@@ -61,7 +59,8 @@ class ScriptDetailsActivity :
     }
 
     override fun setupArguments() {
-        val script = intent.extras?.getParcelable(Constants.ARGUMENTS.SCRIPT) as? Script ?: return
+        val script = intent.extras?.getParcelable(Constants.ARGUMENTS.SCRIPT) as? Script
+            ?: return
 
         presenter.setArgument(script)
     }

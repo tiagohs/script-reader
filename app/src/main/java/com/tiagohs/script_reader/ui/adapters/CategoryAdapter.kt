@@ -1,10 +1,10 @@
 package com.tiagohs.script_reader.ui.adapters
 
 import android.view.View
+import com.tiagohs.entities.Category
+import com.tiagohs.helpers.extensions.setResourceImageDrawable
+import com.tiagohs.helpers.extensions.setResourceText
 import com.tiagohs.script_reader.R
-import com.tiagohs.script_reader.entities.Category
-import com.tiagohs.script_reader.helpers.extensions.setResourceImageDrawable
-import com.tiagohs.script_reader.helpers.extensions.setResourceText
 import com.tiagohs.script_reader.ui.adapters.base.BaseAdapter
 import com.tiagohs.script_reader.ui.adapters.base.BaseViewHolder
 import kotlinx.android.extensions.LayoutContainer

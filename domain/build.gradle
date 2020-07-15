@@ -1,0 +1,82 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["currentSDK"]
+
+    defaultConfig {
+        minSdkVersion globalConfiguration["minSDK"]
+        targetSdkVersion globalConfiguration["currentSDK"]
+        versionCode globalConfiguration["versionCode"]
+        versionName globalConfiguration["versionName"]
+
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    implementation project(path: ':helpers')
+    implementation project(path: ':components')
+    implementation project(path: ':entities')
+
+    def dependencies = rootProject.ext.dependencies
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    /**
+     * DAGGER Dependencies
+     */
+    implementation dependencies.dagger
+    annotationProcessor dependencies.dagger_compiler
+    kapt dependencies.dagger_compiler
+    implementation dependencies.javax_annotation
+
+    /**
+     * Network client
+     */
+    implementation dependencies.okhttp
+    implementation dependencies.logging_interceptor
+
+    /**
+     * RX JAVA 2 Dependencies
+     */
+    implementation dependencies.rxjava2_rxandroid
+    implementation dependencies.rxjava2_rxjava
+
+    /**
+     * REST
+     */
+    implementation dependencies.retrofit2_retrofit
+    implementation dependencies.retrofit2_converter_gson
+    implementation dependencies.retrofit2_adapter_rxjava2
+    implementation dependencies.retrofit2_converter_jspoon
+
+    /**
+     * GSON
+     */
+    implementation dependencies.gson
+
+    /**
+     *  HTML Parser / Jspoon
+     */
+    implementation dependencies.jspoon
+
+}
+//
+//sourceCompatibility = "1.8"
+//targetCompatibility = "1.8"

@@ -43,7 +43,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
-    <com.tiagohs.script_reader.ui.custom.PlaceholderView
+    <com.tiagohs.components.placeholder.PlaceholderView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/loadView"

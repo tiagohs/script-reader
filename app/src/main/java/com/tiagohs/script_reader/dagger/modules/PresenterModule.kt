@@ -1,9 +1,8 @@
 package com.tiagohs.script_reader.dagger.modules
 
-import com.tiagohs.script_reader.interactor.SearchInteractorImpl
-import com.tiagohs.script_reader.interactor.contract.*
-import com.tiagohs.script_reader.presenter.*
-import com.tiagohs.script_reader.presenter.contract.*
+import com.tiagohs.domain.interactor.contract.*
+import com.tiagohs.domain.presenter.*
+import com.tiagohs.domain.presenter.contract.*
 import dagger.Module
 import dagger.Provides
 
@@ -11,17 +10,24 @@ import dagger.Provides
 class PresenterModule {
 
     @Provides
-    fun providerHomePresenter(homeInteractor: HomeInteractor): HomePresenter = HomePresenterImpl(homeInteractor)
+    fun providerHomePresenter(homeInteractor: HomeInteractor): HomePresenter =
+        HomePresenterImpl(homeInteractor)
 
     @Provides
-    fun providerReaderPresenter(readerInteractor: ReaderInteractor): ReaderPresenter = ReaderPresenterImpl(readerInteractor)
+    fun providerReaderPresenter(readerInteractor: ReaderInteractor): ReaderPresenter =
+        ReaderPresenterImpl(readerInteractor)
 
     @Provides
-    fun providerCategoryPresenter(categoryInteractor: CategoryInteractor): CategoryPresenter = CategoryPresenterImpl(categoryInteractor)
+    fun providerCategoryPresenter(categoryInteractor: CategoryInteractor): CategoryPresenter =
+        CategoryPresenterImpl(categoryInteractor)
 
     @Provides
-    fun providerSearchPresenter(searchInteractor: SearchInteractor): SearchPresenter = SearchPresenterImpl(searchInteractor)
+    fun providerSearchPresenter(searchInteractor: SearchInteractor): SearchPresenter =
+        SearchPresenterImpl(searchInteractor)
 
     @Provides
-    fun providerScriptDetailsPresenter(scriptDetailsInteractor: ScriptDetailsInteractor): ScriptDetailsPresenter = ScriptDetailsPresenterImpl(scriptDetailsInteractor)
+    fun providerScriptDetailsPresenter(scriptDetailsInteractor: ScriptDetailsInteractor): ScriptDetailsPresenter =
+        ScriptDetailsPresenterImpl(
+            scriptDetailsInteractor
+        )
 }

@@ -3,10 +3,10 @@ package com.tiagohs.script_reader.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.Constraints
+import com.tiagohs.entities.Category
+import com.tiagohs.entities.Script
+import com.tiagohs.helpers.extensions.*
 import com.tiagohs.script_reader.R
-import com.tiagohs.script_reader.entities.Category
-import com.tiagohs.script_reader.entities.Script
-import com.tiagohs.script_reader.helpers.extensions.*
 import com.tiagohs.script_reader.ui.adapters.base.BaseAdapter
 import com.tiagohs.script_reader.ui.adapters.base.BaseViewHolder
 import kotlinx.android.extensions.LayoutContainer
@@ -53,8 +53,10 @@ class ScriptAdapter(
 
         private fun setupIconType(item: Script) {
             val icon = if (item.isTVShow) R.drawable.ic_tv else R.drawable.ic_movie
+            val color = if (item.isTVShow) R.color.serie_color else R.color.movie_color
 
             itemView.typeIcon.setResourceImageDrawable(icon)
+            itemView.typeIconContainer.setCardBackgroundColor(itemView.context.getResourceColor(color))
         }
 
         private fun setupPoster(item: Script) {
@@ -65,7 +67,7 @@ class ScriptAdapter(
             val genres = item.genres?.filter { !it.title.isNullOrEmpty() } ?: emptyList()
 
             if (genres.isNotEmpty()) {
-                itemView.categoriesScrollView.visibility = View.VISIBLE
+                itemView.categoriesScrollView.show()
 
                 genres.take(2).forEach { genre ->
                     val view = LayoutInflater.from(itemView.context).inflate(R.layout.view_category, null, false)

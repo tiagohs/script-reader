@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_title">Ops!</string>
+    <string name="error_attention">Attention!</string>
+    <string name="error_success">Success!</string>
+</resources>

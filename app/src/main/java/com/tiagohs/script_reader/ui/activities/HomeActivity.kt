@@ -6,13 +6,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.tiagohs.domain.presenter.contract.HomePresenter
 import com.tiagohs.script_reader.R
-import com.tiagohs.script_reader.entities.Category
-import com.tiagohs.script_reader.entities.home.HomeCell
-import com.tiagohs.script_reader.presenter.contract.HomePresenter
 import com.tiagohs.script_reader.ui.activities.base.BaseActivity
 import com.tiagohs.script_reader.ui.adapters.HomeContentAdapter
-import com.tiagohs.script_reader.ui.views.HomeView
+import com.tiagohs.domain.views.HomeView
+import com.tiagohs.entities.home.HomeCell
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 

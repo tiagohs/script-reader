@@ -1,1 +1,5 @@
+include ':components'
+include ':helpers'
+include ':entities'
+include ':domain'
 include ':app'

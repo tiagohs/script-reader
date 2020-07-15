@@ -7,16 +7,16 @@ import android.view.Menu
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.tiagohs.domain.presenter.contract.SearchPresenter
 import com.tiagohs.script_reader.R
-import com.tiagohs.script_reader.entities.Script
-import com.tiagohs.script_reader.helpers.extensions.convertIntToDp
-import com.tiagohs.script_reader.helpers.extensions.hide
-import com.tiagohs.script_reader.helpers.extensions.show
-import com.tiagohs.script_reader.presenter.contract.SearchPresenter
 import com.tiagohs.script_reader.ui.activities.base.BaseActivity
 import com.tiagohs.script_reader.ui.adapters.ScriptAdapter
-import com.tiagohs.script_reader.ui.custom.SpaceOffsetDecoration
-import com.tiagohs.script_reader.ui.views.SearchView
+import com.tiagohs.helpers.tools.SpaceOffsetDecoration
+import com.tiagohs.domain.views.SearchView
+import com.tiagohs.entities.Script
+import com.tiagohs.helpers.extensions.convertIntToDp
+import com.tiagohs.helpers.extensions.hide
+import com.tiagohs.helpers.extensions.show
 import kotlinx.android.synthetic.main.activity_search.*
 import javax.inject.Inject
 

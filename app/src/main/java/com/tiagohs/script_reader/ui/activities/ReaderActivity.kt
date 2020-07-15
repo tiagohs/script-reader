@@ -5,14 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.tiagohs.script_reader.Constants
+import com.tiagohs.domain.presenter.contract.ReaderPresenter
+import com.tiagohs.helpers.Constants
 import com.tiagohs.script_reader.R
-import com.tiagohs.script_reader.entities.Script
-import com.tiagohs.script_reader.helpers.extensions.hide
-import com.tiagohs.script_reader.helpers.extensions.show
-import com.tiagohs.script_reader.presenter.contract.ReaderPresenter
 import com.tiagohs.script_reader.ui.activities.base.BaseActivity
-import com.tiagohs.script_reader.ui.views.ReaderView
+import com.tiagohs.domain.views.ReaderView
+import com.tiagohs.entities.Script
+import com.tiagohs.helpers.extensions.hide
+import com.tiagohs.helpers.extensions.show
 import kotlinx.android.synthetic.main.activity_reader.*
 import kotlinx.android.synthetic.main.activity_reader.toolbar
 import java.io.InputStream
@@ -60,7 +60,8 @@ class ReaderActivity :
     }
 
     override fun setupArguments() {
-        val script = intent.extras?.getParcelable(Constants.ARGUMENTS.SCRIPT) as? Script ?: return
+        val script = intent.extras?.getParcelable(Constants.ARGUMENTS.SCRIPT) as? Script
+            ?: return
 
         presenter.setArgument(script)
     }

@@ -1,8 +1,8 @@
 package com.tiagohs.script_reader.dagger.modules
 
-import com.tiagohs.script_reader.interactor.*
-import com.tiagohs.script_reader.interactor.contract.*
-import com.tiagohs.script_reader.services.ScriptSlugService
+import com.tiagohs.domain.interactor.*
+import com.tiagohs.domain.interactor.contract.*
+import com.tiagohs.domain.services.ScriptSlugService
 import dagger.Module
 import dagger.Provides
 
@@ -10,17 +10,24 @@ import dagger.Provides
 class InteractorModule {
 
     @Provides
-    fun providerHomeInteractor(scriptSlugService: ScriptSlugService): HomeInteractor = HomeInteractorImpl(scriptSlugService)
+    fun providerHomeInteractor(scriptSlugService: ScriptSlugService): HomeInteractor =
+        HomeInteractorImpl(scriptSlugService)
 
     @Provides
-    fun providerCategoryInteractor(scriptSlugService: ScriptSlugService): CategoryInteractor = CategoryInteractorImpl(scriptSlugService)
+    fun providerCategoryInteractor(scriptSlugService: ScriptSlugService): CategoryInteractor =
+        CategoryInteractorImpl(scriptSlugService)
 
     @Provides
-    fun providerReaderInteractor(scriptSlugService: ScriptSlugService): ReaderInteractor = ReaderInteractorImpl(scriptSlugService)
+    fun providerReaderInteractor(scriptSlugService: ScriptSlugService): ReaderInteractor =
+        ReaderInteractorImpl(scriptSlugService)
 
     @Provides
-    fun providerSearchInteractor(scriptSlugService: ScriptSlugService): SearchInteractor = SearchInteractorImpl(scriptSlugService)
+    fun providerSearchInteractor(scriptSlugService: ScriptSlugService): SearchInteractor =
+        SearchInteractorImpl(scriptSlugService)
 
     @Provides
-    fun providerScriptDetailsInteractor(scriptSlugService: ScriptSlugService): ScriptDetailsInteractor = ScriptDetailsInteractorImpl(scriptSlugService)
+    fun providerScriptDetailsInteractor(scriptSlugService: ScriptSlugService): ScriptDetailsInteractor =
+        ScriptDetailsInteractorImpl(
+            scriptSlugService
+        )
 }
