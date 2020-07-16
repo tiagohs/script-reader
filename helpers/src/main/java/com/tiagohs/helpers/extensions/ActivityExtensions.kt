@@ -5,8 +5,30 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.net.Uri
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+
+
+fun Activity?.getScreenWidth(): Int {
+    if (this == null) return 0
+    val displayMetrics = DisplayMetrics()
+
+    windowManager.defaultDisplay.getMetrics(displayMetrics)
+    val screenHeight = displayMetrics.heightPixels
+
+    return displayMetrics.widthPixels
+}
+
+fun Activity?.getScreenHeight(): Int {
+    if (this == null) return 0
+
+    val displayMetrics = DisplayMetrics()
+    windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+    return displayMetrics.heightPixels
+}
+
 
 val Activity?.statusBarHeight: Int
     get() {

@@ -5,8 +5,10 @@ import com.tiagohs.domain.services.retrofit.ScriptSlugServiceRetrofit
 import com.tiagohs.entities.Category
 import com.tiagohs.entities.Script
 import com.tiagohs.entities.home.CategoryCell
+import com.tiagohs.entities.home.GenreCell
 import com.tiagohs.entities.home.HomeCell
-import com.tiagohs.entities.home.LastestCell
+import com.tiagohs.entities.home.ListDefaultCell
+import com.tiagohs.helpers.R
 import com.tiagohs.helpers.extensions.asJsoup
 import io.reactivex.Observable
 import org.jsoup.nodes.Document
@@ -36,18 +38,20 @@ class ScriptSlugService(serviceBuild: Retrofit): BaseService(serviceBuild) {
             .map { it.body()?.byteStream() }
 
     private fun mapDocumentToHomeData(responseBody: Document): List<HomeCell> = listOf(
+        GenreCell(),
         mapDocumetToCategoriesCell(responseBody),
         mapDocumentToLatestCell(responseBody)
     )
 
-    private fun mapDocumentToLatestCell(document: Document): LastestCell = LastestCell().apply {
-        list = mapDocumentToScriptList(document)
-    }
+    private fun mapDocumentToLatestCell(document: Document): ListDefaultCell =
+        ListDefaultCell(
+            title = R.string.home_list_latest_title,
+            list = mapDocumentToScriptList(document)
+        )
 
     private fun mapDocumentToScriptList(document: Document): List<Script> =
                     document.select(".site-main .scripts-list.js-scripts-list .scripts.js-scripts .script.js-script")
                             ?.mapNotNull { Script.fromList(it) } ?: emptyList()
-
 
     private fun mapDocumetToCategoriesCell(document: Document): CategoryCell = CategoryCell().apply {
         list = document.select(".scripts-browse .scripts-browse__wrap .script-categories-list .script-categories-list__wrap a")

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base Colors  -->
+    <color name="primaryColor">#2D323D</color>
+    <color name="primaryDarkColor">#212329</color>
+    <color name="secondaryColor">#4C88FF</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#ABADB1</color>
+
+    <color name="movie_color">@color/md_purple_500</color>
+    <color name="serie_color">@color/md_amber_500</color>
+
     <color name="transparent">#00000000</color>
 
     <!-- Google's Material Design Colours from http://www.google.com/design/spec/style/color.html#color-ui-color-palette -->

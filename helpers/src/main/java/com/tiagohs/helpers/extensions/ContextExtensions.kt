@@ -20,7 +20,8 @@ fun Context?.isNetworkAvailable(): Boolean {
         return false
     }
 
-    val cm = (getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager) ?: return false
+    val cm =
+        (getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager) ?: return false
 
     return if (Build.VERSION.SDK_INT < 23) {
         val ni = cm.activeNetworkInfo
@@ -34,7 +35,9 @@ fun Context?.isNetworkAvailable(): Boolean {
         if (n != null) {
             val nc = cm.getNetworkCapabilities(n) ?: return false
 
-            nc.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+            nc.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || nc.hasTransport(
+                NetworkCapabilities.TRANSPORT_WIFI
+            )
         }
 
         false

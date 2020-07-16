@@ -3,6 +3,7 @@ package com.tiagohs.entities.home
 import com.tiagohs.entities.Script
 import com.tiagohs.helpers.enums.HomeType
 
-class LastestCell(
+class ListDefaultCell(
+    var title: Int,
     var list: List<Script> = emptyList()
-): HomeCell(HomeType.LASTEST)
+): HomeCell(HomeType.LIST_DEFAULT)

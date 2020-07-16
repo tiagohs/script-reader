@@ -8,7 +8,7 @@ import com.tiagohs.script_reader.R
 import com.tiagohs.script_reader.ui.adapters.base.BaseAdapter
 import com.tiagohs.script_reader.ui.adapters.base.BaseViewHolder
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.adapter_category.view.*
+import kotlinx.android.synthetic.main.adapter_genre.view.*
 
 class CategoryAdapter(
     categoryList: List<Category>
@@ -16,7 +16,7 @@ class CategoryAdapter(
 
     var onCategoryClicked: ((category: Category) -> Unit)? = null
 
-    override fun getLayoutResId(viewType: Int): Int = R.layout.adapter_category
+    override fun getLayoutResId(viewType: Int): Int = R.layout.adapter_genre
 
     override fun onCreateViewHolder(viewType: Int, view: View): CategoryViewHolder = CategoryViewHolder(view)
 

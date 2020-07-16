@@ -64,7 +64,7 @@ class HomeActivity :
 
     override fun loadHomeContent(homeContent: List<HomeCell>) {
         homeList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        homeList.adapter = HomeContentAdapter(homeContent).apply {
+        homeList.adapter = HomeContentAdapter(homeContent, this).apply {
             onCategoryClicked = { presentCategoryScreen(it) }
             onScriptClicked = { presentScriptDetailsScreen(it) }
         }

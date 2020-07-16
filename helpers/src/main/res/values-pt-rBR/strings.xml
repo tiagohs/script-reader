@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="genre_action">Ação</string>
+    <string name="genre_adventure">Adventure</string>
+    <string name="genre_animation">Animação</string>
+    <string name="genre_biography">Biografia</string>
+    <string name="genre_comedy">Comédia</string>
+    <string name="genre_crime">Crime</string>
+    <string name="genre_drama">Drama</string>
+    <string name="genre_fantasy">Fantasia</string>
+    <string name="genre_horror">Terror</string>
+    <string name="genre_musical">Musical</string>
+    <string name="genre_romance">Romance</string>
+    <string name="genre_science_fiction">Ficção</string>
+    <string name="genre_thriller">Suspense</string>
+    <string name="genre_war">Guerra</string>
+    <string name="genre_western">Faroeste</string>
+    <string name="home_special_oscar_2020_title">2020 Oscar-Nominated Films</string>
+    <string name="home_special_oscar_2020_subtitle">Todos os filmes nomeados ao Oscar 2020</string>
+    <string name="home_list_family_title">Filmes e séries para toda a familía</string>
+    <string name="home_list_netflix_title">Filmes e séries da Netflix</string>
+    <string name="home_list_latest_title">Últimos filmes e séries</string>
+</resources>

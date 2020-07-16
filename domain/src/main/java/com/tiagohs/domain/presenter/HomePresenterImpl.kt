@@ -48,7 +48,7 @@ class HomePresenterImpl
 
     private fun onFetchHomeContentError(error: Throwable) {
         view?.hideLoading()
-        view?.showMessage(error, com.tiagohs.components.alert_snackbar.enums.MessageType.ERROR, R.string.unknown_error) {
+        view?.showMessage(error, MessageType.ERROR, R.string.unknown_error) {
             val view = view ?: return@showMessage
 
             onBindView(view)

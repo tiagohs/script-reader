@@ -10,7 +10,7 @@
             android:layout_height="0dp"
             android:background="@drawable/background_home_top"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/guide"
+            app:layout_constraintBottom_toTopOf="@+id/categoriesGuide"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
     />
@@ -19,15 +19,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/guide"
+        android:id="@+id/categoriesGuide"
         app:layout_constraintGuide_percent="0.5"
-        app:layout_constraintTop_toTopOf="@id/recyclerView"
-        app:layout_constraintBottom_toBottomOf="@id/recyclerView"/>
+        app:layout_constraintTop_toTopOf="@id/categoriesRecyclerView"
+        app:layout_constraintBottom_toBottomOf="@id/categoriesRecyclerView"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/recyclerView"
+            android:id="@+id/categoriesRecyclerView"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
