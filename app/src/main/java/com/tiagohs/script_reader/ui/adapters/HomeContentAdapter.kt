@@ -7,15 +7,16 @@ import com.tiagohs.entities.Script
 import com.tiagohs.entities.home.CategoryCell
 import com.tiagohs.entities.home.HomeCell
 import com.tiagohs.entities.home.LastestCell
-import com.tiagohs.script_reader.R
 import com.tiagohs.helpers.enums.HomeType
 import com.tiagohs.helpers.extensions.convertIntToDp
+import com.tiagohs.helpers.tools.ScriptSpecialPageTransformation
+import com.tiagohs.helpers.tools.SpaceOffsetDecoration
+import com.tiagohs.script_reader.R
 import com.tiagohs.script_reader.ui.adapters.base.BaseAdapter
 import com.tiagohs.script_reader.ui.adapters.base.BaseViewHolder
-import com.tiagohs.helpers.tools.SpaceOffsetDecoration
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_home_categories_cell.view.*
-import kotlinx.android.synthetic.main.adapter_home_movies_cell.view.*
+import kotlinx.android.synthetic.main.adapter_home_movie_special_cell.view.*
 
 class HomeContentAdapter(
     list: List<HomeCell>
@@ -26,7 +27,8 @@ class HomeContentAdapter(
 
     override fun getLayoutResId(viewType: Int): Int = when (viewType) {
         HomeType.CATEGORIES.ordinal -> R.layout.adapter_home_categories_cell
-        HomeType.LASTEST.ordinal -> R.layout.adapter_home_movies_cell
+//        HomeType.LASTEST.ordinal -> R.layout.adapter_home_movies_cell
+        HomeType.LASTEST.ordinal -> R.layout.adapter_home_movie_special_cell
         else -> R.layout.adapter_home_categories_cell
     }
 
@@ -76,23 +78,42 @@ class HomeContentAdapter(
 
             val lastestItem = item as? LastestCell ?: return
 
-            if (!isSetup) {
-                itemView.scriptsRecyclerView.layoutManager =
-                    LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-                itemView.scriptsRecyclerView.addItemDecoration(
-                    SpaceOffsetDecoration(
-                        6.convertIntToDp(itemView.context),
-                        SpaceOffsetDecoration.LEFT
-                    )
-                )
-                itemView.scriptsRecyclerView.adapter = ScriptAdapter(lastestItem.list).apply {
+            itemView.scriptsRecyclerView.apply {
+                clipToPadding = false
+                clipChildren = false
+                offscreenPageLimit = 3
+
+                setPageTransformer(ScriptSpecialPageTransformation())
+
+                adapter = ScriptSimpleAdapter(lastestItem.list).apply {
                     onScriptClicked = this@HomeContentAdapter.onScriptClicked
                     onCategoryClicked = this@HomeContentAdapter.onCategoryClicked
                 }
-
-                isSetup = true
             }
         }
+
+//        override fun bind(item: HomeCell, position: Int) {
+//            super.bind(item, position)
+//
+//            val lastestItem = item as? LastestCell ?: return
+//
+//            if (!isSetup) {
+//                itemView.scriptsRecyclerView.layoutManager =
+//                    LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+//                itemView.scriptsRecyclerView.addItemDecoration(
+//                    SpaceOffsetDecoration(
+//                        6.convertIntToDp(itemView.context),
+//                        SpaceOffsetDecoration.LEFT
+//                    )
+//                )
+//                itemView.scriptsRecyclerView.adapter = ScriptAdapter(lastestItem.list).apply {
+//                    onScriptClicked = this@HomeContentAdapter.onScriptClicked
+//                    onCategoryClicked = this@HomeContentAdapter.onCategoryClicked
+//                }
+//
+//                isSetup = true
+//            }
+//        }
     }
 
 }
