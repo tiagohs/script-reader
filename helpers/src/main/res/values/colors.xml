@@ -8,7 +8,9 @@
     <color name="secondaryTextColor">#ABADB1</color>
 
     <color name="movie_color">@color/md_purple_500</color>
+    <color name="movie_color_dark">@color/md_purple_800</color>
     <color name="serie_color">@color/md_amber_500</color>
+    <color name="serie_color_dark">@color/md_amber_800</color>
 
     <color name="transparent">#00000000</color>
 

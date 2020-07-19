@@ -3,6 +3,7 @@ package com.tiagohs.script_reader.ui.adapters
 import android.view.View
 import com.tiagohs.entities.Category
 import com.tiagohs.entities.Script
+import com.tiagohs.helpers.enums.ScriptType
 import com.tiagohs.helpers.extensions.getResourceColor
 import com.tiagohs.helpers.extensions.loadImage
 import com.tiagohs.helpers.extensions.setResourceImageDrawable
@@ -40,8 +41,8 @@ class ScriptSimpleAdapter(
         }
 
         private fun setupIconType(item: Script) {
-            val icon = if (item.isTVShow) R.drawable.ic_tv else R.drawable.ic_movie
-            val color = if (item.isTVShow) R.color.serie_color else R.color.movie_color
+            val icon = if (item.scriptType == ScriptType.TV_SHOW) R.drawable.ic_tv else R.drawable.ic_movie
+            val color = if (item.scriptType == ScriptType.TV_SHOW) R.color.serie_color else R.color.movie_color
 
             itemView.typeIcon.setResourceImageDrawable(icon)
             itemView.typeIconContainer.setCardBackgroundColor(

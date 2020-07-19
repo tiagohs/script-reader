@@ -12,8 +12,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/appBar"
             android:fitsSystemWindows="true"
-            android:background="@color/primaryColor"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:background="@color/primaryColor">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
@@ -22,7 +21,6 @@
                 android:fitsSystemWindows="true"
                 android:background="@color/md_white_1000"
                 app:contentScrim="@color/primaryColor"
-                app:expandedTitleTextAppearance="@style/AppTheme.TitleExpandedStyle"
                 app:expandedTitleGravity="top"
                 app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
                 app:titleEnabled="true">

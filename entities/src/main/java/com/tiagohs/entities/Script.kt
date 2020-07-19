@@ -1,6 +1,7 @@
 package com.tiagohs.entities
 
 import android.os.Parcelable
+import com.tiagohs.helpers.enums.ScriptType
 import kotlinx.android.parcel.Parcelize
 import org.jsoup.nodes.Element
 
@@ -15,7 +16,7 @@ data class Script(
     var genres: List<Category>? = null,
     var scriptURL: String? = null,
     var pageUrl: String? = null,
-    var isTVShow: Boolean = false
+    var scriptType: ScriptType = ScriptType.MOVIE
 ) : Parcelable {
 
     companion object {
@@ -34,7 +35,7 @@ data class Script(
 
                 val episodeName = element.select(" .script__details .script__details__wrap .script__episode-title")?.text()
                 if (!episodeName.isNullOrEmpty()) {
-                    isTVShow = true
+                    scriptType = ScriptType.TV_SHOW
                     episode = episodeName
                 }
 
@@ -56,7 +57,7 @@ data class Script(
 
                 val episodeName = element.select(".script-single__wrap .script-single__details .script-single__episode-title .script-single__season-episode")?.text()
                 if (!episodeName.isNullOrEmpty()) {
-                    isTVShow = true
+                    scriptType = ScriptType.TV_SHOW
                     episode = episodeName
                 }
 

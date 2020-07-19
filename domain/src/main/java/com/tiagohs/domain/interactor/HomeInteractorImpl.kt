@@ -7,10 +7,9 @@ import com.tiagohs.entities.home.HomeCell
 import com.tiagohs.entities.home.ListDefaultCell
 import com.tiagohs.entities.home.ListSpecialCell
 import com.tiagohs.helpers.R
-import com.tiagohs.helpers.enums.HomeSpecialList
+import com.tiagohs.helpers.enums.HomeSpecialListEnum
 import io.reactivex.Observable
 import io.reactivex.functions.Function4
-import io.reactivex.functions.Function5
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -28,7 +27,7 @@ class HomeInteractorImpl
             fetchNetflixContent().subscribeOn(Schedulers.io()),
             Function4 { baseHomeList: List<HomeCell>, oscarHomeContent: HomeCell, familyHomeContent: HomeCell, netflixHomeContent: HomeCell ->
                 return@Function4 baseHomeList.toMutableList().apply {
-                    add(oscarHomeContent)
+                    add(2, oscarHomeContent)
                     add(familyHomeContent)
                     add(netflixHomeContent)
                 }
@@ -37,17 +36,17 @@ class HomeInteractorImpl
     }
 
     private fun fetchOscarContent(): Observable<HomeCell> {
-        return scriptSlugService.fetchScriptsByCategory(HomeSpecialList.OSCAR_2020.slug)
+        return scriptSlugService.fetchScriptsByCategory("https://www.scriptslug.com/scripts/category/2020-oscar-nominated")
             .map { ListSpecialCell(
                 title = R.string.home_special_oscar_2020_title,
                 subtitle = R.string.home_special_oscar_2020_subtitle,
-                config = HomeSpecialList.OSCAR_2020,
+                config = HomeSpecialListEnum.OSCAR_2020,
                 list = it
             ) }
     }
 
     private fun fetchFamilyContent(): Observable<HomeCell> {
-        return scriptSlugService.fetchScriptsByCategory("family")
+        return scriptSlugService.fetchScriptsByCategory("scripts/category/family")
             .map { ListDefaultCell(
                 title = R.string.home_list_family_title,
                 list = it
@@ -55,7 +54,7 @@ class HomeInteractorImpl
     }
 
     private fun fetchNetflixContent(): Observable<HomeCell> {
-        return scriptSlugService.fetchScriptsByCategory("netflix")
+        return scriptSlugService.fetchScriptsByCategory("scripts/category/netflix")
             .map { ListDefaultCell(
                 title = R.string.home_list_netflix_title,
                 list = it

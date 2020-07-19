@@ -11,6 +11,7 @@ import com.tiagohs.script_reader.R
 import com.tiagohs.script_reader.ui.activities.base.BaseActivity
 import com.tiagohs.script_reader.ui.adapters.HomeContentAdapter
 import com.tiagohs.domain.views.HomeView
+import com.tiagohs.entities.Category
 import com.tiagohs.entities.home.HomeCell
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
@@ -66,6 +67,7 @@ class HomeActivity :
         homeList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         homeList.adapter = HomeContentAdapter(homeContent, this).apply {
             onCategoryClicked = { presentCategoryScreen(it) }
+            onGenreClicked = { presentCategoryScreen(Category.from(it)) }
             onScriptClicked = { presentScriptDetailsScreen(it) }
         }
     }

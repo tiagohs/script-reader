@@ -1,6 +1,6 @@
 package com.tiagohs.components.placeholder.enums
 
-import com.tiagohs.helpers.R
+import com.tiagohs.components.R
 
 enum class PlaceholderViewType(val type: Int, val layout: Int) {
     HOME(0, R.layout.placeholder_home_content),

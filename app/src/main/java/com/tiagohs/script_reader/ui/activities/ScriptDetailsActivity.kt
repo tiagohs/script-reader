@@ -13,6 +13,7 @@ import com.tiagohs.script_reader.R
 import com.tiagohs.script_reader.ui.activities.base.BaseActivity
 import com.tiagohs.domain.views.ScriptDetailsView
 import com.tiagohs.entities.Script
+import com.tiagohs.helpers.enums.ScriptType
 import com.tiagohs.helpers.extensions.*
 import kotlinx.android.synthetic.main.activity_script_details.*
 import kotlinx.android.synthetic.main.activity_script_details.loadView
@@ -28,6 +29,8 @@ class ScriptDetailsActivity :
 
     @Inject
     lateinit var presenter: ScriptDetailsPresenter
+
+    private var scriptType: ScriptType = ScriptType.MOVIE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +63,8 @@ class ScriptDetailsActivity :
 
     override fun setupArguments() {
         val script = intent.extras?.getParcelable(Constants.ARGUMENTS.SCRIPT) as? Script
-            ?: return
+
+        scriptType = intent.extras?.getSerializable(Constants.ARGUMENTS.SCRIPT_TYPE) as? ScriptType ?: ScriptType.MOVIE
 
         presenter.setArgument(script)
     }
@@ -71,6 +75,12 @@ class ScriptDetailsActivity :
 
     override fun setupContentView() {
         setupToolbar(toolbar)
+
+        toolbar.post {
+            val color = if (scriptType == ScriptType.TV_SHOW) R.color.serie_color else R.color.movie_color
+
+            toolbar.setBackgroundColor(getResourceColor(color))
+        }
     }
 
     override fun showScriptDetails(script: Script) {
@@ -79,15 +89,27 @@ class ScriptDetailsActivity :
 
         readScriptButtonContainer.setOnClickListener { presentReaderScreen(script) }
 
-        setupIcon(script)
+        setupContentType()
+        setupImage(script)
         setupSynopses(script)
         setupCategoryList(script)
     }
 
-    private fun setupIcon(script: Script) {
-        val icon = if (script.isTVShow) R.drawable.ic_tv else R.drawable.ic_movie
+    private fun setupContentType() {
+        if (scriptType == ScriptType.TV_SHOW) {
+            appBar.setResourceBackgroundColor(R.color.serie_color)
+            movieHeaderContentContainer.setResourceBackgroundColor(R.color.serie_color)
+            readScriptButtonContainer.setCardBackgroundColor(getResourceColor(R.color.serie_color_dark))
+            return
+        }
 
-        imageView.setResourceImageDrawable(icon)
+        appBar.setResourceBackgroundColor(R.color.movie_color)
+        movieHeaderContentContainer.setResourceBackgroundColor(R.color.movie_color)
+        readScriptButtonContainer.setCardBackgroundColor(getResourceColor(R.color.movie_color_dark))
+    }
+
+    private fun setupImage(script: Script) {
+        imageView.loadImage(script.poster)
     }
 
     private fun setupSynopses(script: Script) {
@@ -152,6 +174,7 @@ class ScriptDetailsActivity :
     companion object {
         fun newIntent(context: Context?, script: Script): Intent = Intent(context, ScriptDetailsActivity::class.java).apply {
             putExtra(Constants.ARGUMENTS.SCRIPT, script)
+            putExtra(Constants.ARGUMENTS.SCRIPT_TYPE, script.scriptType)
         }
     }
 }

@@ -8,6 +8,13 @@
         android:layout_gravity="center"
         android:orientation="vertical"
         app:shimmer_duration="1200"
+        app:shimmer_colored="true"
+        app:shimmer_highlight_alpha="0"
+        app:shimmer_base_alpha="1"
+        app:shimmer_direction="left_to_right"
+        app:shimmer_intensity="1"
+        app:shimmer_base_color="@color/primaryDarkColor"
+        app:shimmer_highlight_color="@color/primaryColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">

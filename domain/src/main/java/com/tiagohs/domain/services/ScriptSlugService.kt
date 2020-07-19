@@ -39,8 +39,8 @@ class ScriptSlugService(serviceBuild: Retrofit): BaseService(serviceBuild) {
 
     private fun mapDocumentToHomeData(responseBody: Document): List<HomeCell> = listOf(
         GenreCell(),
-        mapDocumetToCategoriesCell(responseBody),
-        mapDocumentToLatestCell(responseBody)
+        mapDocumentToLatestCell(responseBody),
+        mapDocumetToCategoriesCell(responseBody)
     )
 
     private fun mapDocumentToLatestCell(document: Document): ListDefaultCell =

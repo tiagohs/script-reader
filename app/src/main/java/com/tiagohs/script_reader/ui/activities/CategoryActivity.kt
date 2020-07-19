@@ -42,7 +42,7 @@ class CategoryActivity :
     }
 
     override fun setupAlguments() {
-        val category = intent.extras?.getParcelable(Constants.ARGUMENTS.CATEGORY) as? com.tiagohs.entities.Category
+        val category = intent.extras?.getParcelable(Constants.ARGUMENTS.CATEGORY) as? Category
             ?: return
 
         categoryPresenter.setArguments(category)
@@ -61,7 +61,7 @@ class CategoryActivity :
     override fun loadList(list: List<Script>) {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@CategoryActivity, LinearLayoutManager.VERTICAL, false)
-            recyclerView.adapter = ScriptAdapter(list)
+            recyclerView.adapter = ScriptAdapter(list, LinearLayoutManager.VERTICAL)
 
             addItemDecoration(
                 SpaceOffsetDecoration(

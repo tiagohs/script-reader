@@ -6,7 +6,7 @@ import com.tiagohs.entities.Script
 
 interface ScriptDetailsPresenter :
     IPresenter<ScriptDetailsView> {
-    fun setArgument(script: Script)
+    fun setArgument(script: Script?)
 
     fun onSharedClicked()
 }

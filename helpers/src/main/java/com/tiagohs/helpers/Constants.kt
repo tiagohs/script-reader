@@ -13,5 +13,6 @@ object Constants {
     object ARGUMENTS {
         const val CATEGORY = "Category"
         const val SCRIPT = "Script"
+        const val SCRIPT_TYPE = "Script_Type"
     }
 }

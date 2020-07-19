@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- PLACEHOLDERS -->
+    <dimen name="placeholder_home_large_content_height">250dp</dimen>
+    <dimen name="placeholder_home_medium_content_height">160dp</dimen>
+    <dimen name="placeholder_home_small_content_height">50dp</dimen>
+
+</resources>

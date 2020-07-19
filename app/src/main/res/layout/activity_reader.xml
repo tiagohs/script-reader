@@ -60,7 +60,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/categoryName"
+                    android:id="@+id/genreName"
                     android:textColor="@color/primaryDarkColor"
                     android:fontFamily="@font/proxima_nova_bold"
                     android:ellipsize="end"

@@ -94,7 +94,7 @@ class SearchActivity :
     }
 
     override fun loadList(list: List<Script>) {
-        recyclerView.adapter = ScriptAdapter(list).apply {
+        recyclerView.adapter = ScriptAdapter(list, LinearLayoutManager.VERTICAL).apply {
             onScriptClicked = { presentScriptDetailsScreen(it) }
         }
     }

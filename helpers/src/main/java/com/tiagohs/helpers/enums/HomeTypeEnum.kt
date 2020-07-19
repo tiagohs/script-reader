@@ -1,6 +1,6 @@
 package com.tiagohs.helpers.enums
 
-enum class HomeType {
+enum class HomeTypeEnum {
     CATEGORIES,
     GENRES,
     LIST_DEFAULT,

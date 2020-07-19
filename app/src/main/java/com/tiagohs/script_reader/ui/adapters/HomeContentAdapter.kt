@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tiagohs.entities.Category
 import com.tiagohs.entities.Script
 import com.tiagohs.entities.home.*
-import com.tiagohs.helpers.enums.Genres
-import com.tiagohs.helpers.enums.HomeType
+import com.tiagohs.helpers.enums.GenresEnum
+import com.tiagohs.helpers.enums.HomeTypeEnum
 import com.tiagohs.helpers.extensions.*
 import com.tiagohs.helpers.tools.SpaceOffsetDecoration
 import com.tiagohs.script_reader.R
@@ -25,24 +25,24 @@ class HomeContentAdapter(
     val activity: FragmentActivity
 ) : BaseAdapter<HomeCell, BaseViewHolder<HomeCell>>(list) {
 
-    var onGenreClicked: ((genre: Genres) -> Unit)? = null
+    var onGenreClicked: ((genre: GenresEnum) -> Unit)? = null
     var onCategoryClicked: ((category: Category) -> Unit)? = null
     var onScriptClicked: ((script: Script) -> Unit)? = null
 
     override fun getLayoutResId(viewType: Int): Int = when (viewType) {
-        HomeType.GENRES.ordinal -> R.layout.adapter_home_categories_cell
-        HomeType.CATEGORIES.ordinal -> R.layout.adapter_home_categories_cell
-        HomeType.LIST_DEFAULT.ordinal -> R.layout.adapter_home_list_default_cell
-        HomeType.LIST_SPECIAL.ordinal -> R.layout.adapter_home_list_special_cell
-        else -> R.layout.adapter_home_categories_cell
+        HomeTypeEnum.GENRES.ordinal -> R.layout.adapter_home_genres_cell
+        HomeTypeEnum.CATEGORIES.ordinal -> R.layout.adapter_home_categories_cell
+        HomeTypeEnum.LIST_DEFAULT.ordinal -> R.layout.adapter_home_list_default_cell
+        HomeTypeEnum.LIST_SPECIAL.ordinal -> R.layout.adapter_home_list_special_cell
+        else -> R.layout.adapter_home_empty_cell
     }
 
     override fun onCreateViewHolder(viewType: Int, view: View): BaseViewHolder<HomeCell> =
         when (viewType) {
-            HomeType.GENRES.ordinal -> GenresHomeContentViewHolder(view)
-            HomeType.CATEGORIES.ordinal -> CategoryHomeContentViewHolder(view)
-            HomeType.LIST_DEFAULT.ordinal -> DefaultListHomeContentViewHolder(view)
-            HomeType.LIST_SPECIAL.ordinal -> SpecialListHomeContentViewHolder(view)
+            HomeTypeEnum.GENRES.ordinal -> GenresHomeContentViewHolder(view)
+            HomeTypeEnum.CATEGORIES.ordinal -> CategoryHomeContentViewHolder(view)
+            HomeTypeEnum.LIST_DEFAULT.ordinal -> DefaultListHomeContentViewHolder(view)
+            HomeTypeEnum.LIST_SPECIAL.ordinal -> SpecialListHomeContentViewHolder(view)
             else -> object : BaseViewHolder<HomeCell>(view) {}
         }
 
@@ -122,6 +122,8 @@ class HomeContentAdapter(
                 itemView.scriptsSpecialListTitle.setResourceText(specialList.title)
                 itemView.scriptsSpecialListSubtitle.setResourceText(specialList.subtitle)
 
+                itemView.imageSpecial.setResourceImageDrawable(config.image)
+
                 itemView.scriptsSpecialListRecyclerView.layoutManager =
                     LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
                 itemView.scriptsSpecialListRecyclerView.addItemDecoration(
@@ -130,6 +132,15 @@ class HomeContentAdapter(
                         SpaceOffsetDecoration.LEFT
                     )
                 )
+
+                itemView.headerViewClickable.setOnClickListener {
+                    onCategoryClicked?.invoke(
+                        Category(
+                            title = itemView.context.getResourceString(specialList.title),
+                            url = config.url
+                        )
+                    )
+                }
 
                 itemView.scriptsSpecialListRecyclerView.adapter = ScriptSimpleAdapter(specialList.list).apply {
                     onScriptClicked = this@HomeContentAdapter.onScriptClicked
@@ -187,13 +198,12 @@ class HomeContentAdapter(
                         SpaceOffsetDecoration.LEFT
                     )
                 )
-                itemView.listDefaultRecyclerView.adapter = ScriptAdapter(defaultList.list).apply {
+                itemView.listDefaultRecyclerView.adapter = ScriptAdapter(defaultList.list, orientation = LinearLayoutManager.HORIZONTAL).apply {
                     onCategoryClicked = this@HomeContentAdapter.onCategoryClicked
+                    onScriptClicked = this@HomeContentAdapter.onScriptClicked
                 }
                 isSetup = true
             }
         }
     }
-
-
 }

@@ -33,7 +33,7 @@ class ScriptDetailsPresenterImpl
         fetchScriptDetailsContent()
     }
 
-    override fun setArgument(script: Script) {
+    override fun setArgument(script: Script?) {
         this.script = script
     }
 
