@@ -19,7 +19,7 @@ ext {
              * ANDROID SUPPORT Dependencies
              */
             appcompat                 : 'androidx.appcompat:appcompat:1.1.0',
-            constraintlayout          : 'androidx.constraintlayout:constraintlayout:1.1.3',
+            constraintlayout          : 'androidx.constraintlayout:constraintlayout:2.0.0-beta8',
             browser                   : 'androidx.browser:browser:1.2.0',
             material                  : 'com.google.android.material:material:1.1.0',
             media                     : 'androidx.media:media:1.1.0',

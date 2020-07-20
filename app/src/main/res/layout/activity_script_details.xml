@@ -205,14 +205,13 @@
     </androidx.core.widget.NestedScrollView>
 
     <com.tiagohs.components.placeholder.PlaceholderView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/loadView"
-            app:placeholder_type="script_details"
-            android:visibility="gone"
-            android:layout_marginTop="?attr/actionBarSize"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/loadView"
+        app:placeholder_type="script_details"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

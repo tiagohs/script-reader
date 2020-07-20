@@ -75,12 +75,6 @@ class ScriptDetailsActivity :
 
     override fun setupContentView() {
         setupToolbar(toolbar)
-
-        toolbar.post {
-            val color = if (scriptType == ScriptType.TV_SHOW) R.color.serie_color else R.color.movie_color
-
-            toolbar.setBackgroundColor(getResourceColor(color))
-        }
     }
 
     override fun showScriptDetails(script: Script) {
@@ -99,12 +93,16 @@ class ScriptDetailsActivity :
         if (scriptType == ScriptType.TV_SHOW) {
             appBar.setResourceBackgroundColor(R.color.serie_color)
             movieHeaderContentContainer.setResourceBackgroundColor(R.color.serie_color)
+            toolbar.setBackgroundColor(getResourceColor(R.color.serie_color))
+            imageView.setResourceBackgroundColor(R.color.serie_color_dark)
             readScriptButtonContainer.setCardBackgroundColor(getResourceColor(R.color.serie_color_dark))
             return
         }
 
         appBar.setResourceBackgroundColor(R.color.movie_color)
         movieHeaderContentContainer.setResourceBackgroundColor(R.color.movie_color)
+        toolbar.setBackgroundColor(getResourceColor(R.color.movie_color))
+        imageView.setResourceBackgroundColor(R.color.movie_color_dark)
         readScriptButtonContainer.setCardBackgroundColor(getResourceColor(R.color.movie_color_dark))
     }
 
@@ -156,7 +154,6 @@ class ScriptDetailsActivity :
     override fun showLoading() {
         movieHeaderContentContainer.hide()
         readScriptButtonContainer.hide()
-        pageContentListContainer.hide()
         imageContainer.hide()
 
         loadView.show()
