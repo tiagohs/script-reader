@@ -61,7 +61,9 @@ class CategoryActivity :
     override fun loadList(list: List<Script>) {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@CategoryActivity, LinearLayoutManager.VERTICAL, false)
-            recyclerView.adapter = ScriptAdapter(list, LinearLayoutManager.VERTICAL)
+            recyclerView.adapter = ScriptAdapter(list, LinearLayoutManager.VERTICAL).apply {
+                onScriptClicked = { presentScriptDetailsScreen(it) }
+            }
 
             addItemDecoration(
                 SpaceOffsetDecoration(
