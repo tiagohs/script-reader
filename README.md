@@ -4,7 +4,6 @@
   <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v2/video-gif.gif" width="300" height="600">
 </p>
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/64dcc8f9e64948a9a950dce178aea678)](https://www.codacy.com/app/tiagohs/script-reader?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tiagohs/script-reader&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.org/tiagohs/script-reader.svg?branch=master)](https://travis-ci.org/tiagohs/script-reader)
 
 Script Reader is a simple and easy way to read script of movies and tvshows online available on the internet. This app use the <a href="https://www.scriptslug.com/">Script Slug</a> as source.
