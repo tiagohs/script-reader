@@ -8,7 +8,7 @@
 
 Script Reader is a simple and easy way to read script of movies and tvshows online available on the internet. This app use the <a href="https://www.scriptslug.com/">Script Slug</a> as source.
 
-This is a project using the best practices in Android Development:
+This project use the best practices in Android Development:
 
 <ul>
   <li><a href="https://medium.com/google-developer-experts/modularizing-android-applications-9e2d18f244a0">Modularizing</a> - Modules provide a container for your app's source code, resource files, and app level settings, such as the module-level build file and Android manifest file.</li>
