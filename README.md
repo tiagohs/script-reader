@@ -1,7 +1,7 @@
 # Script Reader - Leitor de Roteiros
 
 <p align="center">
-  <img src="https://github.com/tiagohs/script-reader/raw/master/icon/1x/recursos%20v1.jpg" width="600" height="294">
+  <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v2/video-gif.gif" width="300" height="600">
 </p>
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/64dcc8f9e64948a9a950dce178aea678)](https://www.codacy.com/app/tiagohs/script-reader?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tiagohs/script-reader&amp;utm_campaign=Badge_Grade)
@@ -21,14 +21,15 @@ Get the app from our <a href="https://github.com/tiagohs/script-reader/releases"
 
 ### DISCLAIMER:
 
-- HQR is not responsible for any contents linked or referred to from his contents – If any damage occurs by the use of information presented there, only the author of the respective pages might be liable, not the one who has linked to these pages. 
-- HQR doesn’t host any content
+- Script Reader is not responsible for any contents linked or referred to from his contents – If any damage occurs by the use of information presented there, only the author of the respective pages might be liable, not the one who has linked to these pages. 
+- Script Reader doesn’t host any content
 - If you think the content of some comic are objectionable, please report it to us.
 
 
 ### Libaries:
 
 <ul>
+  <li><a href="https://github.com/airbnb/lottie-android">Lottie</a> - Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations exported as json with Bodymovin and renders them natively on mobile!</li>
   <li><a href="https://github.com/ReactiveX/RxAndroid">RxAndroid 2</a> - RxJava bindings for Android </li>
   <li><a href="https://github.com/ReactiveX/RxJava">RxJava 2</a> - Reactive Extensions for the JVM – a library for composing asynchronous and event-based programs using observable sequences for the Java VM. </li>
   <li><a href="https://github.com/square/retrofit">Retrofit 2</a> - Type-safe HTTP client for Android and Java by Square, Inc.</li>
@@ -43,8 +44,18 @@ Get the app from our <a href="https://github.com/tiagohs/script-reader/releases"
 ## Screens
 
 <p align="center">
-  <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v1/device-2020-06-22-173651.png" width="280" height="540">   <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v1/device-2020-06-22-173731.png" width="280" height="540">
-  <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v1/device-2020-06-22-173756.png" width="280" height="540">
+  <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v2/p1.png" width="280" height="540">
+  <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v2/p2.png" width="280" height="540">
+  <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v2/p3.png" width="280" height="540">
+</p>
+<p align="center">
+  <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v2/p4.png" width="280" height="540">
+  <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v2/p5.png" width="280" height="540">
+  <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v2/p6.png" width="280" height="540">
+</p>
+<p align="center">
+  <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v2/p7.png" width="280" height="540">
+  <img src="https://github.com/tiagohs/script-reader/raw/master/prints/v2/p8.png" width="280" height="540">
 </p>
 
 ### Desenvolvido por:
