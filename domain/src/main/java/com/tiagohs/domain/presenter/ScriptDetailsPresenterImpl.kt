@@ -7,8 +7,8 @@ import com.tiagohs.domain.presenter.contract.ScriptDetailsPresenter
 import com.tiagohs.domain.views.ScriptDetailsView
 import com.tiagohs.entities.Script
 import com.tiagohs.components.alert_snackbar.enums.MessageType
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class ScriptDetailsPresenterImpl

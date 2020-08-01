@@ -8,9 +8,9 @@ import com.tiagohs.entities.home.ListDefaultCell
 import com.tiagohs.entities.home.ListSpecialCell
 import com.tiagohs.helpers.R
 import com.tiagohs.helpers.enums.HomeSpecialListEnum
-import io.reactivex.Observable
-import io.reactivex.functions.Function4
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.functions.Function4
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class HomeInteractorImpl

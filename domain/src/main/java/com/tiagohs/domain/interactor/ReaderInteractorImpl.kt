@@ -3,7 +3,7 @@ package com.tiagohs.domain.interactor
 import com.tiagohs.domain.interactor.base.BaseInteractor
 import com.tiagohs.domain.interactor.contract.ReaderInteractor
 import com.tiagohs.domain.services.ScriptSlugService
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 import java.io.InputStream
 import javax.inject.Inject
 

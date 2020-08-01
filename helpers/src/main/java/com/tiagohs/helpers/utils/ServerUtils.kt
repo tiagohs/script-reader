@@ -9,6 +9,7 @@ class ServerUtils {
 
     companion object {
 
+        @Suppress("DEPRECATION")
         fun isNetworkConnected(context: Context?): Boolean {
             try {
                 var result = false

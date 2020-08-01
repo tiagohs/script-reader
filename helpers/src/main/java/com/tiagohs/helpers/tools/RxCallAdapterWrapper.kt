@@ -1,7 +1,7 @@
 package com.tiagohs.helpers.tools
 
-import io.reactivex.*
-import io.reactivex.functions.Function
+import io.reactivex.rxjava3.core.*
+import io.reactivex.rxjava3.functions.Function
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit

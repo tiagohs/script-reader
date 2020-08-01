@@ -7,8 +7,8 @@ import com.tiagohs.domain.presenter.contract.HomePresenter
 import com.tiagohs.domain.views.HomeView
 import com.tiagohs.entities.home.HomeCell
 import com.tiagohs.components.alert_snackbar.enums.MessageType
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class HomePresenterImpl

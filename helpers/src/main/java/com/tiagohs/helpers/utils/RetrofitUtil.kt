@@ -53,8 +53,6 @@ object RetrofitUtil {
 
         httpClient.addInterceptor { chain ->
             val original = chain.request()
-            val url = original.url.toString()
-
             val request = original.newBuilder()
                 .header("Accept", "application/json")
                 .method(original.method, original.body)

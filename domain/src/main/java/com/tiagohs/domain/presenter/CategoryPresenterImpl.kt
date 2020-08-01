@@ -8,8 +8,8 @@ import com.tiagohs.domain.presenter.contract.CategoryPresenter
 import com.tiagohs.domain.views.CategoryView
 import com.tiagohs.entities.Category
 import com.tiagohs.entities.Script
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class CategoryPresenterImpl

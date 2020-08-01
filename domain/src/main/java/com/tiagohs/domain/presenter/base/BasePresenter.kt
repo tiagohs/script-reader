@@ -1,8 +1,8 @@
 package com.tiagohs.domain.presenter.base
 
 import com.tiagohs.domain.views.base.IView
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
 
 abstract class BasePresenter<V : IView, I: com.tiagohs.domain.interactor.base.IInteractor>(
     protected var interactor: I? = null) :

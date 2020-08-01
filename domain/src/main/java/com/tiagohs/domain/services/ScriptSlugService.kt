@@ -10,7 +10,7 @@ import com.tiagohs.entities.home.HomeCell
 import com.tiagohs.entities.home.ListDefaultCell
 import com.tiagohs.helpers.R
 import com.tiagohs.helpers.extensions.asJsoup
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 import org.jsoup.nodes.Document
 import retrofit2.Retrofit
 import java.io.InputStream
