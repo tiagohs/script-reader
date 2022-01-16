@@ -89,6 +89,7 @@ dependencies {
     implementation dependencies.media
     implementation dependencies.legacy_support
     implementation dependencies.exifinterface
+    implementation dependencies.androidAboutPage
 
     /**
      * View / Components Dependencies

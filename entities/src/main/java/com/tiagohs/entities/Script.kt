@@ -12,6 +12,7 @@ data class Script(
     var year: String? = null,
     var synopses: String? = null,
     var episode: String? = null,
+    var season: String? = null,
     var writers: List<Category>? = null,
     var genres: List<Category>? = null,
     var scriptURL: String? = null,
@@ -26,19 +27,23 @@ data class Script(
             }
 
             return Script().apply {
-                poster = element.select(".script__poster .script__poster__wrap img").first()?.attr("src")
-                title = element.select(".script__details .script__details__wrap .script__title")?.text()?.split(" (")?.firstOrNull()
-                year = element.select(".script__details .script__details__wrap .script__title .script__year")?.text()?.replace(Regex("[()\\s]"), "")
-                writers = element.select(".script__details .script__details__wrap .script__writers")?.text()?.split(", ")?.map { Category(title = it) }
+                poster = element.select(".script picture img").first()?.attr("src")
+                title = element.select(".script .leading-relaxed").first()?.text()?.split(" (")?.firstOrNull()
+                writers = element.select(".script .mt-2.leading-relaxed")?.text()?.split(", ")?.map { Category(title = it) }
                 genres = element.select(".script__details .script__details__wrap .script__categories")?.text()?.split(", ")?.map { Category(title = it) }
                 pageUrl = element.select("a")?.attr("href")
 
-                val episodeName = element.select(" .script__details .script__details__wrap .script__episode-title")?.text()
-                if (!episodeName.isNullOrEmpty()) {
-                    scriptType = ScriptType.TV_SHOW
-                    episode = episodeName
-                }
+                val episodeName = element.select(" .script .font-semibold")
+                if (episodeName.size > 1) {
+                    val name = episodeName?.get(2)?.text()
 
+                    if (!episodeName.isNullOrEmpty()) {
+                        scriptType = ScriptType.TV_SHOW
+                        episode = name
+                    } else {
+                        year = element.select(".script .leading-relaxed")?.text()?.split(Regex("\\(([0-9)]+)\\)"))?.getOrNull(1)?.replace(Regex("[()\\s]"), "")
+                    }
+                }
             }
         }
 
@@ -48,25 +53,28 @@ data class Script(
             }
 
             return Script().apply {
-                scriptURL = element.select(".script-single__wrap .script-single__poster a")?.attr("href")
-                poster = element.select(".script-single__wrap .script-single__poster a img")?.attr("src")
+                scriptURL = element.select(".site-main article .border-b a")?.attr("href")
+                poster = element.select(".site-main article .border-b img")?.attr("src")
 
-                title = element.select(".script-single__wrap .script-single__details .script-single__details__wrap .script-single__title")?.first()?.text()?.split(" (")?.firstOrNull()
-                year = element.select(".script-single__wrap .script-single__details .script-single__details__wrap .script-single__year")?.first()?.text()?.replace(Regex("[()\\s]"), "")
-                synopses = element.select(".script-single__wrap .script-single__details .script-single__details__wrap p")?.first()?.text()
-
-                val episodeName = element.select(".script-single__wrap .script-single__details .script-single__episode-title .script-single__season-episode")?.text()
-                if (!episodeName.isNullOrEmpty()) {
-                    scriptType = ScriptType.TV_SHOW
-                    episode = episodeName
-                }
-
-                writers = element.select(".script-single__wrap .script-single__details .script-single__writers a")
+                synopses = element.select(".site-main article .border-brown-200 .mx-auto p")?.first()?.text()
+                writers = element.select(".site-main article .border-brown-200 .mx-auto a.whitespace-nowrap")
                                 ?.mapNotNull { Category.from(it) }
-                genres = element.select(".script-single__wrap .script-single__details .script-single__categories a")
+                genres = element.select(".site-main article .not-prose ul li.inline-block a")
                     ?.mapNotNull { Category.from(it) }
-            }
 
+                val type = element.select(".site-main .w-full h1 a .text-gray-400.font-normal.mt-2")
+                if (type.size > 1) {
+                    scriptType = ScriptType.TV_SHOW
+
+                    title = element.select(".site-main article .w-full h1 a div")?.first()?.text()
+                    episode = element.select(".site-main article .w-full h1 a div")?.get(1)?.text()
+                    season = element.select(".site-main article .w-full h1 a div")?.get(2)?.text()
+                    year = element.select(".site-main article .w-full h1 a div")?.get(3)?.text()?.split(" - ")?.firstOrNull()
+                } else {
+                    title = element.select(".site-main article .w-full h1 a span")?.first()?.text()
+                    year = element.select(".site-main article .w-full h1 a div")?.text()?.split(" - ")?.firstOrNull()
+                }
+            }
 
         }
     }

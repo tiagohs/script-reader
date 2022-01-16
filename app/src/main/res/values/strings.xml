@@ -7,4 +7,13 @@
     <string name="share_message">Read this awesome script: %1s</string>
     <string name="synopses">Synopse</string>
     <string name="action_open_chrome">Open with…</string>
+    <string name="action_about">About</string>
+
+    <string name="activity_about">About</string>
+    <string name="app_description">%1s is a simple and easy way to read script of movies and tvshows online available on the internet.</string>
+    <string name="version">Version %1s</string>
+    <string name="responsable">App Development and Search by Tiago Silva</string>
+    <string name="scriptSlug_terms_description">Movies, actors, directors and image information are provided by the Script Slug but not endorsed or certified by Script Slug.</string>
+    <string name="email" translatable="false">tiago.hsilva@gmail.com</string>
+    <string name="contact_us">Get in Touch</string>
 </resources>

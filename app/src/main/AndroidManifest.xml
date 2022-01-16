@@ -28,7 +28,10 @@
         <activity android:name=".ui.activities.CategoryActivity" />
         <activity android:name=".ui.activities.SearchActivity" />
         <activity android:name=".ui.activities.ReaderActivity" />
-        <activity android:name=".ui.activities.ScriptDetailsActivity" />
+        <activity android:name=".ui.activities.ScriptDetailsActivity"
+            android:theme="@style/AppTheme.AppThemeWithStatusTransparent" />
+        <activity android:name=".ui.activities.AboutActivity"
+            android:theme="@style/AboutTheme"/>
     </application>
 
 </manifest>

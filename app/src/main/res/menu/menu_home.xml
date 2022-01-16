@@ -10,4 +10,10 @@
             android:icon="@drawable/ic_search"
             android:title="@string/action_search"
             app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_about"
+        android:icon="@drawable/ic_info"
+        android:title="@string/action_about"
+        app:showAsAction="never" />"/>
 </menu>

@@ -87,27 +87,30 @@ class ScriptDetailsActivity :
         setupImage(script)
         setupSynopses(script)
         setupCategoryList(script)
+        setupSeriesInfo(script)
+
     }
 
     private fun setupContentType() {
         if (scriptType == ScriptType.TV_SHOW) {
             appBar.setResourceBackgroundColor(R.color.serie_color)
-            movieHeaderContentContainer.setResourceBackgroundColor(R.color.serie_color)
-            toolbar.setBackgroundColor(getResourceColor(R.color.serie_color))
+            movieHeaderBackgroundContainer.setResourceBackgroundColor(R.color.serie_color)
             imageView.setResourceBackgroundColor(R.color.serie_color_dark)
             readScriptButtonContainer.setCardBackgroundColor(getResourceColor(R.color.serie_color_dark))
+            seriesContent.show()
             return
         }
 
         appBar.setResourceBackgroundColor(R.color.movie_color)
-        movieHeaderContentContainer.setResourceBackgroundColor(R.color.movie_color)
-        toolbar.setBackgroundColor(getResourceColor(R.color.movie_color))
+        movieHeaderBackgroundContainer.setResourceBackgroundColor(R.color.movie_color)
         imageView.setResourceBackgroundColor(R.color.movie_color_dark)
         readScriptButtonContainer.setCardBackgroundColor(getResourceColor(R.color.movie_color_dark))
+        seriesContent.hide()
     }
 
     private fun setupImage(script: Script) {
         imageView.loadImage(script.poster)
+        backgroundImage.loadImage(script.poster)
     }
 
     private fun setupSynopses(script: Script) {
@@ -145,6 +148,11 @@ class ScriptDetailsActivity :
 
             categoriesContainer.addView(view)
         }
+    }
+
+    private fun setupSeriesInfo(script: Script) {
+        season_episode.setResourceText(script.season)
+        episodeName.setResourceText(script.episode)
     }
 
     override fun shareScript(scriptUrl: String?) {

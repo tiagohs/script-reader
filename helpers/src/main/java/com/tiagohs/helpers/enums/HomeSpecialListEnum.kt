@@ -8,5 +8,5 @@ enum class HomeSpecialListEnum(
     val textColor: Int,
     val image: Int
 ) {
-    OSCAR_2020("scripts/category/2020-oscar-nominated", R.color.secondaryColor, R.color.md_white_1000, R.drawable.ic_img_background_special_oscar)
+    OSCAR_2020("feature/oscar-nominated-scripts-2021", R.color.secondaryColor, R.color.md_white_1000, R.drawable.ic_img_background_special_oscar)
 }

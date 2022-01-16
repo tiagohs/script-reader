@@ -19,8 +19,20 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+    <style name="AppTheme.AppThemeWithStatusTransparent">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="AboutTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/md_black_1000</item>
+        <item name="colorPrimaryDark">@color/md_black_1000</item>
+        <item name="colorAccent">@color/md_blue_500</item>
+
+        <item name="android:fontFamily">@font/proxima_nova_regular</item>
+    </style>
 
     <style name="AppTheme.TitleExpandedStyle">
         <item name="android:textColor">@android:color/transparent</item>

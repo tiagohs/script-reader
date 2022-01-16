@@ -50,7 +50,7 @@ class ScriptSlugService(serviceBuild: Retrofit): BaseService(serviceBuild) {
         )
 
     private fun mapDocumentToScriptList(document: Document): List<Script> =
-                    document.select(".site-main .scripts-list.js-scripts-list .scripts.js-scripts .script.js-script")
+                    document.select(".site-main .js-scripts-list .js-scripts-list-container .script.js-script")
                             ?.mapNotNull { Script.fromList(it) } ?: emptyList()
 
     private fun mapDocumetToCategoriesCell(document: Document): CategoryCell = CategoryCell().apply {

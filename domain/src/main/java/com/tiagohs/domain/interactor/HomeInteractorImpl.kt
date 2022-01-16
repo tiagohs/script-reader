@@ -36,10 +36,10 @@ class HomeInteractorImpl
     }
 
     private fun fetchOscarContent(): Observable<HomeCell> {
-        return scriptSlugService.fetchScriptsByCategory("https://www.scriptslug.com/scripts/category/2020-oscar-nominated")
+        return scriptSlugService.fetchScriptsByCategory("https://www.scriptslug.com/feature/oscar-nominated-scripts-2021")
             .map { ListSpecialCell(
-                title = R.string.home_special_oscar_2020_title,
-                subtitle = R.string.home_special_oscar_2020_subtitle,
+                title = R.string.home_special_oscar_2021_title,
+                subtitle = R.string.home_special_oscar_2021_subtitle,
                 config = HomeSpecialListEnum.OSCAR_2020,
                 list = it
             ) }

@@ -31,6 +31,7 @@ ext {
     final javax_annotation_version = '10.0-b28'
     final okhttp_version = '5.0.0-alpha.2'
     final rxjava3_rxandroid_version = '3.0.0'
+    final androidAboutPageVersion = '1.3'
     final rxjava3_rxjava_version = '3.0.1'
     final retrofit2_converter_jspoon_version = '1.3.2'
     final gson_version = '2.8.6'
@@ -50,6 +51,7 @@ ext {
             media                     : "androidx.media:media:${media_version}",
             legacy_support            : "androidx.legacy:legacy-support-v4:${legacy_support_v4_version}",
             exifinterface             : "androidx.exifinterface:exifinterface:${exif_interface_version}",
+            androidAboutPage            : "com.github.medyo:android-about-page:${androidAboutPageVersion}",
 
             /**
              * View / Components Dependencies

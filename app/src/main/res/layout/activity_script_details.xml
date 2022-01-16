@@ -31,9 +31,27 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/movieHeaderContentContainer"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="300dp"
                     android:layout_gravity="top"
                     android:fitsSystemWindows="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/backgroundImage"
+                    android:scaleType="centerCrop"
+                    android:fitsSystemWindows="true"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/movieHeaderBackgroundContainer"
+                    android:fitsSystemWindows="true"
+                    android:background="@color/primaryColor"
+                    android:scaleType="centerCrop"
+                    android:alpha=".5"
+                />
 
                 <TextView
                         android:id="@+id/scriptTitle"
@@ -47,6 +65,7 @@
                         android:textColor="@color/md_white_1000"
                         android:textSize="18sp"
                         android:fontFamily="@font/proxima_nova_bold"
+                        android:fitsSystemWindows="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toTopOf="@id/authors"/>
@@ -63,6 +82,7 @@
                         android:layout_marginStart="142dp"
                         android:layout_marginEnd="@dimen/activity_vertical_margin_1.5x"
                         android:layout_marginBottom="@dimen/activity_vertical_margin_3x"
+                        android:fitsSystemWindows="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -78,20 +98,22 @@
                     android:focusable="true"
                     app:cardCornerRadius="10dp"
                     android:layout_gravity="end"
-                    android:layout_marginTop="185dp">
+                    android:layout_marginTop="285dp"
+                    android:fitsSystemWindows="true">
 
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/viewCategoryName"
-                        android:fontFamily="@font/proxima_nova_regular"
+                        android:fontFamily="@font/proxima_nova_bold"
                         android:textColor="@color/md_white_1000"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         android:text="Read Script"
+                        android:fitsSystemWindows="true"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/scriptTitle"
@@ -118,6 +140,7 @@
                         android:background="@color/secondaryColor"
                         android:scaleType="centerCrop"
                         app:layout_constraintTop_toTopOf="parent"
+                        android:fitsSystemWindows="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"/>
@@ -178,6 +201,43 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/placeholder_sinopseLabel"/>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/seriesContent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sinopse">
+
+                <TextView
+                    android:id="@+id/season_episode"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin_3x"
+                    android:layout_marginStart="@dimen/activity_vertical_margin_2x"
+                    android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/proxima_nova_bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/episodeName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin_0.5x"
+                    android:layout_marginStart="@dimen/activity_vertical_margin_2x"
+                    android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/proxima_nova_regular"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/season_episode"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <HorizontalScrollView
                     android:layout_width="0dp"
@@ -186,11 +246,11 @@
                     android:requiresFadingEdge="horizontal"
                     android:fadingEdgeLength="16dp"
                     android:scrollbars="none"
-                    android:layout_marginTop="@dimen/activity_vertical_margin_2x"
+                    android:layout_marginTop="@dimen/activity_vertical_margin_3x"
                     android:layout_marginBottom="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/sinopse">
+                    app:layout_constraintTop_toBottomOf="@id/seriesContent">
 
                 <LinearLayout
                         android:layout_width="wrap_content"

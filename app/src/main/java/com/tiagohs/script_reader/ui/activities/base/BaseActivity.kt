@@ -12,10 +12,6 @@ import com.tiagohs.script_reader.App
 import com.tiagohs.script_reader.R
 import com.tiagohs.script_reader.dagger.AppComponent
 import com.tiagohs.components.alert_snackbar.enums.MessageType
-import com.tiagohs.script_reader.ui.activities.CategoryActivity
-import com.tiagohs.script_reader.ui.activities.ReaderActivity
-import com.tiagohs.script_reader.ui.activities.ScriptDetailsActivity
-import com.tiagohs.script_reader.ui.activities.SearchActivity
 import com.tiagohs.components.alert_snackbar.AlertSnackBar
 import com.tiagohs.domain.views.base.IView
 import com.tiagohs.entities.Category
@@ -23,13 +19,14 @@ import com.tiagohs.entities.Script
 import com.tiagohs.helpers.extensions.getResourceColor
 import com.tiagohs.helpers.extensions.toast
 import com.tiagohs.helpers.utils.ServerUtils
+import com.tiagohs.script_reader.ui.activities.*
 
 abstract class BaseActivity : AppCompatActivity(), IView {
 
     abstract val layoutViewId : Int
     open var menuLayoutId: Int = 0
 
-    var alertSnackBar: com.tiagohs.components.alert_snackbar.AlertSnackBar? = null
+    var alertSnackBar: AlertSnackBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,17 +44,18 @@ abstract class BaseActivity : AppCompatActivity(), IView {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
         when (item.itemId) {
             android.R.id.home -> {
                 finish()
-                return true
+                true
             }
-
-            else -> return false
+            R.id.action_about -> {
+                startActivity(AboutActivity.newIntent(this))
+                true
+            }
+            else -> false
         }
-    }
 
     fun openUrl(url: String?) {
 
