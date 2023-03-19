@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,8 +14,7 @@
             android:id="@+id/appBar"
             android:elevation="0dp"
             app:elevation="0dp"
-            android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
@@ -22,9 +22,7 @@
                 android:id="@+id/collapsingToolbarLayout"
                 android:fitsSystemWindows="true"
                 android:background="@color/md_white_1000"
-                app:contentScrim="@color/primaryColor"
-                app:expandedTitleTextAppearance="@style/AppTheme.TitleExpandedStyle"
-                app:expandedTitleGravity="top"
+                app:expandedTitleTextColor="@color/transparent"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:titleEnabled="true">
 
@@ -35,7 +33,7 @@
                     android:layout_gravity="top"
                     android:fitsSystemWindows="true">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/backgroundImage"
@@ -48,78 +46,60 @@
                     android:layout_height="match_parent"
                     android:id="@+id/movieHeaderBackgroundContainer"
                     android:fitsSystemWindows="true"
-                    android:background="@color/primaryColor"
+                    android:background="@color/md_theme_light_primary"
                     android:scaleType="centerCrop"
                     android:alpha=".5"
                 />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/scriptTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        style="@style/TextAppearance.Material3.TitleMedium"
                         android:layout_marginStart="142dp"
                         android:layout_marginBottom="@dimen/activity_vertical_margin_2x"
                         android:layout_marginEnd="@dimen/activity_vertical_margin_1.5x"
                         android:ellipsize="end"
                         android:maxLines="3"
-                        android:textColor="@color/md_white_1000"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/proxima_nova_bold"
+                        android:textColor="@color/md_theme_light_onPrimary"
                         android:fitsSystemWindows="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toTopOf="@id/authors"/>
+                        app:layout_constraintBottom_toTopOf="@id/authors"
+                        tools:text="Titulo do Filme"
+                    />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/authors"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        style="@style/TextAppearance.Material3.BodyMedium"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:textColor="@color/md_white_1000"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/proxima_nova_regular"
+                        android:textColor="@color/md_theme_light_onPrimary"
                         android:layout_marginStart="142dp"
                         android:layout_marginEnd="@dimen/activity_vertical_margin_1.5x"
                         android:layout_marginBottom="@dimen/activity_vertical_margin_3x"
                         android:fitsSystemWindows="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        tools:text="Autores do Filme"
+                />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:id="@+id/readScriptButtonContainer"
-                    android:layout_marginEnd="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="10dp"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="285dp"
-                    android:fitsSystemWindows="true">
-
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/viewCategoryName"
-                        android:fontFamily="@font/proxima_nova_bold"
-                        android:textColor="@color/md_white_1000"
-                        android:textSize="16sp"
-                        android:paddingStart="15dp"
-                        android:paddingEnd="15dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:text="Read Script"
-                        android:fitsSystemWindows="true"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/scriptTitle"
-                        />
-
-            </androidx.cardview.widget.CardView>
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/readScriptButton"
+                android:text="Read Script"
+                android:textColor="@color/md_white_1000"
+                android:layout_marginTop="275dp"
+                android:layout_marginEnd="10dp"
+                android:layout_gravity="end"
+                android:fitsSystemWindows="true"
+            />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
@@ -132,12 +112,12 @@
                     android:layout_marginStart="@dimen/activity_vertical_margin_2.5x"
                     android:layout_marginBottom="@dimen/activity_vertical_margin_2x">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imageView"
                         android:layout_width="110dp"
                         android:layout_height="160dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin_2x"
-                        android:background="@color/secondaryColor"
+                        android:background="@color/md_theme_light_tertiary"
                         android:scaleType="centerCrop"
                         app:layout_constraintTop_toTopOf="parent"
                         android:fitsSystemWindows="true"
@@ -147,13 +127,13 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:fitsSystemWindows="false"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"  />
+                    app:menu="@menu/menu_script_details" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -165,41 +145,39 @@
             android:layout_height="match_parent"
             android:fillViewport="true"
             android:background="@color/md_white_1000"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/md_white_1000">
 
-            <TextView
-                    android:id="@+id/placeholder_sinopseLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin_1.2x"
-                    android:layout_marginStart="@dimen/activity_vertical_margin_2x"
-                    android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
-                    android:textColor="@color/md_black_1000"
-                    android:textSize="16sp"
-                    android:text="@string/synopses"
-                    android:fontFamily="@font/proxima_nova_bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/placeholder_sinopseLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:text="@string/synopses"
+                android:layout_marginTop="@dimen/activity_vertical_margin_1.2x"
+                android:layout_marginStart="@dimen/activity_vertical_margin_2x"
+                android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/sinopse"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Material3.BodyMedium"
                     android:layout_marginTop="@dimen/activity_vertical_margin_0.5x"
                     android:layout_marginStart="@dimen/activity_vertical_margin_2x"
                     android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
-                    android:textColor="@color/md_black_1000"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/proxima_nova_regular"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/placeholder_sinopseLabel"/>
+                    app:layout_constraintTop_toBottomOf="@id/placeholder_sinopseLabel"
+                    tools:text="Sinopse"
+            />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -209,30 +187,26 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/sinopse">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/season_episode"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Material3.TitleMedium"
                     android:layout_marginTop="@dimen/activity_vertical_margin_3x"
                     android:layout_marginStart="@dimen/activity_vertical_margin_2x"
                     android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
-                    android:textColor="@color/md_black_1000"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/proxima_nova_bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/episodeName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Material3.BodyMedium"
                     android:layout_marginTop="@dimen/activity_vertical_margin_0.5x"
                     android:layout_marginStart="@dimen/activity_vertical_margin_2x"
                     android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
-                    android:textColor="@color/md_black_1000"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/proxima_nova_regular"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/season_episode"/>
@@ -260,6 +234,31 @@
 
             </HorizontalScrollView>
 
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/relatedTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:text="@string/related"
+                android:layout_marginTop="@dimen/activity_vertical_margin_3x"
+                android:layout_marginStart="@dimen/activity_vertical_margin_2x"
+                android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categoriesScrollView"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/relatedRecyclerView"
+                android:layout_marginTop="@dimen/activity_vertical_margin_1.2x"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/relatedTitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+            />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
@@ -269,7 +268,8 @@
         android:layout_height="match_parent"
         android:id="@+id/loadView"
         app:placeholder_type="script_details"
-        android:visibility="gone"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

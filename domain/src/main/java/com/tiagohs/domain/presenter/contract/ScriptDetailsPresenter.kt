@@ -5,7 +5,7 @@ import com.tiagohs.domain.views.ScriptDetailsView
 import com.tiagohs.entities.Script
 
 interface ScriptDetailsPresenter :
-    IPresenter<ScriptDetailsView> {
+    IPresenter {
     fun setArgument(script: Script?)
 
     fun onSharedClicked()

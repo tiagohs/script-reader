@@ -25,6 +25,15 @@ class ScriptSlugService(serviceBuild: Retrofit): BaseService(serviceBuild) {
         build(ScriptSlugServiceRetrofit::class.java).fetchMoviesByCategory(categoryUrl)
             .map { mapDocumentToScriptList(it.asJsoup()) }
 
+    fun fetchOscarScripts(categoryUrl: String): Observable<List<Script>> =
+        build(ScriptSlugServiceRetrofit::class.java).fetchMoviesByCategory(categoryUrl)
+            .map {
+                mapDocumentToScriptList(
+                    it.asJsoup(),
+                    cssQuery = ".site-body main article div div div article"
+                )
+            }
+
     fun searchScripts(query: String): Observable<List<Script>> =
         build(ScriptSlugServiceRetrofit::class.java).searchMovie(query)
             .map { mapDocumentToScriptList(it.asJsoup()) }
@@ -49,12 +58,17 @@ class ScriptSlugService(serviceBuild: Retrofit): BaseService(serviceBuild) {
             list = mapDocumentToScriptList(document)
         )
 
-    private fun mapDocumentToScriptList(document: Document): List<Script> =
-                    document.select(".site-main .js-scripts-list .js-scripts-list-container .script.js-script")
+    private fun mapDocumentToScriptList(
+        document: Document,
+        cssQuery: String = ".site-body main section .js-scripts-list .js-scripts-list-container article"
+    ): List<Script> =
+                    document.select(cssQuery)
                             ?.mapNotNull { Script.fromList(it) } ?: emptyList()
 
+
+
     private fun mapDocumetToCategoriesCell(document: Document): CategoryCell = CategoryCell().apply {
-        list = document.select(".scripts-browse .scripts-browse__wrap .script-categories-list .script-categories-list__wrap a")
+        list = document.select(".site-body main section .js-browse-dropdown div a")
                     ?.mapNotNull { Category.from(it) }
                     ?.sortedBy { it.title } ?: emptyList()
     }

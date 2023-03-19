@@ -9,25 +9,24 @@ import com.tiagohs.entities.Script
 import com.tiagohs.components.alert_snackbar.enums.MessageType
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
-import javax.inject.Inject
 
-class ScriptDetailsPresenterImpl
-@Inject constructor(
-    interactor: ScriptDetailsInteractor
-) : BasePresenter<ScriptDetailsView, ScriptDetailsInteractor>(interactor),
+class ScriptDetailsPresenterImpl(
+    override val view: ScriptDetailsView,
+    override val interactor: ScriptDetailsInteractor
+) : BasePresenter<ScriptDetailsView, ScriptDetailsInteractor>(view, interactor),
     ScriptDetailsPresenter {
 
     private var script: Script? = null
     private var scriptUrl: String? = null
 
-    override fun onBindView(view: ScriptDetailsView) {
-        super.onBindView(view)
+    override fun start() {
+        super.start()
 
-        this.view?.let {
-            it.setupArguments()
-            it.setTitle(script?.title)
-            it.setupContentView()
-            it.showLoading()
+        this.view.apply {
+            setupArguments()
+            setTitle(script?.title)
+            setupContentView()
+            showLoading()
         }
 
         fetchScriptDetailsContent()
@@ -40,12 +39,10 @@ class ScriptDetailsPresenterImpl
     override fun onSharedClicked() {
         val scriptUrl = scriptUrl ?: return
 
-        view?.shareScript(scriptUrl)
+        view.shareScript(scriptUrl)
     }
 
     private fun fetchScriptDetailsContent() {
-        val interactor = interactor ?: return
-
         scriptUrl = script?.pageUrl ?: return
 
         val scriptUrl = scriptUrl ?: return
@@ -62,16 +59,14 @@ class ScriptDetailsPresenterImpl
     private fun onFetchScriptDetailsContentSuccess(script: Script) {
         this.script = script
 
-        view?.hideLoading()
-        view?.showScriptDetails(script)
+        view.hideLoading()
+        view.showScriptDetails(script)
     }
 
     private fun onFetchScriptDetailsContentError(error: Throwable) {
-        view?.hideLoading()
-        view?.showMessage(error, com.tiagohs.components.alert_snackbar.enums.MessageType.ERROR, R.string.unknown_error) {
-            val view = view ?: return@showMessage
-
-            onBindView(view)
+        view.hideLoading()
+        view.showMessage(error, MessageType.ERROR, R.string.unknown_error) {
+            start()
         }
     }
 }

@@ -2,11 +2,11 @@ package com.tiagohs.script_reader.ui.activities
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.MenuItem
 import androidx.constraintlayout.widget.Constraints
+import androidx.core.view.isEmpty
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.tiagohs.domain.presenter.contract.ScriptDetailsPresenter
 import com.tiagohs.helpers.Constants
 import com.tiagohs.script_reader.R
@@ -15,50 +15,37 @@ import com.tiagohs.domain.views.ScriptDetailsView
 import com.tiagohs.entities.Script
 import com.tiagohs.helpers.enums.ScriptType
 import com.tiagohs.helpers.extensions.*
+import com.tiagohs.script_reader.ui.adapters.ScriptAdapter
 import kotlinx.android.synthetic.main.activity_script_details.*
 import kotlinx.android.synthetic.main.activity_script_details.loadView
 import kotlinx.android.synthetic.main.activity_script_details.toolbar
 import kotlinx.android.synthetic.main.view_category.view.*
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import javax.inject.Inject
 
 class ScriptDetailsActivity :
-    BaseActivity(),
+    BaseActivity<ScriptDetailsPresenter>(),
     ScriptDetailsView {
+
+    override val presenter: ScriptDetailsPresenter by inject { parametersOf(this) }
 
     override val layoutViewId: Int = R.layout.activity_script_details
 
-    @Inject
-    lateinit var presenter: ScriptDetailsPresenter
-
     private var scriptType: ScriptType = ScriptType.MOVIE
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        getApplicationComponent()?.inject(this)
-
-        presenter.onBindView(this)
-    }
-
     override fun onDestroy() {
-        presenter.onDestroy()
         loadView.hide()
 
         super.onDestroy()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_script_details, menu)
-
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+    override fun onMenuItemClickListener(item: MenuItem): Boolean = when (item.itemId) {
         R.id.action_share -> {
             presenter.onSharedClicked()
             true
         }
-        else -> super.onOptionsItemSelected(item)
+        else -> false
     }
 
     override fun setupArguments() {
@@ -81,22 +68,43 @@ class ScriptDetailsActivity :
         scriptTitle.setResourceText(script.title)
         authors.setResourceText("${script.year} - ${script.writers?.mapNotNull { it.title }?.joinToString()}")
 
-        readScriptButtonContainer.setOnClickListener { presentReaderScreen(script) }
+        readScriptButton.setOnClickListener { presentReaderScreen(script) }
 
         setupContentType()
         setupImage(script)
         setupSynopses(script)
         setupCategoryList(script)
         setupSeriesInfo(script)
+        setupRelatedScripts(script)
 
     }
 
+    private fun setupRelatedScripts(script: Script) {
+        if (script.releatedScripts.isEmpty()) {
+            relatedTitle.hide()
+            relatedRecyclerView.hide()
+            return
+        }
+
+        relatedTitle.show()
+        relatedRecyclerView.apply {
+            show()
+
+            layoutManager = LinearLayoutManager(this@ScriptDetailsActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = ScriptAdapter(script.releatedScripts, LinearLayoutManager.HORIZONTAL).apply {
+                onScriptClicked = { presentScriptDetailsScreen(it) }
+            }
+        }
+    }
+
     private fun setupContentType() {
+        toolbar.setNavigationIconTint(getResourceColor(R.color.md_white_1000))
+
         if (scriptType == ScriptType.TV_SHOW) {
             appBar.setResourceBackgroundColor(R.color.serie_color)
             movieHeaderBackgroundContainer.setResourceBackgroundColor(R.color.serie_color)
             imageView.setResourceBackgroundColor(R.color.serie_color_dark)
-            readScriptButtonContainer.setCardBackgroundColor(getResourceColor(R.color.serie_color_dark))
+            readScriptButton.setResourceBackgroundColor(R.color.serie_color_dark)
             seriesContent.show()
             return
         }
@@ -104,7 +112,7 @@ class ScriptDetailsActivity :
         appBar.setResourceBackgroundColor(R.color.movie_color)
         movieHeaderBackgroundContainer.setResourceBackgroundColor(R.color.movie_color)
         imageView.setResourceBackgroundColor(R.color.movie_color_dark)
-        readScriptButtonContainer.setCardBackgroundColor(getResourceColor(R.color.movie_color_dark))
+        readScriptButton.setResourceBackgroundColor(R.color.movie_color_dark)
         seriesContent.hide()
     }
 
@@ -160,16 +168,22 @@ class ScriptDetailsActivity :
     }
 
     override fun showLoading() {
+        readScriptButton.hide()
+        placeholder_sinopseLabel.hide()
+        relatedTitle.hide()
         movieHeaderContentContainer.hide()
-        readScriptButtonContainer.hide()
+        readScriptButton.hide()
         imageContainer.hide()
 
         loadView.show()
     }
 
     override fun hideLoading() {
+        readScriptButton.show()
+        placeholder_sinopseLabel.show()
+        relatedTitle.show()
         movieHeaderContentContainer.show()
-        readScriptButtonContainer.show()
+        readScriptButton.show()
         pageContentListContainer.show()
         imageContainer.show()
 

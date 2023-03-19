@@ -6,6 +6,7 @@
     <string name="action_share">Share</string>
     <string name="share_message">Read this awesome script: %1s</string>
     <string name="synopses">Synopse</string>
+    <string name="related">Related Scripts</string>
     <string name="action_open_chrome">Open with…</string>
     <string name="action_about">About</string>
 

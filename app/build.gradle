@@ -10,6 +10,9 @@ android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
     compileSdkVersion globalConfiguration["currentSDK"]
+    buildToolsVersion globalConfiguration["buildToolsVersion"]
+
+    namespace 'com.tiagohs.script_reader'
 
     defaultConfig {
         applicationId "com.tiagohs.script_reader"
@@ -31,10 +34,6 @@ android {
         }
     }
 
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
 
     buildTypes {
         debug {
@@ -64,6 +63,32 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    packagingOptions {
+        resources {
+            excludes += [
+                    'META-INF/rxjava.properties',
+                    'META-INF/DEPENDENCIES',
+                    'META-INF/LICENSE',
+                    'META-INF/LICENSE.md',
+                    'META-INF/LICENSE.txt',
+                    'META-INF/license.txt',
+                    'META-INF/LICENSE.md',
+                    'META-INF/LICENSE-notice.md',
+                    'META-INF/NOTICE',
+                    'META-INF/NOTICE.md',
+                    'META-INF/NOTICE.txt',
+                    'META-INF/notice.txt',
+                    'META-INF/INDEX.LIST',
+                    'META-INF/ASL2.0',
+                    'META-INF/*.kotlin_module'
+            ]
+        }
     }
 }
 
@@ -109,12 +134,9 @@ dependencies {
     implementation dependencies.firebase_crashlytics
 
     /**
-     * DAGGER Dependencies
+     * Koin
      */
-    implementation dependencies.dagger
-    annotationProcessor dependencies.dagger_compiler
-    kapt dependencies.dagger_compiler
-    implementation dependencies.javax_annotation
+    implementation dependencies.koinAndroid
 
     /**
      * Network client

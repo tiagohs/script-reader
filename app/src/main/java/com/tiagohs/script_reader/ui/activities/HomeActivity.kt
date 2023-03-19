@@ -14,44 +14,30 @@ import com.tiagohs.domain.views.HomeView
 import com.tiagohs.entities.Category
 import com.tiagohs.entities.home.HomeCell
 import kotlinx.android.synthetic.main.activity_home.*
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import javax.inject.Inject
 
 class HomeActivity :
-    BaseActivity(),
+    BaseActivity<HomePresenter>(),
     HomeView {
+
+    override val presenter: HomePresenter by inject { parametersOf(this) }
 
     override val layoutViewId: Int = R.layout.activity_home
 
-    @Inject
-    lateinit var homePresenter: HomePresenter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        getApplicationComponent()?.inject(this)
-
-        homePresenter.onBindView(this)
-    }
-
     override fun onDestroy() {
-        homePresenter.onDestroy()
         loadView.hide()
 
         super.onDestroy()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_home, menu)
-
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+    override fun onMenuItemClickListener(item: MenuItem): Boolean = when (item.itemId) {
         R.id.action_search -> {
             startActivity(SearchActivity.newIntent(this))
             true
         }
-        else -> super.onOptionsItemSelected(item)
+        else -> false
     }
 
     override fun setupContentView() {

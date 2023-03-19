@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base Colors  -->
-    <color name="primaryColor">#2D323D</color>
-    <color name="primaryDarkColor">#212329</color>
-    <color name="secondaryColor">#4C88FF</color>
-    <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#ABADB1</color>
+
+
 </resources>

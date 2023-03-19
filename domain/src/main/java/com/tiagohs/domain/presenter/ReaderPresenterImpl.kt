@@ -10,23 +10,22 @@ import com.tiagohs.components.alert_snackbar.enums.MessageType
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.io.InputStream
-import javax.inject.Inject
 
-class ReaderPresenterImpl
-@Inject constructor(
-    interactor: com.tiagohs.domain.interactor.contract.ReaderInteractor
-) : BasePresenter<ReaderView, ReaderInteractor>(interactor),
+class ReaderPresenterImpl(
+    override val view: ReaderView,
+    override val interactor: ReaderInteractor
+) : BasePresenter<ReaderView, ReaderInteractor>(view, interactor),
     ReaderPresenter {
 
     private var script: Script? = null
 
-    override fun onBindView(view: ReaderView) {
-        super.onBindView(view)
+    override fun start() {
+        super.start()
 
-        this.view?.let {
-            it.setupArguments()
-            it.setTitle(script?.title)
-            it.setupContentView()
+        this.view.apply {
+            setupArguments()
+            setTitle(script?.title)
+            setupContentView()
         }
 
         fetchScriptPDF()
@@ -39,14 +38,13 @@ class ReaderPresenterImpl
     override fun onOpenWithClicked() {
         val url = script?.scriptURL ?: return
 
-        this.view?.openReaderWith(url)
+        this.view.openReaderWith(url)
     }
 
     private fun fetchScriptPDF() {
-        val interactor = interactor ?: return
         val scriptURL = script?.scriptURL ?: return
 
-        view?.showLoadingMessage()
+        view.showLoadingMessage()
 
         add(interactor.fetchScriptPDF(scriptURL)
             .subscribeOn(Schedulers.io())
@@ -59,16 +57,14 @@ class ReaderPresenterImpl
     }
 
     private fun onSearchScriptsSuccess(file: InputStream) {
-        view?.hideLoadingMessage()
-        view?.showPDF(file)
+        view.hideLoadingMessage()
+        view.showPDF(file)
     }
 
     private fun onSearchScriptsError(error: Throwable) {
-        view?.hideLoadingMessage()
-        view?.showMessage(error, com.tiagohs.components.alert_snackbar.enums.MessageType.ERROR, R.string.unknown_error) {
-            val view = view ?: return@showMessage
-
-            onBindView(view)
+        view.hideLoadingMessage()
+        view.showMessage(error, MessageType.ERROR, R.string.unknown_error) {
+            start()
         }
     }
 }

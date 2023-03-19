@@ -17,7 +17,8 @@ data class Script(
     var genres: List<Category>? = null,
     var scriptURL: String? = null,
     var pageUrl: String? = null,
-    var scriptType: ScriptType = ScriptType.MOVIE
+    var scriptType: ScriptType = ScriptType.MOVIE,
+    var releatedScripts: List<Script> = emptyList()
 ) : Parcelable {
 
     companion object {
@@ -27,22 +28,17 @@ data class Script(
             }
 
             return Script().apply {
-                poster = element.select(".script picture img").first()?.attr("src")
-                title = element.select(".script .leading-relaxed").first()?.text()?.split(" (")?.firstOrNull()
-                writers = element.select(".script .mt-2.leading-relaxed")?.text()?.split(", ")?.map { Category(title = it) }
-                genres = element.select(".script__details .script__details__wrap .script__categories")?.text()?.split(", ")?.map { Category(title = it) }
+                poster = element.select("div img").first()?.attr("src")
+                title = element.select("div div h3 span").first()?.text()
+                year = element.select("div div p").first()?.text()?.split(" - ")?.getOrNull(0)
                 pageUrl = element.select("a")?.attr("href")
 
-                val episodeName = element.select(" .script .font-semibold")
-                if (episodeName.size > 1) {
-                    val name = episodeName?.get(2)?.text()
-
-                    if (!episodeName.isNullOrEmpty()) {
-                        scriptType = ScriptType.TV_SHOW
-                        episode = name
-                    } else {
-                        year = element.select(".script .leading-relaxed")?.text()?.split(Regex("\\(([0-9)]+)\\)"))?.getOrNull(1)?.replace(Regex("[()\\s]"), "")
-                    }
+                val episodeNameDiv = element.select("div div h3 div")
+                if (episodeNameDiv.isNotEmpty()) {
+                    scriptType = ScriptType.TV_SHOW
+                    episode = element.text()
+                } else {
+                    scriptType = ScriptType.MOVIE
                 }
             }
         }
@@ -53,29 +49,36 @@ data class Script(
             }
 
             return Script().apply {
-                scriptURL = element.select(".site-main article .border-b a")?.attr("href")
-                poster = element.select(".site-main article .border-b img")?.attr("src")
+                val baseElement = element.select(".site-body main article")
 
-                synopses = element.select(".site-main article .border-brown-200 .mx-auto p")?.first()?.text()
-                writers = element.select(".site-main article .border-brown-200 .mx-auto a.whitespace-nowrap")
+                scriptURL = baseElement.select("div div a")?.attr("href")
+                poster = baseElement.select("div div a div div img")?.attr("src")
+
+                synopses = baseElement.select("div div div div div div p")?.first()?.text()
+                writers =  baseElement.select("div div div div .w-full .leading-relaxed a.whitespace-nowrap")
                                 ?.mapNotNull { Category.from(it) }
-                genres = element.select(".site-main article .not-prose ul li.inline-block a")
+                genres =   baseElement.select("div div div div .w-full div .not-prose ul li")
                     ?.mapNotNull { Category.from(it) }
 
-                val type = element.select(".site-main .w-full h1 a .text-gray-400.font-normal.mt-2")
-                if (type.size > 1) {
+                val titleMovie = baseElement.select("div div div div div h1 span")
+
+                if (titleMovie.isNotEmpty()) {
+                    scriptType = ScriptType.MOVIE
+                    title = titleMovie.first()?.text()
+
+                    year = baseElement.select("div div div div div h1 div").first()?.text()?.split(" - ")?.firstOrNull()
+                } else {
+                    val type = baseElement.select("div div div div div h1 div")
+
                     scriptType = ScriptType.TV_SHOW
 
-                    title = element.select(".site-main article .w-full h1 a div")?.first()?.text()
-                    episode = element.select(".site-main article .w-full h1 a div")?.get(1)?.text()
-                    season = element.select(".site-main article .w-full h1 a div")?.get(2)?.text()
-                    year = element.select(".site-main article .w-full h1 a div")?.get(3)?.text()?.split(" - ")?.firstOrNull()
-                } else {
-                    title = element.select(".site-main article .w-full h1 a span")?.first()?.text()
-                    year = element.select(".site-main article .w-full h1 a div")?.text()?.split(" - ")?.firstOrNull()
+                    episode = type.getOrNull(1)?.text()
+                    season = type.getOrNull(2)?.text()
+                    year = type.getOrNull(3)?.text()?.split(" - ")?.firstOrNull()
                 }
-            }
 
+                releatedScripts = element.select(".site-body main section article")?.mapNotNull { fromList(it) } ?: emptyList()
+            }
         }
     }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scriptsSpecialListContainer"
-        android:background="@color/secondaryColor"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/md_theme_light_tertiary"
         android:layout_marginTop="@dimen/activity_vertical_margin_2x"
         android:layout_marginBottom="@dimen/activity_vertical_margin_2x">
 
@@ -33,7 +33,7 @@
         app:layout_constraintGuide_percent=".6"
     />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
@@ -58,7 +58,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:id="@+id/backgroundColor"
-        android:background="@color/primaryColor"
+        android:background="@color/md_theme_light_primary"
         android:alpha="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,14 +79,13 @@
         app:layout_constraintBottom_toBottomOf="@id/scriptsSpecialListSubtitle"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            style="@style/TextAppearance.Material3.TitleLarge"
             android:id="@+id/scriptsSpecialListTitle"
-            android:textColor="@color/md_white_1000"
-            android:fontFamily="@font/proxima_nova_bold"
+            android:textColor="@color/md_theme_light_onTertiary"
             android:ellipsize="end"
-            android:textSize="18sp"
             android:layout_marginStart="@dimen/activity_vertical_margin_2x"
             android:layout_marginTop="@dimen/activity_vertical_margin_2x"
             app:layout_constraintTop_toTopOf="parent"
@@ -94,14 +93,13 @@
             app:layout_constraintEnd_toStartOf="@id/guide3"
         />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            style="@style/TextAppearance.Material3.BodyMedium"
             android:id="@+id/scriptsSpecialListSubtitle"
-            android:textColor="@color/md_white_1000"
-            android:fontFamily="@font/proxima_nova_regular"
+            android:textColor="@color/md_theme_light_onTertiary"
             android:ellipsize="end"
-            android:textSize="14sp"
             android:layout_marginStart="@dimen/activity_vertical_margin_2x"
             android:layout_marginTop="@dimen/activity_vertical_margin_0.2x"
             app:layout_constraintTop_toBottomOf="@id/scriptsSpecialListTitle"

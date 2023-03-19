@@ -1,26 +1,23 @@
 package com.tiagohs.script_reader
 
 import android.app.Application
-import com.tiagohs.script_reader.dagger.AppComponent
-import com.tiagohs.script_reader.dagger.DaggerAppComponent
-import com.tiagohs.script_reader.dagger.modules.AppModule
+import com.tiagohs.script_reader.ui.Injection
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 
 class App: Application() {
-    var appComponent: AppComponent? = null
-
     override fun onCreate() {
         super.onCreate()
 
-        configureDagger()
+        startKoin {
+            androidLogger(Level.NONE)
+            androidContext(this@App)
+            modules(Injection.modules)
+        }
 
         // MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
-    }
-
-    @Suppress("DEPRECATION")
-    private fun configureDagger() {
-        appComponent = DaggerAppComponent.builder()
-            .appModule(AppModule(this))
-            .build()
     }
 
     companion object {

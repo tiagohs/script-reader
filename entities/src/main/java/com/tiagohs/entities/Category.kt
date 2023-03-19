@@ -15,7 +15,7 @@ data class Category(
     companion object {
         fun from(element: Element): Category = Category()
             .apply {
-            title = element.text()
+            title = element.text().trim()
             url = element.attr("href")
         }
 

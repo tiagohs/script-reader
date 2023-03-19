@@ -9,28 +9,25 @@ import com.tiagohs.entities.home.HomeCell
 import com.tiagohs.components.alert_snackbar.enums.MessageType
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
-import javax.inject.Inject
 
-class HomePresenterImpl
-@Inject constructor(
-    interactor: HomeInteractor
-) : BasePresenter<HomeView, HomeInteractor>(interactor),
+class HomePresenterImpl(
+    override val view: HomeView,
+    override val interactor: HomeInteractor
+) : BasePresenter<HomeView, HomeInteractor>(view, interactor),
     HomePresenter {
 
-    override fun onBindView(view: HomeView) {
-        super.onBindView(view)
+    override fun start() {
+        super.start()
 
-        this.view?.let {
-            it.setupContentView()
-            it.showLoading()
+        this.view.apply {
+            setupContentView()
+            showLoading()
         }
 
         fetchHomeContent()
     }
 
     private fun fetchHomeContent() {
-        val interactor = interactor ?: return
-
         add(interactor.fetchHomeContent()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -42,16 +39,14 @@ class HomePresenterImpl
     }
 
     private fun onFetchHomeContentSuccess(list: List<HomeCell>) {
-        view?.hideLoading()
-        view?.loadHomeContent(list)
+        view.hideLoading()
+        view.loadHomeContent(list)
     }
 
     private fun onFetchHomeContentError(error: Throwable) {
-        view?.hideLoading()
-        view?.showMessage(error, MessageType.ERROR, R.string.unknown_error) {
-            val view = view ?: return@showMessage
-
-            onBindView(view)
+        view.hideLoading()
+        view.showMessage(error, MessageType.ERROR, R.string.unknown_error) {
+            start()
         }
     }
 }

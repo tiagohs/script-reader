@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tiagohs.domain.presenter.contract.CategoryPresenter
+import com.tiagohs.domain.presenter.contract.HomePresenter
 import com.tiagohs.helpers.Constants
 import com.tiagohs.script_reader.R
 import com.tiagohs.script_reader.ui.activities.base.BaseActivity
@@ -15,27 +16,19 @@ import com.tiagohs.entities.Category
 import com.tiagohs.entities.Script
 import com.tiagohs.helpers.extensions.convertIntToDp
 import kotlinx.android.synthetic.main.activity_category.*
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import javax.inject.Inject
 
 class CategoryActivity :
-    BaseActivity(),
+    BaseActivity<CategoryPresenter>(),
     CategoryView {
+
+    override val presenter: CategoryPresenter by inject { parametersOf(this) }
 
     override val layoutViewId: Int = R.layout.activity_category
 
-    @Inject
-    lateinit var categoryPresenter: CategoryPresenter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        getApplicationComponent()?.inject(this)
-
-        categoryPresenter.onBindView(this)
-    }
-
     override fun onDestroy() {
-        categoryPresenter.onDestroy()
         loadView.hide()
 
         super.onDestroy()
@@ -45,13 +38,11 @@ class CategoryActivity :
         val category = intent.extras?.getParcelable(Constants.ARGUMENTS.CATEGORY) as? Category
             ?: return
 
-        categoryPresenter.setArguments(category)
+        presenter.setArguments(category)
     }
 
     override fun setTitle(title: String?) {
-        toolbar.post {
-            setScreenTitle(title)
-        }
+        toolbar.title = title
     }
 
     override fun setupContentView() {

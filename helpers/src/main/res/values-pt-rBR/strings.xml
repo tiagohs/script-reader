@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="genre_action">Ação</string>
-    <string name="genre_adventure">Adventure</string>
+    <string name="genre_adventure">Aventura</string>
     <string name="genre_animation">Animação</string>
     <string name="genre_biography">Biografia</string>
     <string name="genre_comedy">Comédia</string>
@@ -15,8 +15,8 @@
     <string name="genre_thriller">Suspense</string>
     <string name="genre_war">Guerra</string>
     <string name="genre_western">Faroeste</string>
-    <string name="home_special_oscar_2021_title">Oscar 2021</string>
-    <string name="home_special_oscar_2021_subtitle">Todos os filmes nomeados ao Oscar 2021</string>
+    <string name="home_special_oscar_2021_title">Oscar 2023</string>
+    <string name="home_special_oscar_2021_subtitle">Todos os filmes nomeados ao Oscar 2023</string>
     <string name="home_list_family_title">Filmes e séries para toda a familía</string>
     <string name="home_list_netflix_title">Filmes e séries da Netflix</string>
     <string name="home_list_latest_title">Últimos filmes e séries</string>

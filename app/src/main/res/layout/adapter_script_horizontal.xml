@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="@dimen/script_container_width"
         android:layout_height="wrap_content"
         android:id="@+id/scriptContainer"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/md_white_1000"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="5dp"
+            style="@style/Widget.Material3.CardView.Elevated"
             android:layout_marginTop="@dimen/activity_vertical_margin_1.5x"
             android:layout_marginEnd="@dimen/activity_vertical_margin_2x"
             android:layout_marginBottom="@dimen/activity_vertical_margin_2x"
@@ -23,17 +22,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                     android:layout_width="100dp"
                     android:layout_height="130dp"
+                    style="@style/Widget.Material3.CardView.Elevated"
                     android:id="@+id/iconContainer"
                     android:layout_margin="@dimen/activity_vertical_margin_0.5x"
-                    app:cardCornerRadius="@dimen/activity_vertical_margin_0.5x"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/poster"
@@ -42,68 +41,65 @@
                         android:background="?selectableItemBackground"
                 />
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Material3.TitleMedium"
                     android:id="@+id/scriptTitle"
-                    android:text="Batman v Superman"
-                    android:textColor="@color/primaryDarkColor"
-                    android:fontFamily="@font/proxima_nova_bold"
+                    android:textColor="@color/md_theme_light_onPrimaryContainer"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:textSize="16sp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="50dp"
                     android:layout_marginTop="16dp"
                     app:layout_constraintStart_toEndOf="@id/iconContainer"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="Batman v Superman"
                 />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Material3.BodySmall"
                     android:id="@+id/movieYear"
-                    android:text="2004"
-                    android:textColor="@color/md_grey_500"
-                    android:fontFamily="@font/proxima_nova_bold"
+                    android:textColor="@color/md_theme_light_secondary"
+                    android:textStyle="bold"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:textSize="12sp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintStart_toEndOf="@id/iconContainer"
                     app:layout_constraintTop_toBottomOf="@id/scriptTitle"
+                    tools:text="2004"
                 />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Material3.BodySmall"
                     android:id="@+id/author"
-                    android:text="Josh Siegal, Dylan Morgan"
-                    android:textColor="@color/md_grey_500"
-                    android:fontFamily="@font/proxima_nova_regular"
+                    android:textColor="@color/md_theme_light_secondary"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:textSize="12sp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintStart_toEndOf="@id/movieYear"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/scriptTitle"
+                    tools:text="Josh Siegal, Dylan Morgan"
                 />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Material3.BodyMedium"
                     android:id="@+id/episodeName"
-                    android:textColor="@color/primaryDarkColor"
-                    android:fontFamily="@font/proxima_nova_bold"
+                    android:textColor="@color/md_theme_light_onPrimaryContainer"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:textSize="14sp"
                     android:visibility="gone"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="8dp"
@@ -111,7 +107,7 @@
                     android:layout_marginBottom="5dp"
                     app:layout_constraintStart_toEndOf="@id/iconContainer"
                     app:layout_constraintTop_toBottomOf="@id/author"
-                    />
+                />
 
             <HorizontalScrollView
                     android:layout_width="0dp"
@@ -139,21 +135,20 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:cardBackgroundColor="@color/secondaryColor"
+            style="@style/Widget.Material3.CardView.Elevated"
+            app:cardBackgroundColor="@color/md_theme_light_onPrimaryContainer"
             android:id="@+id/typeIconContainer"
-            app:cardElevation="15dp"
-            app:cardCornerRadius="15dp"
             android:layout_marginTop="@dimen/activity_vertical_margin_0.5x"
             android:layout_marginEnd="@dimen/activity_vertical_margin_3x"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/typeIcon"
@@ -162,5 +157,5 @@
                 android:background="?selectableItemBackground"
                 />
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

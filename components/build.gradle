@@ -12,8 +12,6 @@ android {
     defaultConfig {
         minSdkVersion globalConfiguration["minSDK"]
         targetSdkVersion globalConfiguration["currentSDK"]
-        versionCode globalConfiguration["versionCode"]
-        versionName globalConfiguration["versionName"]
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
@@ -36,6 +34,7 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+    namespace 'com.tiagohs.components'
 }
 
 dependencies {

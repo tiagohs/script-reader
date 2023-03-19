@@ -12,8 +12,6 @@ android {
     defaultConfig {
         minSdkVersion globalConfiguration["minSDK"]
         targetSdkVersion globalConfiguration["currentSDK"]
-        versionCode globalConfiguration["versionCode"]
-        versionName globalConfiguration["versionName"]
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
@@ -26,6 +24,7 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+    namespace 'com.tiagohs.domain'
 }
 
 dependencies {
@@ -39,12 +38,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     /**
-     * DAGGER Dependencies
+     * Koin
      */
-    implementation dependencies.dagger
-    annotationProcessor dependencies.dagger_compiler
-    kapt dependencies.dagger_compiler
-    implementation dependencies.javax_annotation
+    implementation dependencies.koinAndroid
 
     /**
      * Network client

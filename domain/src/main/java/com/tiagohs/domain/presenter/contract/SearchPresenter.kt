@@ -4,6 +4,6 @@ import com.tiagohs.domain.presenter.base.IPresenter
 import com.tiagohs.domain.views.SearchView
 
 interface SearchPresenter :
-    IPresenter<SearchView> {
+    IPresenter {
     fun searchScripts(query: String)
 }

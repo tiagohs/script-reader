@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.tiagohs.domain.presenter.contract.HomePresenter
 import com.tiagohs.domain.presenter.contract.ReaderPresenter
 import com.tiagohs.helpers.Constants
 import com.tiagohs.script_reader.R
@@ -15,44 +16,25 @@ import com.tiagohs.helpers.extensions.hide
 import com.tiagohs.helpers.extensions.show
 import kotlinx.android.synthetic.main.activity_reader.*
 import kotlinx.android.synthetic.main.activity_reader.toolbar
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import java.io.InputStream
 import javax.inject.Inject
 
 class ReaderActivity :
-    BaseActivity(),
+    BaseActivity<ReaderPresenter>(),
     ReaderView {
+
+    override val presenter: ReaderPresenter by inject { parametersOf(this) }
 
     override val layoutViewId: Int = R.layout.activity_reader
 
-    @Inject
-    lateinit var presenter: ReaderPresenter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        getApplicationComponent()?.inject(this)
-
-        presenter.onBindView(this)
-    }
-
-    override fun onDestroy() {
-        presenter.onDestroy()
-
-        super.onDestroy()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_reader, menu)
-
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+    override fun onMenuItemClickListener(item: MenuItem): Boolean = when (item.itemId) {
         R.id.action_open_with -> {
             presenter.onOpenWithClicked()
             true
         }
-        else -> super.onOptionsItemSelected(item)
+        else -> false
     }
 
     override fun openReaderWith(url: String) {
@@ -67,9 +49,7 @@ class ReaderActivity :
     }
 
     override fun setTitle(title: String?) {
-        toolbar.post {
-            setScreenTitle(title)
-        }
+        toolbar.title = title
     }
 
     override fun setupContentView() {

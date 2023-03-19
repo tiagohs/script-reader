@@ -5,7 +5,7 @@ import com.tiagohs.domain.views.ReaderView
 import com.tiagohs.entities.Script
 
 interface ReaderPresenter :
-    IPresenter<ReaderView> {
+    IPresenter {
     fun setArgument(script: Script)
     fun onOpenWithClicked()
 }

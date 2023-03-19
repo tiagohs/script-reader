@@ -13,8 +13,8 @@
         app:shimmer_base_alpha="1"
         app:shimmer_direction="left_to_right"
         app:shimmer_intensity="1"
-        app:shimmer_base_color="@color/primaryDarkColor"
-        app:shimmer_highlight_color="@color/primaryColor"
+        app:shimmer_base_color="@color/md_theme_light_onPrimaryContainer"
+        app:shimmer_highlight_color="@color/md_theme_light_primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">

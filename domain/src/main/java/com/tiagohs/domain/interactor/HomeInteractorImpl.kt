@@ -11,10 +11,8 @@ import com.tiagohs.helpers.enums.HomeSpecialListEnum
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.functions.Function4
 import io.reactivex.rxjava3.schedulers.Schedulers
-import javax.inject.Inject
 
-class HomeInteractorImpl
-@Inject constructor(
+class HomeInteractorImpl(
     val scriptSlugService: ScriptSlugService
 ) : BaseInteractor(),
     HomeInteractor {
@@ -36,13 +34,14 @@ class HomeInteractorImpl
     }
 
     private fun fetchOscarContent(): Observable<HomeCell> {
-        return scriptSlugService.fetchScriptsByCategory("https://www.scriptslug.com/feature/oscar-nominated-scripts-2021")
+        return scriptSlugService.fetchOscarScripts("https://www.scriptslug.com/feature/2023-oscars")
             .map { ListSpecialCell(
                 title = R.string.home_special_oscar_2021_title,
                 subtitle = R.string.home_special_oscar_2021_subtitle,
                 config = HomeSpecialListEnum.OSCAR_2020,
                 list = it
-            ) }
+            )
+        }
     }
 
     private fun fetchFamilyContent(): Observable<HomeCell> {

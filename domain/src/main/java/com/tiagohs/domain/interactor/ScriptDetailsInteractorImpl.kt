@@ -5,10 +5,8 @@ import com.tiagohs.domain.interactor.contract.ScriptDetailsInteractor
 import com.tiagohs.domain.services.ScriptSlugService
 import com.tiagohs.entities.Script
 import io.reactivex.rxjava3.core.Observable
-import javax.inject.Inject
 
-class ScriptDetailsInteractorImpl
-@Inject constructor(
+class ScriptDetailsInteractorImpl(
     val scriptSlugService: ScriptSlugService
 ) : BaseInteractor(),
     ScriptDetailsInteractor {

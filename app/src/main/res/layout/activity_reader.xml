@@ -2,7 +2,6 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -12,23 +11,21 @@
             android:layout_height="?attr/actionBarSize"
             android:id="@+id/appBar"
             app:elevation="0dp"
-            android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:fitsSystemWindows="true"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
-                app:contentScrim="@color/primaryColor"
                 app:titleEnabled="false">
 
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay" />
+                    app:menu="@menu/menu_reader" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -38,12 +35,12 @@
             android:id="@+id/pdfView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" >
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -57,24 +54,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Material3.BodyMedium"
                     android:id="@+id/genreName"
-                    android:textColor="@color/primaryDarkColor"
-                    android:fontFamily="@font/proxima_nova_bold"
                     android:ellipsize="end"
-                    android:textSize="14sp"
                     android:text="Downloading Script, please wait..."
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:textAlignment="center"
-                    />
+                />
 
-            <ProgressBar
+            <com.google.android.material.progressindicator.CircularProgressIndicator
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true" />
 
         </LinearLayout>
 

@@ -2,38 +2,38 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.Material3.CardView.Filled"
             android:id="@+id/genreNameIconContainer"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="5dp"
             android:layout_margin="@dimen/activity_vertical_margin_1.2x"
-            android:backgroundTint="@color/secondaryColor"
+            app:cardBackgroundColor="@color/md_theme_light_onPrimaryContainer"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/genreName"
-            android:textColor="@color/md_white_1000"
-            android:fontFamily="@font/proxima_nova_regular"
+            style="@style/TextAppearance.Material3.BodyMedium"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textSize="14sp"
             android:layout_margin="@dimen/activity_vertical_margin_1.2x"
+            android:textColor="@color/md_theme_light_primaryContainer"
             app:layout_constraintTop_toBottomOf="@+id/genreNameIconContainer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Teste"
         />
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.tiagohs.domain.presenter.contract.ScriptDetailsPresenter
 import com.tiagohs.domain.presenter.contract.SearchPresenter
 import com.tiagohs.script_reader.R
 import com.tiagohs.script_reader.ui.activities.base.BaseActivity
@@ -17,42 +18,29 @@ import com.tiagohs.entities.Script
 import com.tiagohs.helpers.extensions.convertIntToDp
 import com.tiagohs.helpers.extensions.hide
 import com.tiagohs.helpers.extensions.show
+import com.tiagohs.helpers.utils.hideKeyboardFrom
 import kotlinx.android.synthetic.main.activity_search.*
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import javax.inject.Inject
 
 class SearchActivity :
-    BaseActivity(),
+    BaseActivity<SearchPresenter>(),
     SearchView,
     androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
+    override val presenter: SearchPresenter by inject { parametersOf(this) }
+
     override val layoutViewId: Int = R.layout.activity_search
 
-    @Inject
-    lateinit var presenter: SearchPresenter
     private var adapter: ScriptAdapter? = null
     private var searchView: androidx.appcompat.widget.SearchView? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        getApplicationComponent()?.inject(this)
-
-        presenter.onBindView(this)
-    }
-
     override fun onDestroy() {
-        presenter.onDestroy()
         hideLoading()
+        hideKeyboardFrom(this, searchView)
 
         super.onDestroy()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_search, menu)
-
-        setupSearchViewItem(menu)
-
-        return super.onCreateOptionsMenu(menu)
     }
 
     private fun setupSearchViewItem(menu: Menu) {
@@ -74,11 +62,14 @@ class SearchActivity :
         }
     }
 
+
+
     override fun setupContentView() {
         setupToolbar(
             toolbar,
             displayShowTitleEnabled = false
         )
+        setupSearchViewItem(toolbar.menu)
 
         recyclerView.apply {
             layoutManager =
@@ -124,6 +115,7 @@ class SearchActivity :
     override fun onQueryTextSubmit(query: String): Boolean {
         presenter.searchScripts(query)
         searchView?.clearFocus()
+        hideKeyboardFrom(this, searchView)
 
         return true
     }

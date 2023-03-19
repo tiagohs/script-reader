@@ -5,6 +5,6 @@ import com.tiagohs.domain.views.CategoryView
 import com.tiagohs.entities.Category
 
 interface CategoryPresenter :
-    IPresenter<CategoryView> {
+    IPresenter {
     fun setArguments(category: Category)
 }

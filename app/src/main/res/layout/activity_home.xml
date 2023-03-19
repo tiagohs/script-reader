@@ -11,34 +11,24 @@
             android:layout_height="?attr/actionBarSize"
             android:id="@+id/appBar"
             app:elevation="0dp"
-            android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:fitsSystemWindows="true"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
-                app:contentScrim="@color/primaryColor"
                 app:titleEnabled="false">
 
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay">
-
-                <ImageView
-                        android:layout_width="?attr/actionBarSize"
-                        android:layout_height="?attr/actionBarSize"
-                        android:src="@drawable/ic_logo_app_secondary"
-                        android:paddingEnd="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                />
-
-            </androidx.appcompat.widget.Toolbar>
+                    app:navigationIcon="@drawable/ic_logo_app_secondary"
+                    android:background="@color/md_theme_light_primary"
+                    app:menu="@menu/menu_home"
+            />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -53,7 +43,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <com.tiagohs.components.placeholder.PlaceholderView
             android:layout_width="match_parent"
@@ -62,7 +52,7 @@
             android:layout_marginTop="@dimen/activity_vertical_margin_1.2x"
             app:placeholder_type="home"
             android:visibility="gone"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

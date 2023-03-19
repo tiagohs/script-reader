@@ -8,30 +8,42 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.google.android.material.appbar.MaterialToolbar
 import com.tiagohs.script_reader.App
 import com.tiagohs.script_reader.R
-import com.tiagohs.script_reader.dagger.AppComponent
 import com.tiagohs.components.alert_snackbar.enums.MessageType
 import com.tiagohs.components.alert_snackbar.AlertSnackBar
+import com.tiagohs.domain.presenter.base.IPresenter
 import com.tiagohs.domain.views.base.IView
 import com.tiagohs.entities.Category
 import com.tiagohs.entities.Script
 import com.tiagohs.helpers.extensions.getResourceColor
+import com.tiagohs.helpers.extensions.getResourceDrawable
 import com.tiagohs.helpers.extensions.toast
 import com.tiagohs.helpers.utils.ServerUtils
 import com.tiagohs.script_reader.ui.activities.*
 
-abstract class BaseActivity : AppCompatActivity(), IView {
+abstract class BaseActivity<T: IPresenter> : AppCompatActivity(), IView {
 
     abstract val layoutViewId : Int
     open var menuLayoutId: Int = 0
 
     var alertSnackBar: AlertSnackBar? = null
 
+    protected abstract val presenter: T
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(layoutViewId)
+
+        presenter.start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        presenter.onDestroy()
     }
 
     /*fun getConfiguratedAd(adView: AdView) {
@@ -44,26 +56,12 @@ abstract class BaseActivity : AppCompatActivity(), IView {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean =
-        when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            R.id.action_about -> {
-                startActivity(AboutActivity.newIntent(this))
-                true
-            }
-            else -> false
-        }
-
     fun openUrl(url: String?) {
 
         if (!url.isNullOrEmpty()) {
             try {
                 val urlUri = Uri.parse(url)
                 val intent = CustomTabsIntent.Builder()
-                        .setToolbarColor(getResourceColor(R.color.primaryColor))
                         .setShowTitle(true)
                         .build()
                 intent.launchUrl(this, urlUri)
@@ -73,29 +71,44 @@ abstract class BaseActivity : AppCompatActivity(), IView {
         }
     }
 
-    fun getApplicationComponent(): AppComponent? {
-        val application = application ?: return null
-
-        return (application as App).appComponent
-    }
-
-    open fun setupToolbar(toolbar: Toolbar,
+    open fun setupToolbar(toolbar: MaterialToolbar,
                           title: Int? = null,
                           displayHomeAsUpEnabled: Boolean = true,
                           displayShowHomeEnabled: Boolean = true,
                           displayShowTitleEnabled: Boolean = true) {
 
-        setSupportActionBar(toolbar)
-
-        title?.let { this.title = getString(it) }
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(displayHomeAsUpEnabled)
-        supportActionBar?.setDisplayShowHomeEnabled(displayShowHomeEnabled)
-        supportActionBar?.setDisplayShowTitleEnabled(displayShowTitleEnabled)
-
-        toolbar.setNavigationOnClickListener {
-            super.onBackPressed()
+        if (displayShowTitleEnabled) {
+            title?.let { toolbar.title = getString(it) }
         }
+
+        if (displayHomeAsUpEnabled) {
+            toolbar.navigationIcon = getResourceDrawable(R.drawable.baseline_arrow_back_24)
+            toolbar.setNavigationOnClickListener {
+                super.onBackPressed()
+            }
+        }
+
+        toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                android.R.id.home -> {
+                    finish()
+                    true
+                }
+                R.id.action_search -> {
+                    startActivity(SearchActivity.newIntent(this))
+                    true
+                }
+                R.id.action_about -> {
+                    startActivity(AboutActivity.newIntent(this))
+                    true
+                }
+                else -> onMenuItemClickListener(item)
+            }
+        }
+    }
+
+    open fun onMenuItemClickListener(item: MenuItem): Boolean {
+        return false
     }
 
     override fun isInternetConnected(): Boolean {
@@ -104,14 +117,6 @@ abstract class BaseActivity : AppCompatActivity(), IView {
 
     override fun isAdded(): Boolean {
         return !isDestroyed
-    }
-
-    fun setScreenTitle(title: String?) {
-        supportActionBar?.title = title
-    }
-
-    fun setScreenSubtitle(title: String?) {
-        supportActionBar?.subtitle = title
     }
 
     open fun onError(ex: Throwable?, message: Int) {

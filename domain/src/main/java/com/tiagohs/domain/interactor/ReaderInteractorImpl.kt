@@ -5,10 +5,8 @@ import com.tiagohs.domain.interactor.contract.ReaderInteractor
 import com.tiagohs.domain.services.ScriptSlugService
 import io.reactivex.rxjava3.core.Observable
 import java.io.InputStream
-import javax.inject.Inject
 
-class ReaderInteractorImpl
-@Inject constructor(
+class ReaderInteractorImpl(
     val scriptSlugService: ScriptSlugService
 ) : BaseInteractor(),
     ReaderInteractor {

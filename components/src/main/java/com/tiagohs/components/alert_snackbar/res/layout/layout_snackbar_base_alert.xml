@@ -7,64 +7,60 @@
         android:background="@android:color/transparent"
         tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Widget.Material3.CardView.Elevated"
             android:id="@+id/cardView"
             android:backgroundTint="@color/msg_success_background"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="10dp">
+            android:layout_marginBottom="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            style="@style/TextAppearance.Material3.TitleMedium"
             android:id="@+id/title"
-            android:text="Erro!"
-            android:fontFamily="@font/proxima_nova_bold"
-            android:textSize="18sp"
             android:textColor="@color/md_white_1000"
             android:layout_marginEnd="5dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tryAgainButton"
+            tools:text="Erro!"
         />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            style="@style/TextAppearance.Material3.BodyMedium"
             android:id="@+id/description"
-            android:text="Erro!"
-            android:fontFamily="@font/proxima_nova_regular"
-            android:textSize="14sp"
             android:textColor="@color/md_white_1000"
             android:layout_marginEnd="5dp"
             app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tryAgainButton"
             app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Erro!"
         />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ThemeOverlay.Material3.Button.TextButton"
             android:id="@+id/tryAgainButton"
             android:text="Tentar\nNovamente"
             android:visibility="gone"
-            android:background="?selectableItemBackground"
-            android:textColor="@color/md_white_1000"
-            android:textSize="14sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </merge>

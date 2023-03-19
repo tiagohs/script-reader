@@ -5,10 +5,8 @@ import com.tiagohs.domain.interactor.contract.SearchInteractor
 import com.tiagohs.domain.services.ScriptSlugService
 import com.tiagohs.entities.Script
 import io.reactivex.rxjava3.core.Observable
-import javax.inject.Inject
 
-class SearchInteractorImpl
-@Inject constructor(
+class SearchInteractorImpl(
     val scriptSlugService: ScriptSlugService
 ) : BaseInteractor(),
     SearchInteractor {

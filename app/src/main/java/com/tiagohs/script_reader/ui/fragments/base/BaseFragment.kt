@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.tiagohs.script_reader.dagger.AppComponent
 import com.tiagohs.components.alert_snackbar.enums.MessageType
 import com.tiagohs.script_reader.ui.activities.base.BaseActivity
 import com.tiagohs.domain.views.base.IView
@@ -32,34 +31,30 @@ abstract class BaseFragment: Fragment(), IView {
         }
     }
 
-    protected fun getApplicationComponent(): AppComponent? {
-        return (activity as? BaseActivity)?.getApplicationComponent() ?: return null
-    }
-
     fun openUrl(url: String?) {
-        (activity as? BaseActivity)?.openUrl(url)
+        (activity as? BaseActivity<*>)?.openUrl(url)
     }
 
     override fun isInternetConnected(): Boolean {
-        return (activity as? BaseActivity)?.isInternetConnected() ?: false
+        return (activity as? BaseActivity<*>)?.isInternetConnected() ?: false
     }
 
     override fun showMessage(
         ex: Throwable?,
-        messageType: com.tiagohs.components.alert_snackbar.enums.MessageType,
+        messageType: MessageType,
         message: Int,
         onTryAgainClicked: (() -> Unit)?
     ) {
-        (activity as? BaseActivity)?.showMessage(ex, messageType, message, onTryAgainClicked)
+        (activity as? BaseActivity<*>)?.showMessage(ex, messageType, message, onTryAgainClicked)
     }
 
     override fun showMessage(
         ex: Throwable?,
-        messageType: com.tiagohs.components.alert_snackbar.enums.MessageType,
+        messageType: MessageType,
         message: String,
         onTryAgainClicked: (() -> Unit)?
     ) {
-        (activity as? BaseActivity)?.showMessage(ex, messageType, message, onTryAgainClicked)
+        (activity as? BaseActivity<*>)?.showMessage(ex, messageType, message, onTryAgainClicked)
     }
 
     abstract fun getViewID(): Int
@@ -67,7 +62,7 @@ abstract class BaseFragment: Fragment(), IView {
     open fun onError(ex: Throwable?, message: Int) {
         val activity = activity ?: return
 
-        return (activity as BaseActivity).onError(ex, message)
+        return (activity as BaseActivity<*>).onError(ex, message)
     }
 
     /*fun getConfiguratedAd(adView: AdView) {

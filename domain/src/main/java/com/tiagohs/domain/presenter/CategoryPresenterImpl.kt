@@ -10,24 +10,23 @@ import com.tiagohs.entities.Category
 import com.tiagohs.entities.Script
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
-import javax.inject.Inject
 
-class CategoryPresenterImpl
-@Inject constructor(
-    interactor: CategoryInteractor
-) : BasePresenter<CategoryView, CategoryInteractor>(interactor),
+class CategoryPresenterImpl(
+    override val view: CategoryView,
+    override val interactor: CategoryInteractor
+) : BasePresenter<CategoryView, CategoryInteractor>(view, interactor),
     CategoryPresenter {
 
     private var category: Category? = null
 
-    override fun onBindView(view: CategoryView) {
-        super.onBindView(view)
+    override fun start() {
+        super.start()
 
-        this.view?.let {
-            it.setupAlguments()
-            it.setTitle(category?.title)
-            it.setupContentView()
-            it.showLoading()
+        this.view.apply {
+            setupAlguments()
+            setTitle(category?.title)
+            setupContentView()
+            showLoading()
         }
 
         fetchScripts()
@@ -38,7 +37,6 @@ class CategoryPresenterImpl
     }
 
     private fun fetchScripts() {
-        val interactor = interactor ?: return
         val categoryURL = category?.url ?: return
 
         add(interactor.fetchScriptsByCategory(categoryURL)
@@ -52,16 +50,14 @@ class CategoryPresenterImpl
     }
 
     private fun onFetchHomeContentSuccess(list: List<Script>) {
-        view?.hideLoading()
-        view?.loadList(list)
+        view.hideLoading()
+        view.loadList(list)
     }
 
     private fun onFetchHomeContentError(error: Throwable) {
-        view?.hideLoading()
-        view?.showMessage(error, MessageType.ERROR, R.string.unknown_error) {
-            val view = view ?: return@showMessage
-
-            onBindView(view)
+        view.hideLoading()
+        view.showMessage(error, MessageType.ERROR, R.string.unknown_error) {
+            start()
         }
     }
 }
