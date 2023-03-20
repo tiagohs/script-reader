@@ -34,11 +34,10 @@ android {
         }
     }
 
-
     buildTypes {
         debug {
-            buildConfigField "String", "ADMOB_APP_ID", '""'
-            buildConfigField "String", "ADMOB_APP_BANNER_ID", '"ca-app-pub-00000"'
+//            buildConfigField "String", "ADMOB_APP_ID", '""'
+//            buildConfigField "String", "ADMOB_APP_BANNER_ID", '"ca-app-pub-00000"'
         }
 
         release {
@@ -49,8 +48,8 @@ android {
             multiDexKeepProguard file('multidex-config.pro')
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            buildConfigField "String", "ADMOB_APP_ID", '""'
-            buildConfigField "String", "ADMOB_APP_BANNER_ID", '"ca-app-pub-00000"'
+//            buildConfigField "String", "ADMOB_APP_ID", '""'
+//            buildConfigField "String", "ADMOB_APP_BANNER_ID", '"ca-app-pub-00000"'
 
             signingConfig signingConfigs.release
         }

@@ -16,5 +16,7 @@
     <string name="responsable">App Development and Search by Tiago Silva</string>
     <string name="scriptSlug_terms_description">Movies, actors, directors and image information are provided by the Script Slug but not endorsed or certified by Script Slug.</string>
     <string name="email" translatable="false">tiago.hsilva@gmail.com</string>
+    <string name="privacy">Privacy Politics</string>
+    <string name="privacy_link" translatable="false">https://animated-stickers.s3-sa-east-1.amazonaws.com/history_privacy_politics.html</string>
     <string name="contact_us">Get in Touch</string>
 </resources>

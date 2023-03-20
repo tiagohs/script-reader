@@ -13,6 +13,7 @@
     <string name="app_description">%1s é uma ferramenta simples para leitura de roteiros de filmes e série disponíveis na internet.</string>
     <string name="version">Versão %1s</string>
     <string name="responsable">Desenvolvimento de Tiago Silva</string>
+    <string name="privacy">Política de Privacidade</string>
     <string name="scriptSlug_terms_description">As informações dos filmes, atores, diretores e as imagens são fornecidas pelo Script Slug mas não é endossado ou certificado pelo Script Reader</string>
     <string name="contact_us">Entre em contato</string>
 </resources>

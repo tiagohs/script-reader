@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.tiagohs.helpers.extensions.getResourceString
+import com.tiagohs.helpers.extensions.openChromeBrowser
 import com.tiagohs.script_reader.BuildConfig
 import com.tiagohs.script_reader.R
 import mehdi.sakout.aboutpage.AboutPage
@@ -43,6 +44,10 @@ class AboutActivity :
         val termsElement = Element().apply {
             title = getResourceString(R.string.scriptSlug_terms_description)
         }
+        val politicsElement = Element().apply {
+            title = getResourceString(R.string.privacy)
+            onClickListener = View.OnClickListener { openChromeBrowser(getResourceString(R.string.privacy_link)) }
+        }
         return AboutPage(this)
             .isRTL(false)
             .enableDarkMode(false)
@@ -51,6 +56,7 @@ class AboutActivity :
             .addItem(Element().setTitle(getString(R.string.version, BuildConfig.VERSION_NAME)))
             .addItem(adsElement)
             .addEmail(getResourceString(R.string.email), getResourceString(R.string.contact_us))
+            .addItem(politicsElement)
             .addItem(termsElement)
             .create()
     }
