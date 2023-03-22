@@ -5,5 +5,5 @@ import com.tiagohs.domain.views.SearchView
 
 interface SearchPresenter :
     IPresenter {
-    fun searchScripts(query: String)
+    fun searchScripts(query: String, currentPage: Int, isFirstPage: Boolean)
 }

@@ -21,8 +21,8 @@ class ScriptSlugService(serviceBuild: Retrofit): BaseService(serviceBuild) {
         build(ScriptSlugServiceRetrofit::class.java).fetchMovies("/")
             .map { mapDocumentToHomeData(it.asJsoup()) }
 
-    fun fetchScriptsByCategory(categoryUrl: String): Observable<List<Script>> =
-        build(ScriptSlugServiceRetrofit::class.java).fetchMoviesByCategory(categoryUrl)
+    fun fetchScriptsByCategory(categoryUrl: String, currentPage: Int): Observable<List<Script>> =
+        build(ScriptSlugServiceRetrofit::class.java).fetchMoviesByCategory(categoryUrl + "?pg=${currentPage}")
             .map { mapDocumentToScriptList(it.asJsoup()) }
 
     fun fetchOscarScripts(categoryUrl: String): Observable<List<Script>> =
@@ -34,8 +34,8 @@ class ScriptSlugService(serviceBuild: Retrofit): BaseService(serviceBuild) {
                 )
             }
 
-    fun searchScripts(query: String): Observable<List<Script>> =
-        build(ScriptSlugServiceRetrofit::class.java).searchMovie(query)
+    fun searchScripts(query: String, currentPage: Int): Observable<List<Script>> =
+        build(ScriptSlugServiceRetrofit::class.java).searchMovie(query, currentPage)
             .map { mapDocumentToScriptList(it.asJsoup()) }
 
     fun fetchScriptPageDetails(url: String): Observable<Script> =
@@ -61,11 +61,15 @@ class ScriptSlugService(serviceBuild: Retrofit): BaseService(serviceBuild) {
     private fun mapDocumentToScriptList(
         document: Document,
         cssQuery: String = ".site-body main section .js-scripts-list .js-scripts-list-container article"
-    ): List<Script> =
-                    document.select(cssQuery)
-                            ?.mapNotNull { Script.fromList(it) } ?: emptyList()
+    ): List<Script> {
+        var result = document.select(cssQuery)
 
+        if (result.isNullOrEmpty()) {
+            result = document.select(".site-body main article div div div article")
+        }
 
+        return result?.mapNotNull { Script.fromList(it) } ?: emptyList()
+    }
 
     private fun mapDocumetToCategoriesCell(document: Document): CategoryCell = CategoryCell().apply {
         list = document.select(".site-body main section .js-browse-dropdown div a")

@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.adapter_script_simple.view.*
 
 class ScriptSimpleAdapter(
     scriptList: List<Script>
-) : BaseAdapter<Script, ScriptSimpleAdapter.ScriptViewHolder>(scriptList) {
+) : BaseAdapter<Script, ScriptSimpleAdapter.ScriptViewHolder>(scriptList.toMutableList()) {
 
     var onScriptClicked: ((script: Script) -> Unit)? = null
     var onCategoryClicked: ((category: Category) -> Unit)? = null

@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.adapter_home_list_special_cell.view.*
 class HomeContentAdapter(
     list: List<HomeCell>,
     val activity: FragmentActivity
-) : BaseAdapter<HomeCell, BaseViewHolder<HomeCell>>(list) {
+) : BaseAdapter<HomeCell, BaseViewHolder<HomeCell>>(list.toMutableList()) {
 
     var onGenreClicked: ((genre: GenresEnum) -> Unit)? = null
     var onCategoryClicked: ((category: Category) -> Unit)? = null

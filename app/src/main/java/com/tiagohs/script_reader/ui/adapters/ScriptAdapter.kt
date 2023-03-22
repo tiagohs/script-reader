@@ -2,10 +2,14 @@ package com.tiagohs.script_reader.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Constraints
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.tiagohs.entities.Category
 import com.tiagohs.entities.Script
+import com.tiagohs.helpers.enums.PaginationType
 import com.tiagohs.helpers.enums.ScriptType
 import com.tiagohs.helpers.extensions.*
 import com.tiagohs.script_reader.R
@@ -18,14 +22,56 @@ import kotlinx.android.synthetic.main.view_category.view.*
 class ScriptAdapter(
     scriptList: List<Script>,
     val orientation: Int
-): BaseAdapter<Script, ScriptAdapter.ScriptViewHolder>(scriptList) {
+): BaseAdapter<Script, BaseViewHolder<Script>>(scriptList.toMutableList()) {
 
     var onScriptClicked: ((script: Script) -> Unit)? = null
     var onCategoryClicked: ((category: Category) -> Unit)? = null
 
-    override fun getLayoutResId(viewType: Int): Int = R.layout.adapter_script_horizontal
+    private var isLoadingAdded = false
 
-    override fun onCreateViewHolder(viewType: Int, view: View): ScriptViewHolder = ScriptViewHolder(view)
+    override fun getItemViewType(position: Int): Int = if (position == (list.size - 1) && isLoadingAdded) PaginationType.LOADING.ordinal else PaginationType.ITEM.ordinal
+
+    override fun getLayoutResId(viewType: Int): Int = when (viewType) {
+        PaginationType.ITEM.ordinal -> R.layout.adapter_script_horizontal
+        PaginationType.LOADING.ordinal -> R.layout.adapter_loading
+        else -> R.layout.adapter_loading
+    }
+
+    override fun onCreateViewHolder(viewType: Int, view: View): BaseViewHolder<Script> = when (viewType) {
+        PaginationType.ITEM.ordinal -> ScriptViewHolder(view)
+        PaginationType.LOADING.ordinal -> LoadingViewHolder(view)
+        else -> object : BaseViewHolder<Script>(view) {}
+    }
+
+    override fun onBindViewHolder(holder: BaseViewHolder<Script>, position: Int) {
+        val script = list.getOrNull(position) ?: return
+
+        when (getItemViewType(position)) {
+            PaginationType.ITEM.ordinal -> (holder as? ScriptViewHolder)?.bind(script, position)
+            PaginationType.LOADING.ordinal -> (holder as? LoadingViewHolder)?.bind(script, position)
+        }
+    }
+
+    fun addLoadingFooter() {
+        isLoadingAdded = true
+        add(Script())
+    }
+
+    fun removeLoadingFooter() {
+        isLoadingAdded = false
+        val position: Int = list.size - 1
+        val result = getItem(position)
+
+        if (result != null) {
+            list.removeAt(position)
+
+            notifyItemRemoved(position)
+        }
+    }
+
+    inner class LoadingViewHolder(itemView: View): BaseViewHolder<Script>(itemView) {
+
+    }
 
     inner class ScriptViewHolder(itemView: View): BaseViewHolder<Script>(itemView), LayoutContainer {
 

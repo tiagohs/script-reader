@@ -23,36 +23,54 @@ class SearchPresenterImpl(
         this.view.setupContentView()
     }
 
-    override fun searchScripts(query: String) {
+    override fun searchScripts(query: String, currentPage: Int, isFirstPage: Boolean) {
         if (query.isEmpty()) { return }
 
-        view.showLoading()
-        view.hideRecyclerView()
+        if (isFirstPage) {
+            view.showLoading()
+            view.hideRecyclerView()
+        }
 
         subscribers.clear()
         subscribers = CompositeDisposable()
 
-        add(interactor.searchScripts(query)
+        add(interactor.searchScripts(query, currentPage)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { onSearchScriptsSuccess(it) },
-                { onSearchScriptsError(it) }
+                { onSearchScriptsSuccess(it, isFirstPage) },
+                { onSearchScriptsError(it, isFirstPage) }
             )
         )
     }
 
-    private fun onSearchScriptsSuccess(list: List<Script>) {
+    private fun onSearchScriptsSuccess(list: List<Script>, isFirstPage: Boolean) {
         view.hideLoading()
         view.showRecyclerView()
 
-        view.loadList(list)
+        if (list.isEmpty() && isFirstPage) {
+            view.showEmptyContainer()
+        } else {
+            view.hideEmptyContainer()
+        }
+
+        if (isFirstPage) {
+            view.loadList(list, isLastPage = list.isEmpty())
+            return
+        }
+
+        view.loadListMore(list, isLastPage = list.isEmpty())
     }
 
-    private fun onSearchScriptsError(error: Throwable) {
-        view.hideLoading()
-        view.showMessage(error, MessageType.ERROR, R.string.unknown_error) {
-            start()
+    private fun onSearchScriptsError(error: Throwable, isFirstPage: Boolean) {
+        if (!isFirstPage) {
+            view.loadListMore(emptyList(), isLastPage = true)
+        }
+
+        if (isFirstPage) {
+            view.showMessage(error, MessageType.ERROR, R.string.unknown_error) {
+                start()
+            }
         }
     }
 }

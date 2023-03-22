@@ -53,7 +53,7 @@ class HomeActivity :
         homeList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         homeList.adapter = HomeContentAdapter(homeContent, this).apply {
             onCategoryClicked = { presentCategoryScreen(it) }
-            onGenreClicked = { presentCategoryScreen(Category.from(it)) }
+            onGenreClicked = { presentCategoryScreen(Category.from(this@HomeActivity, it)) }
             onScriptClicked = { presentScriptDetailsScreen(it) }
         }
     }

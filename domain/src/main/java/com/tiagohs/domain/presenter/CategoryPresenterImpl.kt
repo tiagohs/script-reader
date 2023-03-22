@@ -26,38 +26,56 @@ class CategoryPresenterImpl(
             setupAlguments()
             setTitle(category?.title)
             setupContentView()
-            showLoading()
         }
-
-        fetchScripts()
     }
 
     override fun setArguments(category: Category) {
         this.category = category
     }
 
-    private fun fetchScripts() {
+    override fun fetchScripts(currentPage: Int, isFirstPage: Boolean) {
         val categoryURL = category?.url ?: return
 
-        add(interactor.fetchScriptsByCategory(categoryURL)
+        if (isFirstPage) {
+            view.showLoading()
+        }
+
+        add(interactor.fetchScriptsByCategory(categoryURL, currentPage)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { onFetchHomeContentSuccess(it) },
-                { onFetchHomeContentError(it) }
+                { onFetchHomeContentSuccess(it, isFirstPage) },
+                { onFetchHomeContentError(it, isFirstPage) }
             )
         )
     }
 
-    private fun onFetchHomeContentSuccess(list: List<Script>) {
+    private fun onFetchHomeContentSuccess(list: List<Script>, isFirstPage: Boolean) {
         view.hideLoading()
-        view.loadList(list)
+
+        if (list.isEmpty() && isFirstPage) {
+            view.showEmptyContainer()
+        } else {
+            view.hideEmptyContainer()
+        }
+
+        if (isFirstPage) {
+            view.loadList(list, isLastPage = list.isEmpty())
+            return
+        }
+
+        view.loadListMore(list, isLastPage = list.isEmpty())
     }
 
-    private fun onFetchHomeContentError(error: Throwable) {
-        view.hideLoading()
-        view.showMessage(error, MessageType.ERROR, R.string.unknown_error) {
-            start()
+    private fun onFetchHomeContentError(error: Throwable, isFirstPage: Boolean) {
+        if (!isFirstPage) {
+            view.loadListMore(emptyList(), isLastPage = true)
+        }
+
+        if (isFirstPage) {
+            view.showMessage(error, MessageType.ERROR, R.string.unknown_error) {
+                start()
+            }
         }
     }
 }

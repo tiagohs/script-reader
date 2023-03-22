@@ -9,8 +9,12 @@ interface CategoryView: IView {
 
     fun setTitle(title: String?)
 
-    fun loadList(list: List<Script>)
+    fun loadList(list: List<Script>, isLastPage: Boolean)
+
+    fun loadListMore(list: List<Script>, isLastPage: Boolean)
 
     fun showLoading()
     fun hideLoading()
+    fun showEmptyContainer()
+    fun hideEmptyContainer()
 }

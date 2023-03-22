@@ -45,7 +45,7 @@ class HomeInteractorImpl(
     }
 
     private fun fetchFamilyContent(): Observable<HomeCell> {
-        return scriptSlugService.fetchScriptsByCategory("scripts/category/family")
+        return scriptSlugService.fetchScriptsByCategory("scripts/category/family", currentPage = 1)
             .map { ListDefaultCell(
                 title = R.string.home_list_family_title,
                 list = it
@@ -53,10 +53,11 @@ class HomeInteractorImpl(
     }
 
     private fun fetchNetflixContent(): Observable<HomeCell> {
-        return scriptSlugService.fetchScriptsByCategory("scripts/category/netflix")
+        return scriptSlugService.fetchScriptsByCategory("scripts/category/netflix", currentPage = 1)
             .map { ListDefaultCell(
                 title = R.string.home_list_netflix_title,
                 list = it
-            ) }
+            )
+        }
     }
 }

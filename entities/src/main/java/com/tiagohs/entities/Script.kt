@@ -1,6 +1,7 @@
 package com.tiagohs.entities
 
 import android.os.Parcelable
+import com.tiagohs.helpers.enums.PaginationType
 import com.tiagohs.helpers.enums.ScriptType
 import kotlinx.android.parcel.Parcelize
 import org.jsoup.nodes.Element
@@ -18,6 +19,7 @@ data class Script(
     var scriptURL: String? = null,
     var pageUrl: String? = null,
     var scriptType: ScriptType = ScriptType.MOVIE,
+    var paginationType: PaginationType = PaginationType.ITEM,
     var releatedScripts: List<Script> = emptyList()
 ) : Parcelable {
 

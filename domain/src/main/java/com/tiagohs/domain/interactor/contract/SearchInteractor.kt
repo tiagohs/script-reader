@@ -5,5 +5,5 @@ import com.tiagohs.entities.Script
 import io.reactivex.rxjava3.core.Observable
 
 interface SearchInteractor : IInteractor {
-    fun searchScripts(query: String): Observable<List<Script>>
+    fun searchScripts(query: String, currentPage: Int): Observable<List<Script>>
 }

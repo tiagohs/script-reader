@@ -5,5 +5,5 @@ import com.tiagohs.entities.Script
 import io.reactivex.rxjava3.core.Observable
 
 interface CategoryInteractor: IInteractor {
-    fun fetchScriptsByCategory(url: String): Observable<List<Script>>
+    fun fetchScriptsByCategory(url: String, currentPage: Int): Observable<List<Script>>
 }

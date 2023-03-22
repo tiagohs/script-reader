@@ -18,6 +18,7 @@ import com.tiagohs.entities.Script
 import com.tiagohs.helpers.extensions.convertIntToDp
 import com.tiagohs.helpers.extensions.hide
 import com.tiagohs.helpers.extensions.show
+import com.tiagohs.helpers.tools.PaginationScrollListener
 import com.tiagohs.helpers.utils.hideKeyboardFrom
 import kotlinx.android.synthetic.main.activity_search.*
 import org.koin.android.ext.android.inject
@@ -33,8 +34,14 @@ class SearchActivity :
 
     override val layoutViewId: Int = R.layout.activity_search
 
-    private var adapter: ScriptAdapter? = null
     private var searchView: androidx.appcompat.widget.SearchView? = null
+
+    private var isLoading = false
+    private var isLastPage = false
+    private var currentPage = PAGE_START
+    private var query: String = ""
+
+    private var adapter: ScriptAdapter? = null
 
     override fun onDestroy() {
         hideLoading()
@@ -71,9 +78,9 @@ class SearchActivity :
         )
         setupSearchViewItem(toolbar.menu)
 
+        val linearLayoutManager = LinearLayoutManager(this@SearchActivity, LinearLayoutManager.VERTICAL, false)
         recyclerView.apply {
-            layoutManager =
-                LinearLayoutManager(this@SearchActivity, LinearLayoutManager.VERTICAL, false)
+            layoutManager = linearLayoutManager
 
             addItemDecoration(
                 SpaceOffsetDecoration(
@@ -81,12 +88,44 @@ class SearchActivity :
                     SpaceOffsetDecoration.TOP
                 )
             )
+
+            addOnScrollListener(object : PaginationScrollListener(linearLayoutManager) {
+                override val isLastPage: Boolean
+                    get() = this@SearchActivity.isLastPage
+                override val isLoading: Boolean
+                    get() = this@SearchActivity.isLoading
+
+                override fun loadMoreItems() {
+                    this@SearchActivity.isLoading = true
+
+                    presenter.searchScripts(query, ++currentPage, isFirstPage = false)
+                }
+            })
         }
     }
 
-    override fun loadList(list: List<Script>) {
-        recyclerView.adapter = ScriptAdapter(list, LinearLayoutManager.VERTICAL).apply {
+    override fun loadList(list: List<Script>, isLastPage: Boolean) {
+        this.adapter = ScriptAdapter(list, LinearLayoutManager.VERTICAL).apply {
             onScriptClicked = { presentScriptDetailsScreen(it) }
+        }
+
+        recyclerView.adapter = this.adapter
+
+        if (!isLastPage) {
+            adapter?.addLoadingFooter()
+        }
+    }
+
+    override fun loadListMore(list: List<Script>, isLastPage: Boolean) {
+        this.isLastPage = isLastPage
+
+        isLoading = false
+
+        adapter?.removeLoadingFooter()
+        adapter?.addAll(list)
+
+        if (!isLastPage) {
+            adapter?.addLoadingFooter()
         }
     }
 
@@ -106,14 +145,32 @@ class SearchActivity :
         recyclerView.hide()
     }
 
+    override fun showEmptyContainer() {
+
+    }
+
+    override fun hideEmptyContainer() {
+
+    }
+
     override fun onQueryTextChange(newText: String): Boolean {
-        presenter.searchScripts(newText)
+        this.query = newText
+        this.isLoading = false
+        this.isLastPage = false
+        this.currentPage = PAGE_START
+
+        presenter.searchScripts(newText, currentPage, isFirstPage = true)
 
         return true
     }
 
     override fun onQueryTextSubmit(query: String): Boolean {
-        presenter.searchScripts(query)
+        this.query = query
+        this.isLoading = false
+        this.isLastPage = false
+        this.currentPage = PAGE_START
+
+        presenter.searchScripts(query, currentPage, isFirstPage = true)
         searchView?.clearFocus()
         hideKeyboardFrom(this, searchView)
 
@@ -121,6 +178,8 @@ class SearchActivity :
     }
 
     companion object {
+        private const val PAGE_START = 1
+
         fun newIntent(context: Context): Intent = Intent(context, SearchActivity::class.java)
     }
 }

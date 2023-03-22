@@ -6,10 +6,13 @@ import com.tiagohs.entities.Script
 interface SearchView: IView {
 
     fun setupContentView()
-    fun loadList(list: List<Script>)
+    fun loadList(list: List<Script>, isLastPage: Boolean)
+    fun loadListMore(list: List<Script>, isLastPage: Boolean)
 
     fun showLoading()
     fun hideLoading()
     fun showRecyclerView()
     fun hideRecyclerView()
+    fun showEmptyContainer()
+    fun hideEmptyContainer()
 }

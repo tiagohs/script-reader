@@ -11,6 +11,6 @@ class SearchInteractorImpl(
 ) : BaseInteractor(),
     SearchInteractor {
 
-    override fun searchScripts(query: String): Observable<List<Script>> =
-        scriptSlugService.searchScripts(query)
+    override fun searchScripts(query: String, currentPage: Int): Observable<List<Script>> =
+        scriptSlugService.searchScripts(query, currentPage)
 }

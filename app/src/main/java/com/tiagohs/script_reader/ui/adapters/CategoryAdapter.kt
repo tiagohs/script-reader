@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.adapter_category.view.*
 
 class CategoryAdapter(
     categoryList: List<Category>
-): BaseAdapter<Category, CategoryAdapter.CategoryViewHolder>(categoryList) {
+): BaseAdapter<Category, CategoryAdapter.CategoryViewHolder>(categoryList.toMutableList()) {
 
     var onCategoryClicked: ((category: Category) -> Unit)? = null
 

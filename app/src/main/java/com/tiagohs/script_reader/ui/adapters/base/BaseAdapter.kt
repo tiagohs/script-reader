@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.tiagohs.entities.Script
 
 abstract class BaseAdapter<I, V : BaseViewHolder<I>>(
-        var list: List<I>
+        var list: MutableList<I>
 ): RecyclerView.Adapter<V>() {
 
     abstract fun getLayoutResId(viewType: Int): Int
@@ -25,5 +26,19 @@ abstract class BaseAdapter<I, V : BaseViewHolder<I>>(
 
         holder.bind(list[position], position)
     }
+
+    fun add(item: I) {
+        list.add(item)
+
+        notifyItemInserted(list.size - 1)
+    }
+
+    fun addAll(items: List<I>) {
+        items.forEach {
+            add(it)
+        }
+    }
+
+    fun getItem(position: Int): I? = list.getOrNull(position)
 
 }

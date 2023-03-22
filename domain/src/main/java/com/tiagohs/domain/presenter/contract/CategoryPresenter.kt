@@ -6,5 +6,6 @@ import com.tiagohs.entities.Category
 
 interface CategoryPresenter :
     IPresenter {
+    fun fetchScripts(currentPage: Int, isFirstPage: Boolean)
     fun setArguments(category: Category)
 }

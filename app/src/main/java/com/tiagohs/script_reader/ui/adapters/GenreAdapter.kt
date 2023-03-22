@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.adapter_genre.view.*
 
 class GenreAdapter(
     categoryList: List<GenresEnum>
-) : BaseAdapter<GenresEnum, GenreAdapter.GenreViewHolder>(categoryList) {
+) : BaseAdapter<GenresEnum, GenreAdapter.GenreViewHolder>(categoryList.toMutableList()) {
 
     var onGenreClicked: ((genre: GenresEnum) -> Unit)? = null
 
